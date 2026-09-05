@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sweetza Product Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="manager.css">
+</head>
+<body>
+  <header class="manager-topbar">
+    <div class="manager-container nav">
+      <div class="manager-brand">
+        <div class="manager-logo">SZ</div>
+        <div><strong>Sweetza Product Manager</strong><span>Cravings, Sorted.</span></div>
+      </div>
+      <a class="ghost-button" href="index.html">View Store</a>
+    </div>
+  </header>
+
+  <main class="manager-container manager-main">
+    <section class="manager-hero">
+      <div>
+        <span class="eyebrow">Range control centre</span>
+        <h1>Manage your Sweetza range and availability without editing code.</h1>
+        <p>Add or remove flavours, change prices, move products between sections, update PNG filenames, and manually mark products Available, Out of Stock, or Hidden.</p>
+      </div>
+      <div class="hero-stat-grid">
+        <div class="hero-stat"><strong id="totalProducts">0</strong><span>Total products</span></div>
+        <div class="hero-stat"><strong id="availableProducts">0</strong><span>Available</span></div>
+        <div class="hero-stat"><strong id="outProducts">0</strong><span>Out of stock</span></div>
+      </div>
+    </section>
+
+    <section class="toolbar-card">
+      <div class="toolbar-left">
+        <button class="primary-button" id="addProductBtn">+ Add Product</button>
+        <select id="sectionFilter">
+          <option value="all">All sections</option>
+          <option value="70g">70g</option>
+          <option value="Milk Bottles">Milk Bottles</option>
+          <option value="300g">300g</option>
+          <option value="900g">900g</option>
+        </select>
+        <input id="searchInput" placeholder="Search products...">
+      </div>
+      <div class="toolbar-right">
+        <button class="ghost-button" id="exportBtn">Export JSON</button>
+        <label class="ghost-button file-button">Import JSON<input id="importInput" type="file" accept=".json,application/json"></label>
+</div>
+    </section>
+
+    <section class="info-banner">
+      <strong>PNG image size:</strong>
+      <span>Your 1254 × 1254 PNG files are perfect. Put them inside the correct <code>assets/products/...</code> folder and enter the image path in the product.</span>
+    </section>
+
+    <section class="product-manager-grid" id="productManagerGrid"></section>
+  </main>
+
+  <aside class="modal" id="productModal" aria-hidden="true">
+    <div class="modal-panel">
+      <div class="modal-head">
+        <div>
+          <span class="eyebrow">Product editor</span>
+          <h2 id="modalTitle">Add Product</h2>
+        </div>
+        <button class="close-button" id="closeModal">×</button>
+      </div>
+
+      <form id="productForm">
+        <input type="hidden" id="originalId">
+
+        <div class="field-grid two">
+          <label class="field">
+            <span>Product name</span>
+            <input id="productName" required placeholder="e.g. Cola Bottles">
+          </label>
+          <label class="field">
+            <span>Section</span>
+            <select id="productSection" required>
+              <option value="70g">70g</option>
+              <option value="Milk Bottles">Milk Bottles</option>
+              <option value="300g">300g</option>
+              <option value="900g">900g</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="field-grid two">
+          <label class="field">
+            <span>Pack size</span>
+            <input id="productPackSize" required placeholder="70g / 125g / 300g / 600g / 900g">
+          </label>
+          <label class="field">
+            <span>Selling price (R)</span>
+            <input id="productPrice" type="number" min="0" step="0.01" required>
+          </label>
+        </div>
+
+        <label class="field">
+          <span>Status</span>
+          <select id="productStatus">
+            <option value="available">Available</option>
+            <option value="out">Out of Stock</option>
+            <option value="hidden">Hidden</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>PNG image path</span>
+          <input id="productImage" required placeholder="assets/products/70g/banana.png">
+          <small>Use a 1254 × 1254 PNG. The filename/path is case-sensitive on Netlify.</small>
+        </label>
+
+        <div class="image-preview-card">
+          <span>Image preview</span>
+          <div class="preview-frame">
+            <img id="imagePreview" alt="Product preview">
+            <div id="previewFallback">PNG preview</div>
+          </div>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" class="ghost-button" id="cancelModal">Cancel</button>
+          <button type="submit" class="primary-button">Save Product</button>
+        </div>
+      </form>
+    </div>
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+  </aside>
+
+  <aside class="image-lightbox" id="managerImageLightbox" aria-hidden="true">
+    <div class="image-lightbox-panel">
+      <button class="image-lightbox-close" id="managerLightboxClose" aria-label="Close image">×</button>
+      <img id="managerLightboxImage" alt="Product preview">
+      <div class="image-lightbox-caption" id="managerLightboxCaption"></div>
+    </div>
+    <div class="image-lightbox-backdrop" id="managerLightboxBackdrop"></div>
+  </aside>
+
+  <div class="toast" id="managerToast"></div>
+  <script src="default-products.js"></script>
+  <script src="manager.js"></script>
+</body>
+</html>

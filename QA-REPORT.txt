@@ -1,0 +1,20 @@
+Sweetza Final Clean v5.4 QA
+==============================
+
+[PASS] app.js syntax
+[PASS] default-products.js syntax
+[PASS] manager.js syntax
+[PASS] Baloo 2 imported
+[PASS] Poppins imported
+[PASS] body uses Poppins
+[PASS] category names use Baloo 2
+[PASS] category names bold
+[PASS] category labels unchanged
+[PASS] styles still present
+[PASS] cart flow intact
+[PASS] product grids intact
+[PASS] MHA absent
+[PASS] ZIP integrity
+[PASS] ZIP populated
+
+Passed: 15/15

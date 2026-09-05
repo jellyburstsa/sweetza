@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Browse Sweetza sweets and send your order directly on WhatsApp.">
+  <title>Sweetza</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@700&family=Poppins:wght@400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main>
+    <section class="brand-section">
+      <div class="container brand-wrap">
+        <img class="brand-logo" src="assets/brand/sweetza-logo.png" alt="Sweetza">
+        <p>Choose a range, add your favourites, then send your order to us on WhatsApp.</p>
+      </div>
+    </section>
+
+    <nav class="container category-grid" id="categoryGrid" aria-label="Product ranges">
+      <button class="category-button active" data-category="70g">
+        <strong>Snack Size</strong>
+        <span>Quick treats</span>
+      </button>
+      <button class="category-button" data-category="Milk Bottles">
+        <strong>Milk Bottles</strong>
+        <span>125g + 600g</span>
+      </button>
+      <button class="category-button" data-category="300g">
+        <strong>Classic Pack</strong>
+        <span>Main range</span>
+      </button>
+      <button class="category-button" data-category="900g">
+        <strong>Bulk Pack</strong>
+        <span>Sharing packs</span>
+      </button>
+    </nav>
+
+    <section class="shop-section" id="shop">
+      <div class="container">
+        <div class="shop-heading">
+          <div>
+            <span class="eyebrow" id="rangeEyebrow">Sweetza Snack Size</span>
+            <h1 id="rangeTitle">Snack Size Range</h1>
+            <p id="rangeCopy">Pick your favourites and choose the quantity you want.</p>
+          </div>
+        </div>
+
+        <div class="product-grid" id="productGrid70g"></div>
+        <div class="product-grid hidden" id="productGridMilkBottles"></div>
+        <div class="product-grid hidden" id="productGrid300g"></div>
+        <div class="product-grid hidden" id="productGrid900g"></div>
+      </div>
+    </section>
+  </main>
+
+  <button class="floating-cart" id="floatingCartButton" type="button" aria-label="View cart">
+    <span>View Cart</span>
+    <strong id="floatingCartCount">0</strong>
+  </button>
+
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true">
+    <button class="cart-backdrop" id="cartBackdrop" type="button" aria-label="Close cart"></button>
+
+    <div class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cartStepTitle">
+      <div class="cart-header">
+        <div>
+          <span class="eyebrow" id="cartStepEyebrow">Step 1 of 2</span>
+          <h2 id="cartStepTitle">Order Review</h2>
+        </div>
+        <div class="cart-header-actions">
+          <button class="text-button" id="clearCart" type="button">Clear</button>
+          <button class="icon-button" id="closeCart" type="button" aria-label="Close cart">×</button>
+        </div>
+      </div>
+
+      <section class="order-step active" id="orderReviewStep">
+        <div class="cart-items" id="cartItems"></div>
+
+        <div class="review-footer order-summary-card">
+          <div class="order-summary-heading">
+            <div>
+              <span class="eyebrow">Order Summary</span>
+              <strong>Almost done</strong>
+            </div>
+            <span id="cartItemSummary">0 items</span>
+          </div>
+
+          <div class="total-row order-total-row">
+            <span>Products total</span>
+            <strong id="cartTotal">R0</strong>
+          </div>
+
+          <div class="delivery-progress-card" id="deliveryProgressCard">
+            <div class="delivery-progress-copy">
+              <strong id="deliveryProgressMessage">Add more for FREE delivery!</strong>
+              <span id="deliveryProgressAmount">R0 / R500</span>
+            </div>
+            <div class="delivery-progress-track" aria-hidden="true">
+              <div class="delivery-progress-fill" id="deliveryProgressFill"></div>
+            </div>
+          </div>
+
+          <p class="muted">Orders of R500 or more qualify for FREE delivery.</p>
+          <button class="primary-button full" id="looksGoodButton" type="button">Looks Good</button>
+        </div>
+      </section>
+
+      <section class="order-step" id="deliveryOptionsStep">
+        <div class="delivery-intro">
+          <h3>Delivery Options</h3>
+          <p>Choose how you would like us to send your parcel.</p>
+        </div>
+
+        <div class="delivery-options">
+          <label class="delivery-option">
+            <input id="deliveryCourier" type="radio" name="deliveryChoice" value="courier">
+            <span>
+              <strong>Courier to your door</strong>
+              <small id="courierDeliveryPrice">R99 delivery</small>
+            </span>
+          </label>
+
+          <label class="delivery-option">
+            <input id="deliveryPudo" type="radio" name="deliveryChoice" value="pudo">
+            <span>
+              <strong>Send to Pudo locker</strong>
+              <small id="pudoDeliveryPrice">R75 delivery</small>
+            </span>
+          </label>
+        </div>
+
+        <div class="delivery-form" id="courierFields" hidden>
+          <h4>Courier details</h4>
+
+          <label class="field">
+            <span>Full name</span>
+            <input id="courierName" type="text" autocomplete="name">
+          </label>
+
+          <label class="field">
+            <span>Phone number</span>
+            <input id="courierPhone" type="tel" inputmode="tel" autocomplete="tel">
+          </label>
+
+          <label class="field">
+            <span>Street address</span>
+            <input id="courierStreet" type="text" autocomplete="street-address">
+          </label>
+
+          <div class="field-grid">
+            <label class="field">
+              <span>Suburb</span>
+              <input id="courierSuburb" type="text" autocomplete="address-level3">
+            </label>
+
+            <label class="field">
+              <span>City / Town</span>
+              <input id="courierCity" type="text" autocomplete="address-level2">
+            </label>
+          </div>
+
+          <div class="field-grid">
+            <label class="field">
+              <span>Province</span>
+              <select id="courierProvince" autocomplete="address-level1">
+                <option value="">Select province</option>
+                <option>Eastern Cape</option>
+                <option>Free State</option>
+                <option>Gauteng</option>
+                <option>KwaZulu-Natal</option>
+                <option>Limpopo</option>
+                <option>Mpumalanga</option>
+                <option>Northern Cape</option>
+                <option>North West</option>
+                <option>Western Cape</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Postcode</span>
+              <input id="courierPostcode" type="text" inputmode="numeric" autocomplete="postal-code">
+            </label>
+          </div>
+        </div>
+
+        <div class="delivery-form" id="pudoFields" hidden>
+          <h4>Pudo locker details</h4>
+
+          <label class="field">
+            <span>Name</span>
+            <input id="pudoName" type="text" autocomplete="name">
+          </label>
+
+          <label class="field">
+            <span>Phone number</span>
+            <input id="pudoPhone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="10" pattern="[0-9]{10}" placeholder="10-digit number">
+          </label>
+
+
+          <label class="field">
+            <span>Province</span>
+            <select id="pudoProvince" autocomplete="address-level1">
+              <option value="">Select province</option>
+              <option>Eastern Cape</option>
+              <option>Free State</option>
+              <option>Gauteng</option>
+              <option>KwaZulu-Natal</option>
+              <option>Limpopo</option>
+              <option>Mpumalanga</option>
+              <option>Northern Cape</option>
+              <option>North West</option>
+              <option>Western Cape</option>
+            </select>
+          </label>
+
+          <label class="field">
+            <span>Nearest Pudo locker</span>
+            <input id="pudoLocker" type="text" placeholder="e.g. Pudo Locker - Sandton">
+          </label>
+        </div>
+
+        <div class="delivery-actions">
+          <button class="secondary-button full" id="backToReviewButton" type="button">Back to Order Review</button>
+          <button class="whatsapp-button full" id="whatsappOrderButton" type="button">Send Order on WhatsApp</button>
+        </div>
+      </section>
+    </div>
+  </aside>
+
+
+  <div class="product-lightbox" id="productLightbox" aria-hidden="true">
+    <button class="product-lightbox-backdrop" id="productLightboxBackdrop" type="button" aria-label="Close image"></button>
+    <div class="product-lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="productLightboxTitle">
+      <button class="product-lightbox-close" id="productLightboxClose" type="button" aria-label="Close image">×</button>
+      <img id="productLightboxImage" src="" alt="">
+      <strong id="productLightboxTitle"></strong>
+    </div>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="default-products.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
