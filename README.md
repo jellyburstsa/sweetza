@@ -17,3 +17,11 @@ Applied to:
 - How It Works cards
 
 The existing Sweetza purple/green palette and mobile cart behaviour are retained.
+
+
+## Compact How It Works
+The How It Works section was reduced in height:
+- tighter spacing
+- smaller icons
+- smaller helper text
+- 3 compact columns on mobile instead of stacking vertically

@@ -1,28 +1,19 @@
-Sweetza Final Clean v5.7 Flowbite QA
-====================================
+Sweetza Final Clean v5.8 QA
+==============================
 
 [PASS] app.js syntax
 [PASS] default-products.js syntax
 [PASS] manager.js syntax
-[PASS] Flowbite CSS included
-[PASS] Flowbite JS included
-[PASS] Add to Cart Flowbite class
-[PASS] View Cart Flowbite class
-[PASS] WhatsApp Flowbite class
-[PASS] modal Flowbite shell
-[PASS] modal panel class
-[PASS] modal close class
-[PASS] How It Works cards
-[PASS] How It Works icons
-[PASS] Sweetza purple retained
-[PASS] Sweetza green retained
-[PASS] cart 100dvh retained
-[PASS] cart scroll retained
-[PASS] mobile 44px targets retained
-[PASS] free delivery retained
-[PASS] stock blocking retained
+[PASS] How It Works retained
+[PASS] 3 steps retained
+[PASS] desktop compact padding
+[PASS] mobile 3-column compact layout
+[PASS] smaller mobile icons
+[PASS] small phone breakpoint
+[PASS] Flowbite classes retained
+[PASS] cart flow untouched
 [PASS] MHA absent
 [PASS] ZIP integrity
 [PASS] ZIP populated
 
-Passed: 23/23
+Passed: 14/14
