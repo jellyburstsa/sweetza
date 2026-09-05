@@ -1,3 +1,12 @@
+
+function debounce(callback, delay = 250) {
+  let timeoutId;
+  return (...args) => {
+    window.clearTimeout(timeoutId);
+    timeoutId = window.setTimeout(() => callback(...args), delay);
+  };
+}
+
 const STORE = {
   whatsapp: "27849072130",
   currency: "R"
@@ -125,6 +134,26 @@ function loadCart() {
 }
 
 let products = loadProducts();
+
+function safeReadCartStorage() {
+  try {
+    return localStorage.getItem(CART_STORAGE_KEY);
+  } catch (error) {
+    console.warn("Sweetza cart storage is unavailable:", error);
+    return null;
+  }
+}
+
+function safeWriteCartStorage(value) {
+  try {
+    localStorage.setItem(CART_STORAGE_KEY, value);
+    return true;
+  } catch (error) {
+    console.warn("Sweetza cart could not be saved:", error);
+    return false;
+  }
+}
+
 let cart = loadCart();
 let activeCategory = "70g";
 
@@ -283,6 +312,17 @@ function saveCart() {
   localStorage.setItem(CART_KEY, JSON.stringify(cart));
 }
 
+
+function pulseFloatingCart() {
+  const button = document.getElementById("floatingCartButton");
+  if (!button) return;
+  button.classList.remove("cart-pulse");
+  requestAnimationFrame(() => {
+    button.classList.add("cart-pulse");
+    window.setTimeout(() => button.classList.remove("cart-pulse"), 420);
+  });
+}
+
 function addToCart(id) {
   const product = productById(id);
   if (!product) return;
@@ -308,6 +348,7 @@ function addToCart(id) {
 
   saveCart();
   renderCart();
+  pulseFloatingCart();
   showToast(`${product.name} added to cart`);
 }
 

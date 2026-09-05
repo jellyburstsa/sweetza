@@ -1942,3 +1942,165 @@ h1, h2, h3, h4, h5, h6,
     scroll-behavior:auto!important;
   }
 }
+
+
+
+/* =========================================================
+   Sweetza v6.3 — UI concepts merged from uploaded Gemini CSS
+   ========================================================= */
+
+/* Shared interaction timing inspired by uploaded component layer */
+:root{
+  --ui-transition: all .25s cubic-bezier(.4,0,.2,1);
+  --ui-shadow-sm: 0 2px 6px rgba(28,17,37,.05);
+  --ui-shadow-md: 0 10px 28px rgba(28,17,37,.09);
+  --ui-shadow-lg: 0 20px 44px rgba(28,17,37,.13);
+}
+
+/* Product cards: crisp border + soft ecommerce elevation */
+.product-card{
+  border:1px solid #e7dfe9;
+  box-shadow:var(--ui-shadow-sm);
+  transition:transform .25s cubic-bezier(.4,0,.2,1),
+             box-shadow .25s cubic-bezier(.4,0,.2,1),
+             border-color .25s ease;
+}
+@media(hover:hover) and (pointer:fine){
+  .product-card:hover{
+    transform:translateY(-4px);
+    box-shadow:var(--ui-shadow-md);
+    border-color:rgba(214,51,132,.22);
+  }
+  .product-card:hover .product-image > img{
+    transform:scale(1.045);
+  }
+}
+.product-image > img{
+  transition:transform .4s cubic-bezier(.16,1,.3,1);
+}
+
+/* Category nav borrows pill-filter clarity, mapped to Sweetza markup */
+.category-grid{
+  scrollbar-width:none;
+  -webkit-overflow-scrolling:touch;
+}
+.category-grid::-webkit-scrollbar{display:none}
+.category-button{
+  white-space:nowrap;
+  transition:var(--ui-transition);
+}
+.category-button:hover:not(.active){
+  border-color:rgba(214,51,132,.18);
+}
+.category-button.active{
+  background:linear-gradient(135deg,rgba(255,79,163,.08),rgba(122,92,255,.08));
+}
+
+/* Controls: more tactile but still restrained */
+.add-button,
+.primary-button,
+.secondary-button,
+.whatsapp-button,
+.floating-cart,
+.icon-button{
+  transition:var(--ui-transition);
+}
+.add-button:active:not(:disabled),
+.primary-button:active:not(:disabled),
+.secondary-button:active:not(:disabled),
+.whatsapp-button:active:not(:disabled),
+.floating-cart:active:not(:disabled){
+  transform:scale(.98);
+}
+
+/* Cart drawer: smoother slide/elevation */
+.cart-panel{
+  box-shadow:-20px 0 46px rgba(28,17,37,.14);
+  animation-duration:.34s;
+}
+.cart-backdrop{
+  transition:opacity .25s ease;
+}
+
+/* Cart quantity controls use uploaded 44px-accessibility idea rather than its 28px original */
+.mini-stepper button,
+.qty-stepper button{
+  transition:background-color .2s ease,color .2s ease,transform .12s ease;
+}
+.mini-stepper button:hover,
+.qty-stepper button:hover{
+  background:#eee8f2;
+}
+.mini-stepper button:active,
+.qty-stepper button:active{
+  transform:scale(.94);
+}
+
+/* Delivery selection adapted from uploaded active-option card pattern */
+.delivery-option{
+  transition:border-color .2s ease,background-color .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+@media(hover:hover) and (pointer:fine){
+  .delivery-option:hover{
+    transform:translateY(-1px);
+    box-shadow:0 8px 20px rgba(28,17,37,.05);
+  }
+}
+
+/* Inputs adopt cleaner focus treatment */
+.field input,
+.field select{
+  transition:border-color .2s ease,box-shadow .2s ease,background-color .2s ease;
+}
+.field input:focus,
+.field select:focus{
+  outline:none;
+}
+
+/* Toasts borrow the compact premium notification treatment */
+.toast{
+  box-shadow:var(--ui-shadow-md);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+/* Small visual response after add-to-cart */
+@keyframes sweetzaCartPulse{
+  0%{transform:scale(1)}
+  35%{transform:scale(1.06)}
+  100%{transform:scale(1)}
+}
+.floating-cart.cart-pulse{
+  animation:sweetzaCartPulse .42s cubic-bezier(.16,1,.3,1);
+}
+
+/* Mobile refinements */
+@media(max-width:768px){
+  .product-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .cart-panel{
+    width:100vw!important;
+    max-width:100vw!important;
+  }
+
+  .toast{
+    width:auto;
+    max-width:calc(100vw - 24px);
+  }
+}
+
+@media(max-width:390px){
+  .category-button{
+    min-width:112px;
+  }
+
+  .product-card{
+    border-radius:16px;
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media(prefers-reduced-motion:reduce){
+  .floating-cart.cart-pulse{animation:none!important}
+}
