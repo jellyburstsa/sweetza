@@ -1,19 +1,35 @@
-Sweetza Final Clean v5.8 QA
+Sweetza Final Clean v5.9 QA
 ==============================
 
 [PASS] app.js syntax
 [PASS] default-products.js syntax
 [PASS] manager.js syntax
+[PASS] logo retained
+[PASS] larger desktop logo
+[PASS] larger mobile logo
+[PASS] small phone logo rule
+[PASS] homepage tagline removed
+[PASS] button text updated
+[PASS] arrow added
+[PASS] gradient button
+[PASS] pill button
+[PASS] button shadow
+[PASS] hover effect
+[PASS] press animation
+[PASS] branded title
+[PASS] products emoji
+[PASS] products total emoji
+[PASS] delivery emoji
+[PASS] final total emoji
+[PASS] courier emoji
+[PASS] pudo emoji
+[PASS] confirmation line removed
+[PASS] free delivery retained
+[PASS] stock blocking retained
+[PASS] Flowbite retained
 [PASS] How It Works retained
-[PASS] 3 steps retained
-[PASS] desktop compact padding
-[PASS] mobile 3-column compact layout
-[PASS] smaller mobile icons
-[PASS] small phone breakpoint
-[PASS] Flowbite classes retained
-[PASS] cart flow untouched
 [PASS] MHA absent
 [PASS] ZIP integrity
 [PASS] ZIP populated
 
-Passed: 14/14
+Passed: 30/30

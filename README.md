@@ -1,27 +1,11 @@
-# Sweetza — Flowbite UI Edition
+# Sweetza — Final Storefront v5.9
 
-This version keeps the existing Sweetza branding, content and business logic while applying Flowbite-inspired component styling.
+Updates:
+- Larger centered homepage logo with responsive mobile sizing
+- Homepage instruction tagline removed
+- Branded WhatsApp order message with section emojis
+- "Please confirm availability" removed from WhatsApp message
+- Order Review continue button restyled with a subtle purple-to-pink gradient,
+  pill shape, arrow, hover motion, press animation and soft shadow
 
-## Flowbite
-Loaded from the official CDN:
-- Flowbite CSS 4.0.1
-- Flowbite JS 4.0.1
-
-Applied to:
-- Add to Cart
-- View Cart
-- Looks Good
-- Back to Order Review
-- Send Order on WhatsApp
-- cart modal shell
-- How It Works cards
-
-The existing Sweetza purple/green palette and mobile cart behaviour are retained.
-
-
-## Compact How It Works
-The How It Works section was reduced in height:
-- tighter spacing
-- smaller icons
-- smaller helper text
-- 3 compact columns on mobile instead of stacking vertically
+All existing product, cart, stock, delivery and free-delivery logic is retained.

@@ -547,7 +547,7 @@ function groupedOrderLines() {
 
   CATEGORY_ORDER.forEach(category => {
     if (!grouped[category]?.length) return;
-    lines.push(`*${category}*`);
+    lines.push(`🍬 *${category}*`);
     lines.push(...grouped[category]);
     lines.push("");
   });
@@ -555,7 +555,7 @@ function groupedOrderLines() {
   Object.keys(grouped)
     .filter(category => !CATEGORY_ORDER.includes(category))
     .forEach(category => {
-      lines.push(`*${category}*`);
+      lines.push(`🍬 *${category}*`);
       lines.push(...grouped[category]);
       lines.push("");
     });
@@ -570,8 +570,8 @@ function deliveryLines() {
 
   if (choice === "courier") {
     return [
-      "*Delivery:* Courier to your door",
-      `Delivery fee: ${feeText}`,
+      "🚚 Courier to your door",
+      `💳 Delivery fee: ${feeText}`,
       `Name: ${fieldValue("courierName")}`,
       `Phone: ${fieldValue("courierPhone")}`,
       `Address: ${[
@@ -585,8 +585,8 @@ function deliveryLines() {
   }
 
   return [
-    "*Delivery:* Send to Pudo locker",
-    `Delivery fee: ${feeText}`,
+    "📦 Send to Pudo locker",
+    `💳 Delivery fee: ${feeText}`,
     `Name: ${fieldValue("pudoName")}`,
     `Phone: ${fieldValue("pudoPhone")}`,
     `Province: ${fieldValue("pudoProvince")}`,
@@ -607,17 +607,17 @@ function sendWhatsAppOrder() {
   const finalTotal = cartSubtotal() + deliveryFee;
 
   const message = [
-    "*SWEETZA ORDER*",
-    `Date: ${orderDate()}`,
+    "🍬 *SWEETZA ORDER*",
+    `📅 Date: ${orderDate()}`,
     "",
+    "🛒 *Products*",
     ...groupedOrderLines(),
-    `*Products Total:* ${money(cartSubtotal())}`,
+    `💰 *Products Total:* ${money(cartSubtotal())}`,
     "",
+    "📦 *Delivery*",
     ...deliveryLines(),
     "",
-    `*FINAL TOTAL:* ${money(finalTotal)}`,
-    "",
-    "Please confirm availability."
+    `✨ *FINAL TOTAL:* ${money(finalTotal)}`
   ].join("\n");
 
   window.open(
