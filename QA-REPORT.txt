@@ -1,35 +1,30 @@
-Sweetza Final Clean v5.9 QA
-==============================
+Sweetza Gemini Smart Merge QA
+===============================
 
 [PASS] app.js syntax
 [PASS] default-products.js syntax
 [PASS] manager.js syntax
-[PASS] logo retained
-[PASS] larger desktop logo
-[PASS] larger mobile logo
-[PASS] small phone logo rule
-[PASS] homepage tagline removed
-[PASS] button text updated
-[PASS] arrow added
-[PASS] gradient button
-[PASS] pill button
-[PASS] button shadow
-[PASS] hover effect
-[PASS] press animation
-[PASS] branded title
-[PASS] products emoji
-[PASS] products total emoji
-[PASS] delivery emoji
-[PASS] final total emoji
-[PASS] courier emoji
-[PASS] pudo emoji
-[PASS] confirmation line removed
+[PASS] DOM floatingCartButton
+[PASS] DOM cartDrawer
+[PASS] DOM looksGoodButton
+[PASS] DOM whatsappOrderButton
+[PASS] DOM productLightbox
+[PASS] Gemini palette
+[PASS] Gemini card shadows
+[PASS] Premium product cards
+[PASS] Premium cart styling
+[PASS] bigger logo
+[PASS] compact How It Works
+[PASS] compact cart
+[PASS] 44px qty buttons
+[PASS] mobile safe cart
+[PASS] stock green
+[PASS] stock red
 [PASS] free delivery retained
-[PASS] stock blocking retained
-[PASS] Flowbite retained
-[PASS] How It Works retained
+[PASS] out of stock blocked
+[PASS] WhatsApp retained
 [PASS] MHA absent
 [PASS] ZIP integrity
 [PASS] ZIP populated
 
-Passed: 30/30
+Passed: 25/25

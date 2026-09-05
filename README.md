@@ -1,11 +1,17 @@
-# Sweetza — Final Storefront v5.9
+# Sweetza — Gemini Smart Merge
 
-Updates:
-- Larger centered homepage logo with responsive mobile sizing
-- Homepage instruction tagline removed
-- Branded WhatsApp order message with section emojis
-- "Please confirm availability" removed from WhatsApp message
-- Order Review continue button restyled with a subtle purple-to-pink gradient,
-  pill shape, arrow, hover motion, press animation and soft shadow
+This build applies the uploaded Gemini premium CSS as the visual base, while preserving Sweetza's working requirements.
 
-All existing product, cart, stock, delivery and free-delivery logic is retained.
+Preserved:
+- larger logo
+- compact How It Works
+- small bottom-right floating cart
+- 44px+ mobile tap targets
+- mobile-safe scrollable cart
+- green available / red out-of-stock states
+- out-of-stock cart blocking
+- R500 free-delivery logic
+- WhatsApp ordering
+- current product data and pricing
+
+The uploaded Gemini CSS was not copied blindly; known regressions were corrected.
