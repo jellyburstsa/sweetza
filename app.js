@@ -200,7 +200,7 @@ function productCard(product) {
           <button type="button" onclick="changeProductQty('${product.id}', 1)" ${available ? "" : "disabled"} aria-label="Increase quantity">+</button>
         </div>
 
-        <button class="add-button" type="button" onclick="addToCart('${product.id}')" ${available ? "" : "disabled"}>
+        <button class="add-button flowbite-button flowbite-add-button" type="button" onclick="addToCart('${product.id}')" ${available ? "" : "disabled"}>
           ${available ? "Add to Cart" : "Out of Stock"}
         </button>
       </div>
