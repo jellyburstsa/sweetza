@@ -1,0 +1,17 @@
+Place your product photos in this folder using these exact filenames:
+
+fruit-bunny-jelly.jpg
+sour-worms.jpg
+sour-ice-pops.jpg
+juicy-sharks.jpg
+teddy-bears.jpg
+gummy-drops.jpg
+banana.jpg
+juicy-pineapple.jpg
+sour-bottles.jpg
+mixed-berry.jpg
+cola-bottles.jpg
+sour-hearts.jpg
+jelly-donut.jpg
+
+Recommended: square JPG, at least 1200x1200px, clean background.

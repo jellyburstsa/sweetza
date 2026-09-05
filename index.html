@@ -22,7 +22,56 @@
     </section>
 
 
-    <section class="how-it-works" aria-labelledby="howItWorksTitle">
+    <section class="shop-hero">
+      <div class="container shop-hero-inner">
+        <div class="shop-hero-copy">
+          <span class="shop-hero-kicker">Sweetza online sweets</span>
+          <h1>Cravings, Sorted 🍬</h1>
+        </div>
+      </div>
+    </section>
+
+    <nav class="container category-grid" id="categoryGrid" aria-label="Product ranges">
+      <button class="category-button category-snack active" data-category="70g">
+        <span class="category-icon category-icon-gummy" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 5c0-2 2-3 5-3s5 1 5 3c0 1-.5 2-1.4 2.8A5.9 5.9 0 0 1 18 13c0 4-2.7 7-6 7s-6-3-6-7a5.9 5.9 0 0 1 2.4-5.2C7.5 7 7 6 7 5Z"/></svg></span>
+        <strong>Snack Size</strong>
+        <span>Quick treats</span>
+      </button>
+      <button class="category-button category-milk" data-category="Milk Bottles">
+        <span class="category-icon category-icon-milk" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 3h6v3l2 3v11H7V9l2-3V3Zm0 7h6"/></svg></span>
+        <strong>Milk Bottles</strong>
+        <span>125g + 600g</span>
+      </button>
+      <button class="category-button category-classic" data-category="300g">
+        <span class="category-icon category-icon-classic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 7h14l-1 13H6L5 7Zm3-3h8l1 3H7l1-3Z"/></svg></span>
+        <strong>Classic Pack</strong>
+        <span>Main range</span>
+      </button>
+      <button class="category-button category-bulk" data-category="900g">
+        <span class="category-icon category-icon-bulk" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 8h16v12H4V8Zm3-4h10l2 4H5l2-4Zm2 9h6"/></svg></span>
+        <strong>Bulk Pack</strong>
+        <span>Sharing packs</span>
+      </button>
+    </nav>
+
+    <section class="shop-section" id="shop">
+      <div class="container">
+        <div class="shop-heading">
+          <div>
+            <span class="eyebrow" id="rangeEyebrow">Sweetza Snack Size</span>
+            <h1 id="rangeTitle">Snack Size Range</h1>
+            <p id="rangeCopy">Pick your favourites and choose the quantity you want.</p>
+          </div>
+        </div>
+
+        <div class="product-grid" id="productGrid70g"></div>
+        <div class="product-grid hidden" id="productGridMilkBottles"></div>
+        <div class="product-grid hidden" id="productGrid300g"></div>
+        <div class="product-grid hidden" id="productGrid900g"></div>
+      </div>
+    </section>
+
+<section class="how-it-works" aria-labelledby="howItWorksTitle">
       <div class="container">
         <div class="how-it-works-heading">
           <span class="eyebrow">Simple ordering</span>
@@ -66,42 +115,6 @@
             </div>
           </article>
         </div>
-      </div>
-    </section>
-
-    <nav class="container category-grid" id="categoryGrid" aria-label="Product ranges">
-      <button class="category-button active" data-category="70g">
-        <strong>Snack Size</strong>
-        <span>Quick treats</span>
-      </button>
-      <button class="category-button" data-category="Milk Bottles">
-        <strong>Milk Bottles</strong>
-        <span>125g + 600g</span>
-      </button>
-      <button class="category-button" data-category="300g">
-        <strong>Classic Pack</strong>
-        <span>Main range</span>
-      </button>
-      <button class="category-button" data-category="900g">
-        <strong>Bulk Pack</strong>
-        <span>Sharing packs</span>
-      </button>
-    </nav>
-
-    <section class="shop-section" id="shop">
-      <div class="container">
-        <div class="shop-heading">
-          <div>
-            <span class="eyebrow" id="rangeEyebrow">Sweetza Snack Size</span>
-            <h1 id="rangeTitle">Snack Size Range</h1>
-            <p id="rangeCopy">Pick your favourites and choose the quantity you want.</p>
-          </div>
-        </div>
-
-        <div class="product-grid" id="productGrid70g"></div>
-        <div class="product-grid hidden" id="productGridMilkBottles"></div>
-        <div class="product-grid hidden" id="productGrid300g"></div>
-        <div class="product-grid hidden" id="productGrid900g"></div>
       </div>
     </section>
   </main>

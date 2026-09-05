@@ -1,11 +1,11 @@
-# Sweetza — Final Storefront v5.9
+# Sweetza — Shop Layout Edition
 
-Updates:
-- Larger centered homepage logo with responsive mobile sizing
-- Homepage instruction tagline removed
-- Branded WhatsApp order message with section emojis
-- "Please confirm availability" removed from WhatsApp message
-- Order Review continue button restyled with a subtle purple-to-pink gradient,
-  pill shape, arrow, hover motion, press animation and soft shadow
+Homepage order:
+1. Logo
+2. Short hero banner
+3. Visual category department tiles
+4. Product grid
+5. How It Works explainer strip
 
-All existing product, cart, stock, delivery and free-delivery logic is retained.
+The visible category cards are redesigned, but internal filter keys remain unchanged.
+All cart, pricing, stock, delivery and WhatsApp functionality is preserved.

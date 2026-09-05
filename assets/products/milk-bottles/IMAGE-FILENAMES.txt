@@ -1,0 +1,4 @@
+Use these exact 1254 x 1254 PNG filenames:
+
+milk-bottles-125g.png
+milk-bottles-600g.png
