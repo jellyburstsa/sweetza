@@ -141,6 +141,37 @@ const cartTotal = document.getElementById("cartTotal");
 const floatingCartCount = document.getElementById("floatingCartCount");
 const clearCartButton = document.getElementById("clearCart");
 
+let lastFocusedElement = null;
+
+function focusFirstCartControl() {
+  const target = cartDrawer.querySelector(
+    'button:not([disabled]), input:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+  );
+  target?.focus({ preventScroll: true });
+}
+
+function trapCartFocus(event) {
+  if (event.key !== "Tab" || !cartDrawer.classList.contains("open")) return;
+
+  const focusable = [...cartDrawer.querySelectorAll(
+    'button:not([disabled]), input:not([disabled]), select:not([disabled]), [href], [tabindex]:not([tabindex="-1"])'
+  )].filter(el => el.offsetParent !== null);
+
+  if (!focusable.length) return;
+
+  const first = focusable[0];
+  const last = focusable[focusable.length - 1];
+
+  if (event.shiftKey && document.activeElement === first) {
+    event.preventDefault();
+    last.focus();
+  } else if (!event.shiftKey && document.activeElement === last) {
+    event.preventDefault();
+    first.focus();
+  }
+}
+
+
 function money(value) {
   const number = Number(value || 0);
   return `${STORE.currency}${Number.isInteger(number) ? number.toFixed(0) : number.toFixed(2)}`;
@@ -229,7 +260,9 @@ function switchCategory(category) {
   });
 
   document.querySelectorAll("[data-category]").forEach(button => {
-    button.classList.toggle("active", button.dataset.category === category);
+    const active = button.dataset.category === category;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", String(active));
   });
 
   const meta = CATEGORY_META[category];
@@ -370,6 +403,10 @@ function renderCart() {
   const count = cart.reduce((sum, item) => sum + item.qty, 0);
 
   floatingCartCount.textContent = count;
+  document.getElementById("floatingCartButton")?.setAttribute(
+    "aria-label",
+    `View cart, ${count} ${count === 1 ? "item" : "items"}`
+  );
   cartTotal.textContent = money(cartSubtotal());
   clearCartButton.style.visibility = cart.length ? "visible" : "hidden";
 
@@ -432,16 +469,19 @@ function renderCart() {
 }
 
 function openCart() {
+  lastFocusedElement = document.activeElement;
   cartDrawer.classList.add("open");
   cartDrawer.setAttribute("aria-hidden", "false");
   document.body.classList.add("cart-open");
   setOrderStep("review");
+  requestAnimationFrame(focusFirstCartControl);
 }
 
 function closeCart() {
   cartDrawer.classList.remove("open");
   cartDrawer.setAttribute("aria-hidden", "true");
   document.body.classList.remove("cart-open");
+  lastFocusedElement?.focus?.({ preventScroll: true });
 }
 
 function setOrderStep(step) {
@@ -693,6 +733,8 @@ document.querySelectorAll('input[name="deliveryChoice"]').forEach(input => {
 });
 
 document.getElementById("whatsappOrderButton").addEventListener("click", sendWhatsAppOrder);
+
+document.addEventListener("keydown", trapCartFocus);
 
 document.addEventListener("keydown", event => {
   if (event.key !== "Escape") return;

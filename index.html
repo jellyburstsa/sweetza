@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <a class="skip-link" href="#shop">Skip to products</a>
   <main>
     <section class="brand-section">
       <div class="container brand-wrap">
@@ -70,19 +71,19 @@
     </section>
 
     <nav class="container category-grid" id="categoryGrid" aria-label="Product ranges">
-      <button class="category-button active" data-category="70g">
+      <button class="category-button active" data-category="70g" aria-pressed="true">
         <strong>Snack Size</strong>
         <span>Quick treats</span>
       </button>
-      <button class="category-button" data-category="Milk Bottles">
+      <button class="category-button" data-category="Milk Bottles" aria-pressed="false">
         <strong>Milk Bottles</strong>
         <span>125g + 600g</span>
       </button>
-      <button class="category-button" data-category="300g">
+      <button class="category-button" data-category="300g" aria-pressed="false">
         <strong>Classic Pack</strong>
         <span>Main range</span>
       </button>
-      <button class="category-button" data-category="900g">
+      <button class="category-button" data-category="900g" aria-pressed="false">
         <strong>Bulk Pack</strong>
         <span>Sharing packs</span>
       </button>
@@ -114,7 +115,7 @@
   <aside class="cart-drawer flowbite-modal" id="cartDrawer" aria-hidden="true" tabindex="-1">
     <button class="cart-backdrop" id="cartBackdrop" type="button" aria-label="Close cart"></button>
 
-    <div class="cart-panel flowbite-modal-panel" role="dialog" aria-modal="true" aria-labelledby="cartStepTitle">
+    <div class="cart-panel flowbite-modal-panel" role="dialog" aria-modal="true" aria-labelledby="cartStepTitle" aria-describedby="cartStepEyebrow">
       <div class="cart-header flowbite-modal-header">
         <div>
           <span class="eyebrow" id="cartStepEyebrow">Step 1 of 2</span>

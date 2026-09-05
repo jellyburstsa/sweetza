@@ -1,17 +1,29 @@
-# Sweetza — Gemini Smart Merge
+# Sweetza — Pro UI v6.2
 
-This build applies the uploaded Gemini premium CSS as the visual base, while preserving Sweetza's working requirements.
+This release is a refinement of the existing storefront rather than a layout rewrite.
+
+Improvements:
+- premium visual hierarchy and spacing
+- sticky glass category switcher
+- refined product cards and CTAs
+- clearer stock states
+- improved cart drawer presentation
+- better delivery-option selection states
+- keyboard focus management and focus restoration
+- aria-pressed category states
+- toast live-region support
+- reduced-motion accessibility
+- mobile safe-area handling
+- 44px+ interaction targets
+- compact bottom-right floating cart
 
 Preserved:
-- larger logo
-- compact How It Works
-- small bottom-right floating cart
-- 44px+ mobile tap targets
-- mobile-safe scrollable cart
-- green available / red out-of-stock states
-- out-of-stock cart blocking
-- R500 free-delivery logic
-- WhatsApp ordering
-- current product data and pricing
-
-The uploaded Gemini CSS was not copied blindly; known regressions were corrected.
+- all products and prices
+- stock logic
+- internal category keys
+- cart behavior
+- R500 free delivery threshold
+- R75 Pudo / R99 courier
+- WhatsApp ordering format
+- no payment checkout
+- no tracking

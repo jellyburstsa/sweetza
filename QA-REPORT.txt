@@ -1,30 +1,50 @@
-Sweetza Gemini Smart Merge QA
-===============================
+Sweetza Pro UI v6.2 QA
+==============================
 
 [PASS] app.js syntax
 [PASS] default-products.js syntax
 [PASS] manager.js syntax
-[PASS] DOM floatingCartButton
-[PASS] DOM cartDrawer
-[PASS] DOM looksGoodButton
-[PASS] DOM whatsappOrderButton
-[PASS] DOM productLightbox
-[PASS] Gemini palette
-[PASS] Gemini card shadows
-[PASS] Premium product cards
-[PASS] Premium cart styling
-[PASS] bigger logo
-[PASS] compact How It Works
-[PASS] compact cart
-[PASS] 44px qty buttons
+[PASS] DOM #productGrid70g
+[PASS] DOM #productGridMilkBottles
+[PASS] DOM #productGrid300g
+[PASS] DOM #productGrid900g
+[PASS] DOM #floatingCartButton
+[PASS] DOM #cartDrawer
+[PASS] DOM #cartItems
+[PASS] DOM #cartTotal
+[PASS] DOM #looksGoodButton
+[PASS] DOM #deliveryCourier
+[PASS] DOM #deliveryPudo
+[PASS] DOM #whatsappOrderButton
+[PASS] DOM #toast
+[PASS] DOM #productLightbox
+[PASS] category key 70g
+[PASS] category key Milk Bottles
+[PASS] category key 300g
+[PASS] category key 900g
+[PASS] category switching
+[PASS] add to cart
+[PASS] qty change
+[PASS] cart open/close
+[PASS] order review flow
+[PASS] courier/pudo fields
+[PASS] WhatsApp order
+[PASS] free delivery
+[PASS] stock block
+[PASS] payment absent
+[PASS] tracking absent
+[PASS] focus trap
+[PASS] focus restore
+[PASS] aria category state
+[PASS] toast live region
+[PASS] reduced motion
+[PASS] sticky categories
 [PASS] mobile safe cart
-[PASS] stock green
-[PASS] stock red
-[PASS] free delivery retained
-[PASS] out of stock blocked
-[PASS] WhatsApp retained
+[PASS] 44px tap targets
+[PASS] 2-column mobile products
+[PASS] compact floating cart
 [PASS] MHA absent
 [PASS] ZIP integrity
 [PASS] ZIP populated
 
-Passed: 25/25
+Passed: 45/45
