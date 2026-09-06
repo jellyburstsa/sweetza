@@ -1,15 +1,16 @@
-# Sweetza Pro UI v6.9 — Delivery Scroll Fix
+# Sweetza Pro UI v6.10 — Product Scroll Fix
 
 Fixed:
-- Courier delivery form now scrolls correctly on mobile
-- PUDO delivery form now scrolls correctly on mobile
-- focused delivery fields are brought into view when the mobile keyboard opens
-- sticky action buttons remain reachable without covering the last form fields
-- short-height phones receive tighter delivery spacing
+- product grid now scrolls normally with the page
+- storefront sections no longer act like sticky/fixed content
+- category navigation now stays in normal document flow
+- removed nested storefront scrolling behavior
+- floating cart remains fixed
+- mobile cart and delivery scrolling remain unchanged
 
 Preserved:
-- exact 10-digit phone validation for Courier and PUDO
-- cart and stock logic
-- R500 free delivery
+- cart logic
+- stock rules
+- R500 free-delivery threshold
 - R75 PUDO / R99 Courier
-- WhatsApp checkout
+- WhatsApp ordering

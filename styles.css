@@ -2786,3 +2786,76 @@ h1, h2, h3, h4, h5, h6,
     margin-bottom:0.7rem;
   }
 }
+
+
+
+/* =========================================================
+   v6.10 — Product Grid normal page scrolling
+   ========================================================= */
+
+/* Storefront content must participate in normal document flow. */
+main,
+.shop-section,
+.shop-heading,
+.product-grid,
+.product-card{
+  position:static !important;
+  top:auto !important;
+  bottom:auto !important;
+  left:auto !important;
+  right:auto !important;
+  transform:none;
+}
+
+/* Product grid must not become its own scroll container. */
+.shop-section,
+.product-grid{
+  height:auto !important;
+  max-height:none !important;
+  overflow:visible !important;
+}
+
+/* Body/page owns storefront scrolling when cart/lightbox is closed. */
+html,
+body{
+  min-height:100%;
+}
+
+body:not(.cart-open):not(.lightbox-open){
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+
+/* Keep the category selector in normal flow too.
+   This avoids the impression that products are pinned under it. */
+.category-grid{
+  position:relative !important;
+  top:auto !important;
+}
+
+/* Only intentional overlay UI remains fixed. */
+.floating-cart{
+  position:fixed !important;
+}
+
+.cart-drawer,
+.product-lightbox,
+.toast{
+  /* existing overlay positioning remains controlled by their base rules */
+}
+
+/* Mobile: explicitly avoid nested storefront scrolling. */
+@media(max-width:768px){
+  main,
+  .shop-section,
+  .product-grid{
+    overflow:visible !important;
+    height:auto !important;
+    max-height:none !important;
+  }
+
+  .category-grid{
+    position:relative !important;
+    top:auto !important;
+  }
+}
