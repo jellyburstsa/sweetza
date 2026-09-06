@@ -3571,3 +3571,154 @@ body:not(.cart-open):not(.lightbox-open){
     animation:none !important;
   }
 }
+
+
+
+/* =========================================================
+   v6.18 — Cleaner product badges
+   ========================================================= */
+
+/* Shared badge foundation */
+.pack-badge,
+.stock-badge{
+  top:0.6rem;
+  min-height:1.65rem;
+  padding:0.3rem 0.55rem;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:0.28rem;
+  border-radius:999rem;
+  font-family:"Inter",system-ui,sans-serif;
+  font-size:0.64rem;
+  font-weight:700;
+  line-height:1;
+  letter-spacing:.01em;
+  text-transform:none;
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  box-shadow:0 0.18rem 0.55rem rgba(28,17,37,.08);
+}
+
+/* Pack size: clean premium neutral chip */
+.pack-badge{
+  left:0.6rem;
+  color:#5f468d;
+  background:rgba(250,247,255,.94);
+  border:1px solid rgba(122,92,255,.18);
+}
+
+/* Stock: simple status chips */
+.stock-badge{
+  right:0.6rem;
+}
+
+/* Available */
+.stock-badge.available{
+  color:#256b43 !important;
+  background:rgba(239,249,243,.96) !important;
+  border:1px solid rgba(46,125,82,.20) !important;
+}
+
+/* Small status dot */
+.stock-badge.available::before{
+  content:"";
+  width:0.38rem;
+  height:0.38rem;
+  flex:none;
+  border-radius:50%;
+  background:#35a866;
+  box-shadow:0 0 0 0.16rem rgba(53,168,102,.10);
+}
+
+/* Out of stock */
+.stock-badge.out{
+  color:#a43b4a !important;
+  background:rgba(255,244,246,.97) !important;
+  border:1px solid rgba(180,63,79,.18) !important;
+}
+
+.stock-badge.out::before{
+  content:"";
+  width:0.38rem;
+  height:0.38rem;
+  flex:none;
+  border-radius:50%;
+  background:#d45a68;
+  box-shadow:0 0 0 0.16rem rgba(212,90,104,.09);
+}
+
+/* Keep product image area uncluttered */
+.product-image{
+  position:relative;
+}
+
+/* Mobile refinement */
+@media(max-width:768px){
+  .pack-badge,
+  .stock-badge{
+    top:0.45rem;
+    min-height:1.5rem;
+    padding:0.26rem 0.46rem;
+    font-size:0.58rem;
+    box-shadow:0 0.14rem 0.4rem rgba(28,17,37,.065);
+  }
+
+  .pack-badge{
+    left:0.45rem;
+  }
+
+  .stock-badge{
+    right:0.45rem;
+  }
+
+  .stock-badge.available::before,
+  .stock-badge.out::before{
+    width:0.32rem;
+    height:0.32rem;
+    box-shadow:none;
+  }
+}
+
+@media(max-width:390px){
+  .pack-badge,
+  .stock-badge{
+    font-size:0.55rem;
+    padding:0.24rem 0.4rem;
+  }
+}
+
+
+/* =========================================================
+   v6.19 — Delivery wording + circular cart button
+   ========================================================= */
+
+.floating-cart-icon-button{
+  width:3.4rem !important;
+  min-width:3.4rem !important;
+  max-width:3.4rem !important;
+  height:3.4rem !important;
+  min-height:3.4rem !important;
+  max-height:3.4rem !important;
+  aspect-ratio:1 / 1;
+  padding:0 !important;
+  border-radius:50% !important;
+  display:grid !important;
+  place-items:center !important;
+}
+
+.cart-button-icon{
+  display:block;
+  line-height:1;
+}
+
+@media(max-width:390px){
+  .floating-cart-icon-button{
+    width:3.15rem !important;
+    min-width:3.15rem !important;
+    max-width:3.15rem !important;
+    height:3.15rem !important;
+    min-height:3.15rem !important;
+    max-height:3.15rem !important;
+  }
+}

@@ -744,7 +744,7 @@ function deliveryLines() {
 
   if (choice === "courier") {
     return [
-      "🚚 Courier to your door",
+      "🚚 Deliver to your door",
       `💳 Delivery fee: ${feeText}`,
       `Name: ${fieldValue("courierName")}`,
       `Phone: ${fieldValue("courierPhone")}`,
@@ -759,7 +759,7 @@ function deliveryLines() {
   }
 
   return [
-    "📦 Send to Pudo locker",
+    "📦 Collect from a locker",
     `💳 Delivery fee: ${feeText}`,
     `Name: ${fieldValue("pudoName")}`,
     `Phone: ${fieldValue("pudoPhone")}`,
