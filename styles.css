@@ -2700,3 +2700,89 @@ h1, h2, h3, h4, h5, h6,
     font-size:1rem;
   }
 }
+
+
+/* =========================================================
+   v6.9 — Delivery Form mobile scrolling fix
+   ========================================================= */
+
+@media(max-width:768px){
+
+  /* Order Review keeps its specialized internal cart-items scrolling.
+     Delivery needs the whole step to scroll because the form fields sit
+     directly inside the step rather than inside .cart-items. */
+  #deliveryOptionsStep.order-step.active{
+    display:flex;
+    flex-direction:column;
+    flex:1 1 auto;
+    min-height:0;
+    overflow-y:auto !important;
+    overflow-x:hidden !important;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior-y:contain;
+    scroll-padding-top:1rem;
+    scroll-padding-bottom:calc(6.5rem + env(safe-area-inset-bottom));
+    padding-bottom:calc(1rem + env(safe-area-inset-bottom));
+  }
+
+  #deliveryOptionsStep .delivery-intro,
+  #deliveryOptionsStep .delivery-options,
+  #deliveryOptionsStep .delivery-form{
+    flex:none;
+  }
+
+  /* Keep actions accessible without blocking the last form fields. */
+  #deliveryOptionsStep .delivery-actions{
+    flex:none;
+    position:sticky;
+    bottom:0;
+    z-index:10;
+    margin-top:0.25rem;
+    padding-top:0.8rem;
+    padding-bottom:calc(0.65rem + env(safe-area-inset-bottom));
+    background:linear-gradient(
+      180deg,
+      rgba(252,251,254,0) 0%,
+      rgba(252,251,254,.96) 24%,
+      #fcfbfe 46%
+    );
+  }
+
+  /* Extra breathing room after forms so the keyboard/sticky actions
+     never cover the final field. */
+  #courierFields,
+  #pudoFields{
+    scroll-margin-top:0.75rem;
+  }
+
+  #courierFields .field:last-child,
+  #pudoFields .field:last-child{
+    margin-bottom:1.25rem;
+  }
+
+  #deliveryOptionsStep input,
+  #deliveryOptionsStep select{
+    scroll-margin-top:5rem;
+    scroll-margin-bottom:7rem;
+  }
+}
+
+/* Short-height phones need more compact delivery spacing. */
+@media(max-width:768px) and (max-height:700px){
+  #deliveryOptionsStep .delivery-options{
+    gap:0.55rem;
+    margin-bottom:0.75rem;
+  }
+
+  #deliveryOptionsStep .delivery-option{
+    padding:0.75rem 0.9rem;
+  }
+
+  #deliveryOptionsStep .delivery-form{
+    padding:0.85rem;
+  }
+
+  #deliveryOptionsStep .field{
+    margin-bottom:0.7rem;
+  }
+}

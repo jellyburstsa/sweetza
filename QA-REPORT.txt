@@ -1,24 +1,27 @@
-Sweetza Pro UI v6.8 QA
+Sweetza Pro UI v6.9 QA
 ============================
 
 [PASS] app.js syntax
 [PASS] default-products.js syntax
 [PASS] manager.js syntax
-[PASS] single Delivery Options heading
-[PASS] delivery helper retained
-[PASS] courier maxlength 10
-[PASS] courier numeric input
-[PASS] courier pattern
-[PASS] courier exact validation
-[PASS] pudo validation retained
-[PASS] live phone sanitization
-[PASS] delivery layout compact
-[PASS] free delivery retained
-[PASS] R75 retained
-[PASS] R99 retained
+[PASS] delivery step scrollable
+[PASS] delivery horizontal overflow blocked
+[PASS] touch scrolling enabled
+[PASS] scroll bottom padding
+[PASS] sticky delivery actions
+[PASS] keyboard focus helper
+[PASS] focusin listener
+[PASS] courier form exists
+[PASS] pudo form exists
+[PASS] courier phone 10 digits
+[PASS] pudo phone 10 digits
+[PASS] courier maxlength
+[PASS] pudo maxlength
+[PASS] free delivery threshold
 [PASS] WhatsApp retained
+[PASS] stock block retained
 [PASS] MHA absent
 [PASS] ZIP integrity
 [PASS] ZIP populated
 
-Passed: 19/19
+Passed: 22/22

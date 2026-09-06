@@ -789,6 +789,25 @@ document.querySelectorAll('input[name="deliveryChoice"]').forEach(input => {
   });
 });
 
+
+function keepDeliveryFieldVisible(event) {
+  if (window.innerWidth > 768) return;
+
+  const field = event.target;
+  if (!field.matches("#deliveryOptionsStep input, #deliveryOptionsStep select")) return;
+
+  window.setTimeout(() => {
+    field.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "nearest"
+    });
+  }, 220);
+}
+
+document.getElementById("deliveryOptionsStep")?.addEventListener("focusin", keepDeliveryFieldVisible);
+
+
 document.getElementById("whatsappOrderButton").addEventListener("click", sendWhatsAppOrder);
 
 document.addEventListener("keydown", trapCartFocus);
