@@ -3795,3 +3795,57 @@ body::after{
 .product-card.is-out-of-stock .add-button{
   cursor:not-allowed !important;
 }
+
+
+/* =========================================================
+   v6.28 — Floating cart icon glass finish
+   Softer mild-purple glass styling, less dark appearance
+   ========================================================= */
+
+.floating-cart-icon-button{
+  background:linear-gradient(180deg, rgba(255,255,255,0.76), rgba(240,232,255,0.92)) !important;
+  border:1px solid rgba(164,129,255,.30) !important;
+  color:#7a5cff !important;
+  box-shadow:
+    0 .7rem 1.5rem rgba(122,92,255,.14),
+    inset 0 1px 0 rgba(255,255,255,.78),
+    inset 0 -.65rem 1rem rgba(169,143,255,.10) !important;
+  backdrop-filter:blur(14px) saturate(140%);
+  -webkit-backdrop-filter:blur(14px) saturate(140%);
+}
+
+.floating-cart-icon-button::before{
+  content:"";
+  position:absolute;
+  inset:.24rem;
+  border-radius:50%;
+  background:linear-gradient(180deg, rgba(255,255,255,.5), rgba(255,255,255,.06));
+  pointer-events:none;
+}
+
+.floating-cart-icon-button:hover{
+  box-shadow:
+    0 .9rem 1.85rem rgba(122,92,255,.18),
+    inset 0 1px 0 rgba(255,255,255,.85),
+    inset 0 -.65rem 1rem rgba(169,143,255,.14) !important;
+}
+
+.floating-cart-icon-button:active{
+  box-shadow:
+    0 .55rem 1rem rgba(122,92,255,.14),
+    inset 0 1px 0 rgba(255,255,255,.8),
+    inset 0 -.5rem .9rem rgba(169,143,255,.15) !important;
+}
+
+.cart-button-icon{
+  position:relative;
+  z-index:1;
+  color:#7c5cff;
+  text-shadow:0 1px 0 rgba(255,255,255,.45);
+}
+
+.cart-button-badge{
+  z-index:2;
+  border-color:rgba(255,255,255,.95);
+  box-shadow:0 .2rem .55rem rgba(122,92,255,.22);
+}

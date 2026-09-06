@@ -8,3 +8,9 @@ Changes:
 - JavaScript stock blocking remains intact
 
 All cart, delivery, and WhatsApp logic is unchanged.
+
+
+## v6.28 update
+- changed the floating cart icon to a lighter glass-style finish
+- softened the color to a mild purple so it feels less dark
+- kept the cart size, position, cart logic, stock logic, and WhatsApp flow unchanged
