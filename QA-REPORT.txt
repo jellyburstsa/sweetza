@@ -1,21 +1,20 @@
-Sweetza Pro UI v6.19 QA
+Sweetza Pro UI v6.22 QA
 ==============================
 
 [PASS] app.js syntax
 [PASS] default-products.js syntax
 [PASS] manager.js syntax
-[PASS] door label updated
-[PASS] locker label updated
-[PASS] old courier label removed
-[PASS] old pudo label removed
-[PASS] cart circle
-[PASS] cart equal width height
+[PASS] four category buttons
+[PASS] premium category CSS present
+[PASS] gloss highlight present
+[PASS] selected state stronger
+[PASS] mobile 2x2 preserved
 [PASS] cart logic retained
-[PASS] R500 retained
-[PASS] WhatsApp retained
 [PASS] stock block retained
+[PASS] WhatsApp retained
+[PASS] free delivery retained
 [PASS] MHA absent
 [PASS] ZIP integrity
 [PASS] ZIP populated
 
-Passed: 16/16
+Passed: 15/15
