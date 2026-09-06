@@ -1,23 +1,15 @@
-# Sweetza Pro UI v6.24 — Radial Background + Clean Categories
+# Sweetza Pro UI v6.26 — Normal Clean
 
-Changes:
-- replaced animated pastel background with a static white-to-purple radial gradient
-- removed Uiverse gradient styling from all 4 category cards
-- restored category cards to a clean white/purple professional style
-- kept selected category state clear and subtle
-- kept 2x2 mobile category layout
+Restored a clean, normal storefront appearance.
 
-Unchanged:
-- product cards
-- cart / fly-to-cart animation
-- stock logic
-- R500 free delivery
-- delivery forms
-- WhatsApp ordering
+Removed:
+- experimental background pattern
+- animated background layers
+- recent background / 3D experiments
 
-
-## v6.25
-- added subtle 3D depth to category cards
-- added subtle 3D depth to product cards
-- reduced empty space between category section and product section
-- made the range heading (e.g. Snack Size Range) more compact
+Kept:
+- clean category cards
+- circular floating cart button
+- fly-to-cart animation
+- clean stock and pack badges
+- cart, stock, delivery and WhatsApp logic
