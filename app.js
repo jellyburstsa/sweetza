@@ -168,6 +168,7 @@ const cartDrawer = document.getElementById("cartDrawer");
 const cartItems = document.getElementById("cartItems");
 const cartTotal = document.getElementById("cartTotal");
 const floatingCartCount = document.getElementById("floatingCartCount");
+const floatingCartTotal = document.getElementById("floatingCartTotal");
 const clearCartButton = document.getElementById("clearCart");
 
 let lastFocusedElement = null;
@@ -349,6 +350,7 @@ function addToCart(id) {
   saveCart();
   renderCart();
   pulseFloatingCart();
+  bounceFloatingCartBadge();
   showToast(`${product.name} added to cart`);
 }
 
@@ -444,6 +446,8 @@ function renderCart() {
   const count = cart.reduce((sum, item) => sum + item.qty, 0);
 
   floatingCartCount.textContent = count;
+  if (floatingCartTotal) floatingCartTotal.textContent = money(cartSubtotal());
+  updateFloatingCartVisibility();
   document.getElementById("floatingCartButton")?.setAttribute(
     "aria-label",
     `View cart, ${count} ${count === 1 ? "item" : "items"}`
@@ -507,6 +511,32 @@ function renderCart() {
         `).join("")}
       </section>
     `).join("");
+}
+
+
+function updateFloatingCartVisibility() {
+  const button = document.getElementById("floatingCartButton");
+  if (!button) return;
+
+  const hasItems = cart.reduce((sum, item) => sum + item.qty, 0) > 0;
+  const triggerPoint = Math.max(120, document.querySelector(".brand-section")?.offsetHeight || 0);
+  const pastTop = window.scrollY > triggerPoint;
+
+  button.classList.toggle("visible", hasItems && pastTop);
+  button.setAttribute("aria-hidden", String(!(hasItems && pastTop)));
+}
+
+function bounceFloatingCartBadge() {
+  const badge = document.getElementById("floatingCartCount");
+  if (!badge) return;
+
+  badge.classList.remove("badge-bounce");
+  void badge.offsetWidth;
+  badge.classList.add("badge-bounce");
+
+  window.setTimeout(() => {
+    badge.classList.remove("badge-bounce");
+  }, 420);
 }
 
 function openCart() {
@@ -844,3 +874,9 @@ switchCategory(activeCategory);
 
 document.getElementById("productLightboxClose").addEventListener("click", closeProductLightbox);
 document.getElementById("productLightboxBackdrop").addEventListener("click", closeProductLightbox);
+
+
+window.addEventListener("scroll", updateFloatingCartVisibility, { passive: true });
+window.addEventListener("resize", updateFloatingCartVisibility, { passive: true });
+
+updateFloatingCartVisibility();

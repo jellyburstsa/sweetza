@@ -2859,3 +2859,308 @@ body:not(.cart-open):not(.lightbox-open){
     top:auto !important;
   }
 }
+
+
+/* =========================================================
+   v6.11 — Floating Jump-to-Cart Pill + Bouncing Badge
+   ========================================================= */
+
+.floating-cart-pill{
+  position:fixed !important;
+  left:50% !important;
+  right:auto !important;
+  bottom:calc(1rem + env(safe-area-inset-bottom)) !important;
+  width:auto !important;
+  min-width:min(20rem,calc(100vw - 2rem)) !important;
+  max-width:calc(100vw - 2rem);
+  min-height:3.25rem !important;
+  height:auto !important;
+  padding:0.55rem 0.7rem 0.55rem 0.85rem !important;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:0.65rem !important;
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:999rem;
+  background:linear-gradient(135deg,#2f2140 0%,#4b315d 100%);
+  color:#fff;
+  box-shadow:0 0.9rem 2.2rem rgba(28,17,37,.24);
+  transform:translate(-50%,calc(100% + 2rem)) scale(.98);
+  opacity:0;
+  pointer-events:none;
+  z-index:90;
+  transition:
+    transform .3s cubic-bezier(.16,1,.3,1),
+    opacity .22s ease,
+    box-shadow .2s ease;
+}
+
+.floating-cart-pill.visible{
+  transform:translate(-50%,0) scale(1);
+  opacity:1;
+  pointer-events:auto;
+}
+
+.floating-cart-pill:hover{
+  box-shadow:0 1rem 2.5rem rgba(28,17,37,.29);
+}
+
+.floating-cart-icon{
+  flex:none;
+  font-size:1rem;
+  line-height:1;
+}
+
+.floating-cart-copy{
+  min-width:0;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:0.05rem;
+  text-align:left;
+}
+
+.floating-cart-label{
+  font-size:0.78rem;
+  font-weight:700;
+  line-height:1.1;
+}
+
+.floating-cart-meta{
+  font-size:0.65rem;
+  line-height:1.1;
+  color:rgba(255,255,255,.74);
+}
+
+#floatingCartCount{
+  display:inline-block;
+  min-width:1ch;
+  transform-origin:center;
+}
+
+#floatingCartCount.badge-bounce{
+  animation:sweetzaBadgeBounce .42s cubic-bezier(.16,1,.3,1);
+}
+
+@keyframes sweetzaBadgeBounce{
+  0%{transform:scale(1)}
+  42%{transform:scale(1.5)}
+  70%{transform:scale(.9)}
+  100%{transform:scale(1)}
+}
+
+.floating-cart-total{
+  flex:none;
+  margin-left:auto;
+  min-width:4.6rem;
+  min-height:2.25rem;
+  padding:0 0.7rem;
+  display:grid;
+  place-items:center;
+  border-radius:999rem;
+  background:rgba(255,255,255,.14);
+  color:#fff;
+  font-size:0.76rem;
+  font-weight:700;
+  white-space:nowrap;
+}
+
+@media(max-width:390px){
+  .floating-cart-pill{
+    min-width:calc(100vw - 1.2rem) !important;
+    max-width:calc(100vw - 1.2rem);
+    bottom:calc(0.6rem + env(safe-area-inset-bottom)) !important;
+    padding-inline:0.7rem !important;
+  }
+
+  .floating-cart-total{
+    min-width:4.2rem;
+    padding-inline:0.55rem;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .floating-cart-pill{
+    transition:opacity .01ms linear !important;
+  }
+
+  #floatingCartCount.badge-bounce{
+    animation:none !important;
+  }
+}
+
+
+/* =========================================================
+   v6.13 — Smaller floating cart pill
+   ========================================================= */
+
+/* Prevent duplicate trolley icon from earlier pseudo-element styling */
+.floating-cart::before,
+.floating-cart-pill::before{
+  content:none !important;
+  display:none !important;
+}
+
+/* Make the floating View Cart pill more compact */
+.floating-cart-pill{
+  min-width:min(14.5rem,calc(100vw - 1.5rem)) !important;
+  max-width:calc(100vw - 1.5rem);
+  min-height:2.85rem !important;
+  padding:0.42rem 0.55rem 0.42rem 0.65rem !important;
+  gap:0.5rem !important;
+  border-radius:999rem;
+}
+
+.floating-cart-icon{
+  font-size:0.9rem;
+}
+
+.floating-cart-label{
+  font-size:0.72rem;
+}
+
+.floating-cart-meta{
+  font-size:0.6rem;
+}
+
+.floating-cart-total{
+  min-width:3.9rem;
+  min-height:1.95rem;
+  padding:0 0.55rem;
+  font-size:0.69rem;
+}
+
+@media(max-width:390px){
+  .floating-cart-pill{
+    min-width:min(13.5rem,calc(100vw - 1rem)) !important;
+    max-width:calc(100vw - 1rem);
+    padding:0.4rem 0.5rem 0.4rem 0.6rem !important;
+  }
+
+  .floating-cart-total{
+    min-width:3.6rem;
+    padding-inline:0.45rem;
+  }
+}
+
+
+
+/* =========================================================
+   v6.14 — Clear category cards
+   ========================================================= */
+
+.category-grid{
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  padding:0 !important;
+  gap:0.7rem !important;
+}
+
+.category-button{
+  position:relative;
+  min-height:5.25rem;
+  padding:0.9rem 0.8rem !important;
+  border:1px solid #e6deeb !important;
+  border-radius:1rem !important;
+  background:#ffffff !important;
+  box-shadow:0 0.2rem 0.7rem rgba(28,17,37,.045);
+  color:var(--text);
+  text-align:center;
+  align-items:center;
+  justify-content:center;
+}
+
+.category-button strong{
+  font-size:0.9rem;
+  line-height:1.2;
+}
+
+.category-button span{
+  margin-top:0.25rem;
+  font-size:0.72rem;
+  line-height:1.2;
+  color:var(--text-muted);
+}
+
+/* Soft individual tints to make the 4 choices visually distinct */
+.category-button:nth-child(1){
+  background:linear-gradient(180deg,#fff,#fbf5ff) !important;
+}
+
+.category-button:nth-child(2){
+  background:linear-gradient(180deg,#fff,#f8fbff) !important;
+}
+
+.category-button:nth-child(3){
+  background:linear-gradient(180deg,#fff,#fff8fb) !important;
+}
+
+.category-button:nth-child(4){
+  background:linear-gradient(180deg,#fff,#faf9ff) !important;
+}
+
+.category-button.active{
+  border-color:#d7c4ee !important;
+  background:linear-gradient(180deg,#fff,#f7efff) !important;
+  box-shadow:
+    0 0.35rem 0.9rem rgba(122,92,255,.10),
+    inset 0 0 0 1px rgba(122,92,255,.06);
+}
+
+.category-button.active strong{
+  color:#d64ea1;
+}
+
+.category-button.active::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:0.6rem;
+  width:1.8rem;
+  height:0.16rem;
+  transform:translateX(-50%);
+  border-radius:999rem;
+  background:linear-gradient(90deg,#ff4fa3,#7a5cff);
+}
+
+@media(hover:hover) and (pointer:fine){
+  .category-button:hover{
+    transform:translateY(-2px);
+    border-color:#d9cfe0 !important;
+    box-shadow:0 0.45rem 1rem rgba(28,17,37,.08);
+  }
+}
+
+@media(max-width:768px){
+  .category-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:0.55rem !important;
+    width:calc(100% - 1rem);
+  }
+
+  .category-button{
+    min-height:4.8rem;
+    padding:0.78rem 0.6rem !important;
+    border-radius:0.9rem !important;
+  }
+
+  .category-button strong{
+    font-size:0.82rem;
+  }
+
+  .category-button span{
+    font-size:0.68rem;
+  }
+}
+
+@media(max-width:390px){
+  .category-grid{
+    gap:0.45rem !important;
+  }
+
+  .category-button{
+    min-height:4.55rem;
+    padding:0.7rem 0.5rem !important;
+  }
+}

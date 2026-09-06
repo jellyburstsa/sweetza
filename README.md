@@ -1,16 +1,9 @@
-# Sweetza Pro UI v6.10 — Product Scroll Fix
+# Sweetza Pro UI v6.14 — Clear Category Cards
 
-Fixed:
-- product grid now scrolls normally with the page
-- storefront sections no longer act like sticky/fixed content
-- category navigation now stays in normal document flow
-- removed nested storefront scrolling behavior
-- floating cart remains fixed
-- mobile cart and delivery scrolling remain unchanged
-
-Preserved:
-- cart logic
-- stock rules
-- R500 free-delivery threshold
-- R75 PUDO / R99 Courier
-- WhatsApp ordering
+Changes:
+- each category is now a distinct bordered card
+- added rounded corners and subtle shadows
+- added soft individual background tints
+- stronger active category state with colored underline
+- kept 2x2 mobile layout
+- preserved all category keys and filtering logic

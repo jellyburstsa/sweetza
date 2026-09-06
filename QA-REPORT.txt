@@ -1,19 +1,19 @@
-Sweetza Pro UI v6.10 QA
-==============================
+Sweetza Pro UI v6.14 QA
+============================
 
 [PASS] app.js syntax
 [PASS] default-products.js syntax
 [PASS] manager.js syntax
-[PASS] product grid static
-[PASS] shop overflow visible
-[PASS] body page scrolling
-[PASS] category no longer sticky
-[PASS] floating cart remains fixed
-[PASS] cart preserved
-[PASS] delivery scroll fix preserved
-[PASS] free delivery preserved
-[PASS] WhatsApp preserved
-[PASS] stock block preserved
+[PASS] 4 category keys
+[PASS] category borders
+[PASS] category rounded cards
+[PASS] active state stronger
+[PASS] active underline
+[PASS] 2x2 mobile retained
+[PASS] filter logic retained
+[PASS] cart retained
+[PASS] WhatsApp retained
+[PASS] free delivery retained
 [PASS] MHA absent
 [PASS] ZIP integrity
 [PASS] ZIP populated
