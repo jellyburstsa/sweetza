@@ -1,37 +1,24 @@
-Sweetza Pro UI v6.3 QA
-==============================
+Sweetza Pro UI v6.8 QA
+============================
 
 [PASS] app.js syntax
 [PASS] default-products.js syntax
 [PASS] manager.js syntax
-[PASS] real WhatsApp number retained
-[PASS] wrong uploaded WhatsApp number excluded
-[PASS] R75 Pudo retained
-[PASS] R99 Courier retained
-[PASS] R500 threshold retained
-[PASS] fake bakery products excluded
-[PASS] stock block retained
-[PASS] WhatsApp order retained
-[PASS] safe storage read
-[PASS] safe storage write
-[PASS] debounce helper
-[PASS] cart pulse helper
-[PASS] uploaded-style transition token
-[PASS] product card elevation
-[PASS] category pill behavior
-[PASS] drawer polish
-[PASS] cart pulse animation
-[PASS] mobile 2-column products
-[PASS] reduced motion retained
-[PASS] DOM #cartDrawer
-[PASS] DOM #floatingCartButton
-[PASS] DOM #whatsappOrderButton
-[PASS] DOM #looksGoodButton
-[PASS] DOM #productGrid70g
-[PASS] DOM #productGrid300g
-[PASS] DOM #productGrid900g
+[PASS] single Delivery Options heading
+[PASS] delivery helper retained
+[PASS] courier maxlength 10
+[PASS] courier numeric input
+[PASS] courier pattern
+[PASS] courier exact validation
+[PASS] pudo validation retained
+[PASS] live phone sanitization
+[PASS] delivery layout compact
+[PASS] free delivery retained
+[PASS] R75 retained
+[PASS] R99 retained
+[PASS] WhatsApp retained
 [PASS] MHA absent
 [PASS] ZIP integrity
 [PASS] ZIP populated
 
-Passed: 32/32
+Passed: 19/19

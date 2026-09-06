@@ -566,7 +566,7 @@ function validateDelivery() {
   const required = choice === "courier"
     ? [
         ["courierName", "Please enter your full name"],
-        ["courierPhone", "Please enter your phone number"],
+        ["courierPhone", "Please enter your 10-digit phone number"],
         ["courierStreet", "Please enter your street address"],
         ["courierSuburb", "Please enter your suburb"],
         ["courierCity", "Please enter your city or town"],
@@ -585,6 +585,15 @@ function validateDelivery() {
     if (!field || !field.value.trim()) {
       showToast(message);
       field?.focus();
+      return false;
+    }
+  }
+
+  if (choice === "courier") {
+    const phone = fieldValue("courierPhone").replace(/\D/g, "");
+    if (phone.length !== 10) {
+      showToast("Courier phone number must be exactly 10 digits");
+      document.getElementById("courierPhone")?.focus();
       return false;
     }
   }
@@ -771,6 +780,13 @@ document.getElementById("backToReviewButton").addEventListener("click", () => {
 
 document.querySelectorAll('input[name="deliveryChoice"]').forEach(input => {
   input.addEventListener("change", updateDeliveryFields);
+});
+
+["courierPhone", "pudoPhone"].forEach(id => {
+  const input = document.getElementById(id);
+  input?.addEventListener("input", () => {
+    input.value = input.value.replace(/\D/g, "").slice(0, 10);
+  });
 });
 
 document.getElementById("whatsappOrderButton").addEventListener("click", sendWhatsAppOrder);
