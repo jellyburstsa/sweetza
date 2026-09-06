@@ -3774,3 +3774,24 @@ body::after{
     transform:translateY(-1px);
   }
 }
+
+
+/* =========================================================
+   v6.27 — Remove stock badge
+   Stock availability is enforced through disabled controls,
+   not a visible badge.
+   ========================================================= */
+
+.stock-badge{
+  display:none !important;
+}
+
+/* Out-of-stock products remain visibly unavailable */
+.product-card.is-out-of-stock{
+  opacity:.68;
+}
+
+.product-card.is-out-of-stock .qty-stepper,
+.product-card.is-out-of-stock .add-button{
+  cursor:not-allowed !important;
+}

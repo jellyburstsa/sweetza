@@ -1,15 +1,10 @@
-# Sweetza Pro UI v6.26 — Normal Clean
+# Sweetza Pro UI v6.27 — No Stock Badge
 
-Restored a clean, normal storefront appearance.
+Changes:
+- removed the visible Stock Badge from all product cards
+- available products now show no stock label
+- out-of-stock products remain unselectable
+- quantity and Add to Cart controls remain disabled for out-of-stock products
+- JavaScript stock blocking remains intact
 
-Removed:
-- experimental background pattern
-- animated background layers
-- recent background / 3D experiments
-
-Kept:
-- clean category cards
-- circular floating cart button
-- fly-to-cart animation
-- clean stock and pack badges
-- cart, stock, delivery and WhatsApp logic
+All cart, delivery, and WhatsApp logic is unchanged.
