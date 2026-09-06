@@ -1,11 +1,16 @@
-# Sweetza Pro UI v6.22 — Premium Category Cards
+# Sweetza Pro UI v6.24 — Radial Background + Clean Categories
 
-Changes applied only to the 4 category cards:
-- softer premium gradients
-- subtle glossy top highlight
-- cleaner layered shadows
-- improved typography
-- stronger selected-category state
-- mobile 2x2 layout preserved
+Changes:
+- replaced animated pastel background with a static white-to-purple radial gradient
+- removed Uiverse gradient styling from all 4 category cards
+- restored category cards to a clean white/purple professional style
+- kept selected category state clear and subtle
+- kept 2x2 mobile category layout
 
-Product cards and all store logic remain unchanged.
+Unchanged:
+- product cards
+- cart / fly-to-cart animation
+- stock logic
+- R500 free delivery
+- delivery forms
+- WhatsApp ordering

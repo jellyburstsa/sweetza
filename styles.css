@@ -3989,3 +3989,303 @@ body:not(.cart-open):not(.lightbox-open){
     transition:none !important;
   }
 }
+
+
+
+/* =========================================================
+   v6.23 — Safe pastel animated background
+   Inspired by the supplied Uiverse pattern.
+   Does NOT change page height, scrolling, layout, or interaction.
+   ========================================================= */
+
+html{
+  min-height:100%;
+  background:linear-gradient(135deg,#fff7fb 0%,#f3fbff 52%,#fbf8ff 100%);
+}
+
+body{
+  position:relative;
+  isolation:isolate;
+  min-height:100%;
+  background:transparent !important;
+}
+
+/* Fixed glow layers stay behind every site component */
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  z-index:-1;
+  pointer-events:none;
+  top:50%;
+  left:50%;
+  width:150vmax;
+  height:150vmax;
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  transform-origin:center;
+  background:conic-gradient(
+    from 0deg,
+    rgba(255,154,162,.42),
+    rgba(255,183,178,.36),
+    rgba(255,218,193,.34),
+    rgba(226,240,203,.30),
+    rgba(162,228,255,.38),
+    rgba(201,175,255,.38),
+    rgba(255,183,178,.34),
+    rgba(255,154,162,.42)
+  );
+  filter:blur(5rem);
+  opacity:.28;
+  will-change:transform;
+}
+
+body::before{
+  animation:sweetzaPastelRotate 28s linear infinite;
+}
+
+body::after{
+  width:132vmax;
+  height:132vmax;
+  opacity:.18;
+  animation:sweetzaPastelRotateReverse 36s linear infinite;
+}
+
+/* Keep main surfaces readable while allowing some background glow through */
+.brand-section,
+.shop-section{
+  background:rgba(255,255,255,.76) !important;
+  backdrop-filter:blur(.45rem);
+  -webkit-backdrop-filter:blur(.45rem);
+}
+
+@keyframes sweetzaPastelRotate{
+  from{
+    transform:translate(-50%,-50%) rotate(0deg);
+  }
+  to{
+    transform:translate(-50%,-50%) rotate(360deg);
+  }
+}
+
+@keyframes sweetzaPastelRotateReverse{
+  from{
+    transform:translate(-50%,-50%) rotate(0deg);
+  }
+  to{
+    transform:translate(-50%,-50%) rotate(-360deg);
+  }
+}
+
+@media(max-width:768px){
+  body::before,
+  body::after{
+    width:125vmax;
+    height:125vmax;
+    filter:blur(3.6rem);
+    opacity:.22;
+  }
+
+  body::before{
+    animation-duration:34s;
+  }
+
+  body::after{
+    width:112vmax;
+    height:112vmax;
+    opacity:.14;
+    animation-duration:42s;
+  }
+
+  .brand-section,
+  .shop-section{
+    background:rgba(255,255,255,.82) !important;
+    backdrop-filter:blur(.28rem);
+    -webkit-backdrop-filter:blur(.28rem);
+  }
+}
+
+/* Accessibility + lower power use */
+@media(prefers-reduced-motion:reduce){
+  body::before,
+  body::after{
+    animation:none !important;
+    will-change:auto;
+  }
+}
+
+
+/* =========================================================
+   v6.24 — Static radial background + clean category cards
+   ========================================================= */
+
+/* Replace the animated pastel background with the supplied
+   static white-to-purple radial gradient. */
+html{
+  min-height:100%;
+  background:
+    radial-gradient(
+      125% 125% at 50% 10%,
+      #ffffff 40%,
+      #6633ee 100%
+    ) fixed !important;
+}
+
+body{
+  min-height:100%;
+  background:transparent !important;
+}
+
+/* Disable the v6.23 animated glow layers entirely. */
+body::before,
+body::after{
+  content:none !important;
+  display:none !important;
+  animation:none !important;
+}
+
+/* Keep main surfaces clean/readable above the background. */
+.brand-section,
+.shop-section{
+  background:rgba(255,255,255,.86) !important;
+  backdrop-filter:blur(.28rem);
+  -webkit-backdrop-filter:blur(.28rem);
+}
+
+/* Remove Uiverse gradient styling from the 4 category cards. */
+.category-grid{
+  background:transparent !important;
+  border:none !important;
+  box-shadow:none !important;
+  padding:0 !important;
+  gap:.7rem !important;
+}
+
+.category-button,
+.category-button:nth-child(1),
+.category-button:nth-child(2),
+.category-button:nth-child(3),
+.category-button:nth-child(4){
+  position:relative;
+  width:100%;
+  min-height:5.1rem;
+  padding:.88rem .75rem !important;
+  border:1px solid #e5deeb !important;
+  border-radius:1rem !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255,255,255,.98),
+      rgba(249,247,252,.96)
+    ) !important;
+  color:var(--text) !important;
+  filter:none !important;
+  text-align:center;
+  align-items:center;
+  justify-content:center;
+  box-shadow:
+    0 .16rem .42rem rgba(28,17,37,.045),
+    0 .45rem 1rem rgba(28,17,37,.035) !important;
+}
+
+.category-button::before{
+  content:none !important;
+  display:none !important;
+}
+
+.category-button strong,
+.category-button.active strong{
+  color:#40364a !important;
+  font-size:.88rem;
+  font-weight:600 !important;
+  line-height:1.2;
+  letter-spacing:-.01em;
+  text-shadow:none !important;
+}
+
+.category-button span,
+.category-button.active span{
+  margin-top:.22rem;
+  color:#7a7182 !important;
+  font-size:.69rem;
+  font-weight:500;
+  line-height:1.2;
+  opacity:1;
+}
+
+/* Selected category: premium but restrained. */
+.category-button.active{
+  border-color:rgba(122,92,255,.42) !important;
+  background:
+    linear-gradient(
+      180deg,
+      #ffffff 0%,
+      #f7f3ff 100%
+    ) !important;
+  filter:none !important;
+  transform:none !important;
+  box-shadow:
+    0 0 0 .12rem rgba(122,92,255,.07),
+    0 .3rem .75rem rgba(122,92,255,.10) !important;
+}
+
+.category-button.active strong{
+  color:#6f4fd4 !important;
+}
+
+.category-button.active::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:.52rem;
+  width:1.7rem !important;
+  height:.16rem !important;
+  transform:translateX(-50%);
+  border-radius:999rem;
+  background:linear-gradient(90deg,#ff4fa3,#7a5cff) !important;
+  box-shadow:none !important;
+}
+
+@media(hover:hover) and (pointer:fine){
+  .category-button:hover{
+    transform:translateY(-1px) !important;
+    filter:none !important;
+    border-color:#d9cfe1 !important;
+    box-shadow:
+      0 .24rem .55rem rgba(28,17,37,.055),
+      0 .55rem 1.1rem rgba(28,17,37,.045) !important;
+  }
+}
+
+@media(max-width:768px){
+  .category-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:.55rem !important;
+    width:calc(100% - 1rem);
+  }
+
+  .category-button,
+  .category-button:nth-child(1),
+  .category-button:nth-child(2),
+  .category-button:nth-child(3),
+  .category-button:nth-child(4){
+    min-height:4.65rem;
+    padding:.72rem .55rem !important;
+    border-radius:.9rem !important;
+  }
+
+  .category-button strong,
+  .category-button.active strong{
+    font-size:.81rem !important;
+  }
+
+  .category-button span,
+  .category-button.active span{
+    font-size:.65rem !important;
+  }
+
+  .brand-section,
+  .shop-section{
+    background:rgba(255,255,255,.9) !important;
+  }
+}

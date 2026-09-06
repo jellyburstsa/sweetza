@@ -1,20 +1,22 @@
-Sweetza Pro UI v6.22 QA
+Sweetza Pro UI v6.24 QA
 ==============================
 
 [PASS] app.js syntax
 [PASS] default-products.js syntax
 [PASS] manager.js syntax
-[PASS] four category buttons
-[PASS] premium category CSS present
-[PASS] gloss highlight present
-[PASS] selected state stronger
-[PASS] mobile 2x2 preserved
-[PASS] cart logic retained
+[PASS] static radial background
+[PASS] animated layers disabled
+[PASS] category gradients overridden
+[PASS] 4 category buttons retained
+[PASS] 2x2 mobile retained
+[PASS] cart drawer retained
+[PASS] add to cart retained
 [PASS] stock block retained
-[PASS] WhatsApp retained
 [PASS] free delivery retained
+[PASS] WhatsApp retained
+[PASS] delivery scroll retained
 [PASS] MHA absent
 [PASS] ZIP integrity
 [PASS] ZIP populated
 
-Passed: 15/15
+Passed: 17/17
