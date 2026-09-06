@@ -1,9 +1,9 @@
-# Sweetza Pro UI v6.14 — Clear Category Cards
+# Sweetza Pro UI v6.15 — Mobile Cart Polish
 
-Changes:
-- each category is now a distinct bordered card
-- added rounded corners and subtle shadows
-- added soft individual background tints
-- stronger active category state with colored underline
-- kept 2x2 mobile layout
-- preserved all category keys and filtering logic
+Fixes:
+- floating View Cart pill reduced to medium size
+- floating pill no longer shifts position when Add to Cart is pressed
+- Add-to-cart toast text is smaller and subtler
+- interacted product card gets a mild temporary highlight
+- cart/order preview now shows a compact product thumbnail beside each product
+- existing cart, stock, delivery, free-delivery and WhatsApp logic preserved

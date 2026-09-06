@@ -231,7 +231,7 @@ function productCard(product) {
   const available = isAvailable(product);
 
   return `
-    <article class="product-card ${available ? "is-available" : "is-out-of-stock"}">
+    <article class="product-card ${available ? "is-available" : "is-out-of-stock"}" data-product-id="${product.id}">
       <button class="product-image" type="button" onclick="openProductLightbox('${product.id}')" aria-label="View ${product.name} image">
         <img
           src="${product.image || ""}"
@@ -302,6 +302,7 @@ function switchCategory(category) {
 }
 
 function changeProductQty(id, delta) {
+  highlightProductCard(id);
   const input = document.getElementById(`qty-${id}`);
   if (!input || input.disabled) return;
 
@@ -315,16 +316,27 @@ function saveCart() {
 
 
 function pulseFloatingCart() {
-  const button = document.getElementById("floatingCartButton");
-  if (!button) return;
-  button.classList.remove("cart-pulse");
-  requestAnimationFrame(() => {
-    button.classList.add("cart-pulse");
-    window.setTimeout(() => button.classList.remove("cart-pulse"), 420);
+  /* Position stays fixed; cart count badge handles the add feedback. */
+}
+
+
+function highlightProductCard(productId) {
+  const card = document.querySelector(`.product-card[data-product-id="${productId}"]`);
+  if (!card) return;
+
+  document.querySelectorAll(".product-card.is-interacting").forEach(el => {
+    if (el !== card) el.classList.remove("is-interacting");
   });
+
+  card.classList.add("is-interacting");
+  window.clearTimeout(card._sweetzaHighlightTimer);
+  card._sweetzaHighlightTimer = window.setTimeout(() => {
+    card.classList.remove("is-interacting");
+  }, 1800);
 }
 
 function addToCart(id) {
+  highlightProductCard(id);
   const product = productById(id);
   if (!product) return;
 
@@ -493,7 +505,8 @@ function renderCart() {
 
         ${grouped[category].map(({ item, product }) => `
           <div class="cart-item">
-            <div class="cart-item-copy">
+            <img class="cart-item-thumb" src="${product.image}" alt="" loading="lazy" onerror="this.src='assets/brand/sweetza-logo.png'">
+          <div class="cart-item-copy">
               <strong>${product.name}</strong>
               <span>${product.packSize} · ${money(item.price)} each</span>
               <small>Line total: ${money(item.price * item.qty)}</small>

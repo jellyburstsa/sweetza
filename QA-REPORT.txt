@@ -1,21 +1,25 @@
-Sweetza Pro UI v6.14 QA
-============================
+Sweetza Pro UI v6.15 QA
+==============================
 
 [PASS] app.js syntax
 [PASS] default-products.js syntax
 [PASS] manager.js syntax
-[PASS] 4 category keys
-[PASS] category borders
-[PASS] category rounded cards
-[PASS] active state stronger
-[PASS] active underline
-[PASS] 2x2 mobile retained
-[PASS] filter logic retained
-[PASS] cart retained
+[PASS] pill medium compact
+[PASS] pill fixed centered
+[PASS] pill pulse disabled
+[PASS] toast smaller
+[PASS] product highlight helper
+[PASS] product highlight CSS
+[PASS] product card data id
+[PASS] cart thumb markup
+[PASS] cart thumb CSS
+[PASS] cart logic retained
+[PASS] stock block retained
 [PASS] WhatsApp retained
 [PASS] free delivery retained
+[PASS] delivery scroll retained
 [PASS] MHA absent
 [PASS] ZIP integrity
 [PASS] ZIP populated
 
-Passed: 16/16
+Passed: 20/20
