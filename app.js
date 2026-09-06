@@ -335,7 +335,51 @@ function highlightProductCard(productId) {
   }, 1800);
 }
 
+
+function flyProductToCart(productId) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const card = document.querySelector(`.product-card[data-product-id="${productId}"]`);
+  const image = card?.querySelector(".product-image img, .product-image > img, img");
+  const cartButton = document.getElementById("floatingCartButton");
+
+  if (!card || !image || !cartButton) return;
+
+  const imageRect = image.getBoundingClientRect();
+  const cartRect = cartButton.getBoundingClientRect();
+
+  const flyer = image.cloneNode(true);
+  flyer.className = "fly-to-cart-image";
+  flyer.setAttribute("aria-hidden", "true");
+
+  flyer.style.left = `${imageRect.left}px`;
+  flyer.style.top = `${imageRect.top}px`;
+  flyer.style.width = `${Math.max(42, Math.min(imageRect.width, 72))}px`;
+  flyer.style.height = `${Math.max(42, Math.min(imageRect.height, 72))}px`;
+
+  document.body.appendChild(flyer);
+
+  const startX = imageRect.left;
+  const startY = imageRect.top;
+  const endX = cartRect.left + cartRect.width / 2 - parseFloat(flyer.style.width) / 2;
+  const endY = cartRect.top + cartRect.height / 2 - parseFloat(flyer.style.height) / 2;
+
+  requestAnimationFrame(() => {
+    flyer.style.transform = `translate(${endX - startX}px, ${endY - startY}px) scale(.22) rotate(8deg)`;
+    flyer.style.opacity = "0.15";
+  });
+
+  window.setTimeout(() => {
+    flyer.remove();
+    cartButton.classList.remove("cart-catch");
+    void cartButton.offsetWidth;
+    cartButton.classList.add("cart-catch");
+    window.setTimeout(() => cartButton.classList.remove("cart-catch"), 360);
+  }, 560);
+}
+
 function addToCart(id) {
+  flyProductToCart(id);
   highlightProductCard(id);
   const product = productById(id);
   if (!product) return;
@@ -532,11 +576,8 @@ function updateFloatingCartVisibility() {
   if (!button) return;
 
   const hasItems = cart.reduce((sum, item) => sum + item.qty, 0) > 0;
-  const triggerPoint = Math.max(120, document.querySelector(".brand-section")?.offsetHeight || 0);
-  const pastTop = window.scrollY > triggerPoint;
-
-  button.classList.toggle("visible", hasItems && pastTop);
-  button.setAttribute("aria-hidden", String(!(hasItems && pastTop)));
+  button.classList.toggle("visible", hasItems);
+  button.setAttribute("aria-hidden", String(!hasItems));
 }
 
 function bounceFloatingCartBadge() {
@@ -889,7 +930,6 @@ document.getElementById("productLightboxClose").addEventListener("click", closeP
 document.getElementById("productLightboxBackdrop").addEventListener("click", closeProductLightbox);
 
 
-window.addEventListener("scroll", updateFloatingCartVisibility, { passive: true });
 window.addEventListener("resize", updateFloatingCartVisibility, { passive: true });
 
 updateFloatingCartVisibility();

@@ -59,13 +59,10 @@
     </section>
   </main>
 
-  <button class="floating-cart floating-cart-pill" id="floatingCartButton" type="button" aria-label="View cart" aria-controls="cartDrawer">
-    <span class="floating-cart-icon" aria-hidden="true">🛒</span>
-    <span class="floating-cart-copy">
-      <span class="floating-cart-label">View Cart</span>
-      <span class="floating-cart-meta"><span id="floatingCartCount">0</span> items</span>
-    </span>
-    <strong class="floating-cart-total" id="floatingCartTotal">R0.00</strong>
+  <button class="floating-cart floating-cart-icon-button" id="floatingCartButton" type="button" aria-label="View cart" aria-controls="cartDrawer">
+    <span class="cart-button-icon" aria-hidden="true">🛒</span>
+    <span class="cart-button-badge" id="floatingCartCount">0</span>
+    <span class="sr-only" id="floatingCartTotal">R0.00</span>
   </button>
 
   <aside class="cart-drawer flowbite-modal" id="cartDrawer" aria-hidden="true" tabindex="-1">

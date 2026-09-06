@@ -1,9 +1,16 @@
-# Sweetza Pro UI v6.15 — Mobile Cart Polish
+# Sweetza Pro UI v6.17 — Fixed Cart Icon + Fly Animation
 
-Fixes:
-- floating View Cart pill reduced to medium size
-- floating pill no longer shifts position when Add to Cart is pressed
-- Add-to-cart toast text is smaller and subtler
-- interacted product card gets a mild temporary highlight
-- cart/order preview now shows a compact product thumbnail beside each product
-- existing cart, stock, delivery, free-delivery and WhatsApp logic preserved
+Changes:
+- replaced the long floating View Cart pill with a familiar circular ecommerce cart icon
+- cart icon stays fixed at the bottom-right
+- cart count remains visible as a badge
+- when Add to Cart is pressed, a small product image flies into the cart icon
+- cart icon gives a small catch/bounce response when the animation lands
+- reduced-motion users do not receive the fly animation
+
+Preserved:
+- product/cart logic
+- stock blocking
+- R500 free delivery
+- Courier/PUDO delivery
+- WhatsApp checkout

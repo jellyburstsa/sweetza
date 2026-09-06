@@ -3285,3 +3285,289 @@ body:not(.cart-open):not(.lightbox-open){
     padding:0.55rem 0.8rem !important;
   }
 }
+
+
+/* =========================================================
+   v6.16 — Compact summary, stronger highlight, toast reposition,
+   smaller floating cart pill
+   ========================================================= */
+
+/* 1. Smaller Order Summary card while keeping all information */
+@media(max-width:768px){
+
+  .order-summary-card{
+    padding:0.7rem !important;
+    margin-top:0.25rem !important;
+    border-radius:0.9rem 0.9rem 0 0 !important;
+  }
+
+  .order-summary-heading{
+    margin-bottom:0.35rem !important;
+    align-items:center;
+  }
+
+  .order-summary-heading strong{
+    font-size:0.88rem !important;
+    line-height:1.15;
+  }
+
+  .order-summary-heading span{
+    font-size:0.68rem !important;
+  }
+
+  .order-total-row{
+    padding:0.4rem 0 !important;
+    margin-bottom:0.4rem !important;
+  }
+
+  .order-total-row span{
+    font-size:0.72rem !important;
+  }
+
+  .order-total-row strong{
+    font-size:1.15rem !important;
+  }
+
+  .delivery-progress-card{
+    padding:0.55rem 0.65rem !important;
+    gap:0.35rem 0.6rem !important;
+    margin-bottom:0.4rem !important;
+    border-radius:0.7rem !important;
+  }
+
+  .delivery-progress-copy strong,
+  .delivery-progress-copy span{
+    font-size:0.64rem !important;
+  }
+
+  .delivery-progress-track{
+    height:0.3rem !important;
+  }
+
+  .muted{
+    margin:0.2rem 0 0.4rem !important;
+    font-size:0.62rem !important;
+    line-height:1.25 !important;
+  }
+
+  #looksGoodButton{
+    min-height:44px !important;
+    height:44px !important;
+    font-size:0.78rem !important;
+    margin-top:0 !important;
+  }
+}
+
+/* 2. Stronger selected/interacting product highlight */
+.product-card.is-interacting{
+  border-color:rgba(255,79,163,.58) !important;
+  background:
+    linear-gradient(180deg,#fff 0%,#fff6fb 58%,#f8f1ff 100%) !important;
+  box-shadow:
+    0 0 0 2px rgba(255,79,163,.12),
+    0 0.55rem 1.2rem rgba(122,92,255,.13) !important;
+}
+
+/* 3. Move add-to-cart toast away from the middle */
+.toast{
+  top:calc(0.75rem + env(safe-area-inset-top)) !important;
+  bottom:auto !important;
+  left:50% !important;
+  transform:translate(-50%,-0.5rem) !important;
+  max-width:min(17rem,calc(100vw - 1.5rem)) !important;
+  padding:0.5rem 0.75rem !important;
+  border-radius:999rem !important;
+  font-size:0.66rem !important;
+  line-height:1.2 !important;
+  opacity:0;
+}
+
+.toast.show{
+  transform:translate(-50%,0) !important;
+  opacity:1;
+}
+
+/* 4. Make floating View Cart pill smaller again */
+.floating-cart-pill{
+  min-width:min(10.75rem,calc(100vw - 1.25rem)) !important;
+  max-width:calc(100vw - 1.25rem) !important;
+  min-height:2.45rem !important;
+  padding:0.34rem 0.45rem 0.34rem 0.55rem !important;
+  gap:0.38rem !important;
+}
+
+.floating-cart-icon{
+  font-size:0.78rem !important;
+}
+
+.floating-cart-label{
+  font-size:0.64rem !important;
+}
+
+.floating-cart-meta{
+  font-size:0.54rem !important;
+}
+
+.floating-cart-total{
+  min-width:3.25rem !important;
+  min-height:1.65rem !important;
+  padding:0 0.42rem !important;
+  font-size:0.6rem !important;
+}
+
+@media(max-width:390px){
+  .floating-cart-pill{
+    min-width:min(10.2rem,calc(100vw - 0.9rem)) !important;
+    max-width:calc(100vw - 0.9rem) !important;
+  }
+
+  .toast{
+    max-width:calc(100vw - 1rem) !important;
+  }
+}
+
+
+/* =========================================================
+   v6.17 — Fixed cart icon + fly-to-cart animation
+   ========================================================= */
+
+/* Hide old pill styling completely */
+.floating-cart-pill{
+  display:none !important;
+}
+
+/* Familiar ecommerce-style fixed cart button */
+.floating-cart-icon-button{
+  position:fixed !important;
+  left:auto !important;
+  right:clamp(0.75rem,3vw,1.25rem) !important;
+  bottom:calc(clamp(0.75rem,3vw,1.25rem) + env(safe-area-inset-bottom)) !important;
+  width:3.4rem !important;
+  min-width:3.4rem !important;
+  max-width:3.4rem !important;
+  height:3.4rem !important;
+  min-height:3.4rem !important;
+  padding:0 !important;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(122,92,255,.18);
+  border-radius:50%;
+  background:linear-gradient(135deg,#7a5cff,#9a65d8);
+  color:#fff;
+  box-shadow:0 0.7rem 1.6rem rgba(28,17,37,.2);
+  transform:scale(.88) !important;
+  opacity:0;
+  pointer-events:none;
+  z-index:95;
+  transition:
+    opacity .18s ease,
+    transform .2s cubic-bezier(.16,1,.3,1),
+    box-shadow .2s ease !important;
+}
+
+.floating-cart-icon-button.visible{
+  opacity:1;
+  pointer-events:auto;
+  transform:scale(1) !important;
+}
+
+.floating-cart-icon-button:hover{
+  box-shadow:0 0.9rem 2rem rgba(28,17,37,.26);
+}
+
+.cart-button-icon{
+  font-size:1.3rem;
+  line-height:1;
+  transform:translateY(0.02rem);
+}
+
+.cart-button-badge{
+  position:absolute;
+  top:-0.22rem;
+  right:-0.22rem;
+  min-width:1.35rem;
+  height:1.35rem;
+  padding:0 0.3rem;
+  display:grid;
+  place-items:center;
+  border-radius:999rem;
+  border:2px solid #fff;
+  background:#ff4fa3;
+  color:#fff;
+  font-size:0.63rem;
+  font-weight:800;
+  line-height:1;
+  box-shadow:0 0.18rem 0.5rem rgba(28,17,37,.18);
+}
+
+#floatingCartCount.badge-bounce{
+  animation:sweetzaBadgeBounce .42s cubic-bezier(.16,1,.3,1);
+}
+
+.floating-cart-icon-button.cart-catch{
+  animation:cartCatch .34s cubic-bezier(.16,1,.3,1);
+}
+
+@keyframes cartCatch{
+  0%{transform:scale(1) !important}
+  42%{transform:scale(1.14) rotate(-4deg) !important}
+  75%{transform:scale(.96) rotate(2deg) !important}
+  100%{transform:scale(1) rotate(0) !important}
+}
+
+/* Small product image that flies into the cart */
+.fly-to-cart-image{
+  position:fixed;
+  z-index:9999;
+  pointer-events:none;
+  object-fit:contain;
+  border-radius:0.65rem;
+  padding:0.15rem;
+  background:#fff;
+  box-shadow:0 0.5rem 1.2rem rgba(28,17,37,.18);
+  transform:translate(0,0) scale(1) rotate(0);
+  transform-origin:center;
+  opacity:.95;
+  transition:
+    transform .56s cubic-bezier(.22,.7,.18,1),
+    opacity .56s ease;
+  will-change:transform,opacity;
+}
+
+/* Utility for screen-reader-only subtotal text */
+.sr-only{
+  position:absolute !important;
+  width:1px !important;
+  height:1px !important;
+  padding:0 !important;
+  margin:-1px !important;
+  overflow:hidden !important;
+  clip:rect(0,0,0,0) !important;
+  white-space:nowrap !important;
+  border:0 !important;
+}
+
+@media(max-width:390px){
+  .floating-cart-icon-button{
+    width:3.15rem !important;
+    min-width:3.15rem !important;
+    max-width:3.15rem !important;
+    height:3.15rem !important;
+    min-height:3.15rem !important;
+  }
+
+  .cart-button-icon{
+    font-size:1.2rem;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .fly-to-cart-image{
+    display:none !important;
+  }
+
+  .floating-cart-icon-button.cart-catch,
+  #floatingCartCount.badge-bounce{
+    animation:none !important;
+  }
+}

@@ -1,25 +1,29 @@
-Sweetza Pro UI v6.15 QA
+Sweetza Pro UI v6.17 QA
 ==============================
 
 [PASS] app.js syntax
 [PASS] default-products.js syntax
 [PASS] manager.js syntax
-[PASS] pill medium compact
-[PASS] pill fixed centered
-[PASS] pill pulse disabled
-[PASS] toast smaller
-[PASS] product highlight helper
-[PASS] product highlight CSS
-[PASS] product card data id
-[PASS] cart thumb markup
-[PASS] cart thumb CSS
-[PASS] cart logic retained
+[PASS] fixed cart icon markup
+[PASS] cart badge retained
+[PASS] subtotal hidden hook retained
+[PASS] pill removed from markup
+[PASS] fixed bottom-right
+[PASS] 44px+ tap target
+[PASS] fly helper
+[PASS] fly called on add
+[PASS] fly CSS
+[PASS] cart catch animation
+[PASS] no scroll dependency
+[PASS] visibility based on cart items
+[PASS] reduced motion
+[PASS] addToCart retained
 [PASS] stock block retained
+[PASS] R500 retained
 [PASS] WhatsApp retained
-[PASS] free delivery retained
-[PASS] delivery scroll retained
+[PASS] delivery scrolling retained
 [PASS] MHA absent
 [PASS] ZIP integrity
 [PASS] ZIP populated
 
-Passed: 20/20
+Passed: 24/24
