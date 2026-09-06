@@ -3849,3 +3849,178 @@ body::after{
   border-color:rgba(255,255,255,.95);
   box-shadow:0 .2rem .55rem rgba(122,92,255,.22);
 }
+
+
+/* =========================================================
+   v6.29 — Single background + compact range heading
+   ========================================================= */
+
+:root{
+  --sweetza-page-bg:#f7f4f8;
+}
+
+/* One consistent background across the storefront */
+html,
+body,
+main,
+.brand-section,
+.shop-section{
+  background:var(--sweetza-page-bg) !important;
+}
+
+.brand-section,
+.shop-section{
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}
+
+/* Keep category navigation sitting naturally on the same background */
+.category-grid{
+  background:transparent !important;
+}
+
+/* Compact the range heading so products begin higher on mobile */
+.shop-section{
+  padding-top:0 !important;
+}
+
+.shop-heading{
+  margin-top:0 !important;
+  margin-bottom:0.75rem !important;
+  padding-top:0.35rem !important;
+}
+
+.shop-heading > div{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0.15rem;
+}
+
+.shop-heading .eyebrow{
+  margin:0 !important;
+  font-size:0.68rem !important;
+  line-height:1.15 !important;
+  letter-spacing:0.13em !important;
+}
+
+.shop-heading h1{
+  margin:0.15rem 0 0 !important;
+  font-size:clamp(1.65rem,7vw,2.05rem) !important;
+  line-height:1.08 !important;
+}
+
+.shop-heading p{
+  margin:0.28rem auto 0 !important;
+  max-width:30rem !important;
+  font-size:0.82rem !important;
+  line-height:1.35 !important;
+}
+
+/* Pull the range section closer to the category cards */
+.category-grid{
+  margin-bottom:0.35rem !important;
+}
+
+@media(max-width:768px){
+  .brand-section{
+    padding-bottom:0.5rem !important;
+  }
+
+  .category-grid{
+    margin-bottom:0.25rem !important;
+  }
+
+  .shop-heading{
+    margin-bottom:0.65rem !important;
+    padding-top:0.2rem !important;
+  }
+
+  .shop-heading .eyebrow{
+    font-size:0.64rem !important;
+    letter-spacing:0.12em !important;
+  }
+
+  .shop-heading h1{
+    font-size:clamp(1.55rem,7.2vw,1.9rem) !important;
+  }
+
+  .shop-heading p{
+    margin-top:0.22rem !important;
+    font-size:0.78rem !important;
+    line-height:1.3 !important;
+  }
+}
+
+
+/* =========================================================
+   v6.30 — Free-delivery confetti celebration
+   Small one-time burst when subtotal crosses R500.
+   ========================================================= */
+
+.free-delivery-confetti{
+  position:fixed;
+  inset:0;
+  z-index:10050;
+  overflow:hidden;
+  pointer-events:none;
+}
+
+.free-delivery-confetti-piece{
+  --x:50vw;
+  --drift:0px;
+  --delay:0s;
+  --duration:1.15s;
+  --rotate:360deg;
+  --hue:295;
+  position:absolute;
+  left:var(--x);
+  top:-1rem;
+  width:.46rem;
+  height:.72rem;
+  border-radius:.12rem;
+  background:hsl(var(--hue) 82% 66%);
+  box-shadow:0 1px 2px rgba(50,28,64,.10);
+  opacity:0;
+  transform:translate3d(0,-1rem,0) rotate(0deg);
+  animation:sweetzaConfettiFall var(--duration) cubic-bezier(.18,.7,.25,1) var(--delay) forwards;
+}
+
+.free-delivery-confetti-piece:nth-child(3n){
+  width:.36rem;
+  height:.36rem;
+  border-radius:50%;
+}
+
+.free-delivery-confetti-piece:nth-child(4n){
+  width:.58rem;
+  height:.24rem;
+  border-radius:999rem;
+}
+
+@keyframes sweetzaConfettiFall{
+  0%{
+    opacity:0;
+    transform:translate3d(0,-1rem,0) rotate(0deg) scale(.85);
+  }
+  10%{
+    opacity:1;
+  }
+  100%{
+    opacity:0;
+    transform:translate3d(var(--drift),58vh,0) rotate(var(--rotate)) scale(1);
+  }
+}
+
+@media(max-width:768px){
+  .free-delivery-confetti-piece{
+    width:.4rem;
+    height:.62rem;
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  .free-delivery-confetti{
+    display:none !important;
+  }
+}

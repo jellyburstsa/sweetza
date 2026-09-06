@@ -155,6 +155,7 @@ function safeWriteCartStorage(value) {
 }
 
 let cart = loadCart();
+let freeDeliveryWasUnlocked = null;
 let activeCategory = "70g";
 
 const grids = {
@@ -446,6 +447,34 @@ function deliveryFeeFor(choice) {
   return Number(DELIVERY_FEES[choice] || 0);
 }
 
+
+function celebrateFreeDelivery() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const existing = document.querySelector(".free-delivery-confetti");
+  existing?.remove();
+
+  const layer = document.createElement("div");
+  layer.className = "free-delivery-confetti";
+  layer.setAttribute("aria-hidden", "true");
+
+  const pieces = 28;
+  for (let i = 0; i < pieces; i += 1) {
+    const piece = document.createElement("i");
+    piece.className = "free-delivery-confetti-piece";
+    piece.style.setProperty("--x", `${8 + Math.random() * 84}vw`);
+    piece.style.setProperty("--drift", `${-55 + Math.random() * 110}px`);
+    piece.style.setProperty("--delay", `${Math.random() * 0.16}s`);
+    piece.style.setProperty("--duration", `${0.9 + Math.random() * 0.55}s`);
+    piece.style.setProperty("--rotate", `${180 + Math.random() * 540}deg`);
+    piece.style.setProperty("--hue", `${265 + Math.random() * 70}`);
+    layer.appendChild(piece);
+  }
+
+  document.body.appendChild(layer);
+  window.setTimeout(() => layer.remove(), 1800);
+}
+
 function updateDeliveryProgress() {
   const subtotal = cartSubtotal();
   const remaining = Math.max(0, FREE_DELIVERY_THRESHOLD - subtotal);
@@ -459,13 +488,20 @@ function updateDeliveryProgress() {
   if (fill) fill.style.width = `${percent}%`;
   if (amount) amount.textContent = `${money(subtotal)} / ${money(FREE_DELIVERY_THRESHOLD)}`;
 
-  if (subtotal >= FREE_DELIVERY_THRESHOLD) {
+  const freeDeliveryUnlocked = subtotal >= FREE_DELIVERY_THRESHOLD;
+
+  if (freeDeliveryUnlocked) {
     if (message) message.textContent = "🎉 You've unlocked FREE delivery!";
     card?.classList.add("complete");
   } else {
     if (message) message.textContent = `Add ${money(remaining)} more for FREE delivery!`;
     card?.classList.remove("complete");
   }
+
+  if (freeDeliveryWasUnlocked === false && freeDeliveryUnlocked) {
+    celebrateFreeDelivery();
+  }
+  freeDeliveryWasUnlocked = freeDeliveryUnlocked;
 
   updateDeliveryPriceLabels();
 }

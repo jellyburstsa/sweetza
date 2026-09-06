@@ -1,15 +1,25 @@
-Sweetza Pro UI v6.28 QA
-========================
+Sweetza Pro UI v6.30 QA
+==============================
 
 [PASS] app.js syntax
 [PASS] default-products.js syntax
 [PASS] manager.js syntax
-[PASS] glass cart style present
-[PASS] cart icon button present
+[PASS] confetti helper present
+[PASS] crossing state present
+[PASS] only fires on crossing
+[PASS] confetti CSS present
+[PASS] reduced motion supported
+[PASS] pointer events disabled
+[PASS] R500 threshold unchanged
+[PASS] free delivery copy retained
 [PASS] cart logic retained
-[PASS] whatsapp retained
 [PASS] stock blocking retained
-[PASS] no stock badge CSS retained hidden
-[PASS] zip integrity
+[PASS] WhatsApp retained
+[PASS] delivery wording retained
+[PASS] glass cart retained
+[PASS] stock badge remains hidden
+[PASS] MHA absent
+[PASS] ZIP integrity
+[PASS] ZIP populated
 
-Passed: 10/10
+Passed: 20/20

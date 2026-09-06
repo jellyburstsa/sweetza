@@ -1,16 +1,12 @@
-# Sweetza Pro UI v6.27 — No Stock Badge
+# Sweetza Pro UI v6.30 — Free Delivery Confetti
 
-Changes:
-- removed the visible Stock Badge from all product cards
-- available products now show no stock label
-- out-of-stock products remain unselectable
-- quantity and Add to Cart controls remain disabled for out-of-stock products
-- JavaScript stock blocking remains intact
+Added a small celebratory confetti burst when the cart subtotal crosses the R500 free-delivery threshold.
 
-All cart, delivery, and WhatsApp logic is unchanged.
+Behavior:
+- fires only when the customer goes from below R500 to R500 or more
+- does not repeatedly trigger on ordinary cart re-renders
+- can trigger again if the cart drops below R500 and later reaches R500 again
+- disabled for customers who prefer reduced motion
+- no external animation library used
 
-
-## v6.28 update
-- changed the floating cart icon to a lighter glass-style finish
-- softened the color to a mild purple so it feels less dark
-- kept the cart size, position, cart logic, stock logic, and WhatsApp flow unchanged
+Cart, stock, delivery fees, and WhatsApp ordering remain unchanged.
