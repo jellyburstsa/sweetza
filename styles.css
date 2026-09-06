@@ -4289,3 +4289,164 @@ body::after{
     background:rgba(255,255,255,.9) !important;
   }
 }
+
+
+/* =========================================================
+   v6.25 — Subtle 3D cards + compact range heading
+   ========================================================= */
+
+/* Bring the category area and range heading closer together */
+.category-grid{
+  margin-bottom:.55rem !important;
+}
+
+.shop-section{
+  padding-top:.25rem !important;
+}
+
+.shop-heading{
+  margin-bottom:1rem !important;
+  padding-top:.1rem;
+}
+
+.shop-heading .eyebrow{
+  margin-bottom:.28rem !important;
+  font-size:.78rem !important;
+  letter-spacing:.16em !important;
+}
+
+.shop-heading h1{
+  margin:0 0 .4rem !important;
+  font-size:clamp(2rem, 5vw, 2.6rem) !important;
+  line-height:1.05;
+}
+
+.shop-heading p{
+  margin:0 auto !important;
+  max-width:32rem !important;
+  font-size:.98rem !important;
+  line-height:1.45;
+}
+
+/* Category cards: light 3D / elevated look */
+.category-button,
+.category-button:nth-child(1),
+.category-button:nth-child(2),
+.category-button:nth-child(3),
+.category-button:nth-child(4){
+  border-color:#e0d4ea !important;
+  background:linear-gradient(180deg, rgba(255,255,255,.99) 0%, rgba(248,244,252,.97) 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.95),
+    inset 0 -1px 0 rgba(214,201,226,.42),
+    0 .38rem .95rem rgba(35,22,45,.065),
+    0 .08rem .18rem rgba(35,22,45,.05) !important;
+  transform:translateZ(0);
+}
+
+.category-button.active{
+  border-color:rgba(122,92,255,.48) !important;
+  background:linear-gradient(180deg,#ffffff 0%, #f7f1ff 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.98),
+    inset 0 -1px 0 rgba(189,165,241,.32),
+    0 0 0 .12rem rgba(122,92,255,.08),
+    0 .45rem 1.1rem rgba(122,92,255,.14),
+    0 .12rem .26rem rgba(35,22,45,.06) !important;
+}
+
+@media(hover:hover) and (pointer:fine){
+  .category-button:hover{
+    transform:translateY(-2px) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.95),
+      inset 0 -1px 0 rgba(214,201,226,.42),
+      0 .55rem 1.15rem rgba(35,22,45,.08),
+      0 .15rem .28rem rgba(35,22,45,.06) !important;
+  }
+}
+
+/* Product cards: subtle 3D ecommerce depth */
+.product-card{
+  border:1px solid #e5dcea !important;
+  border-radius:1.25rem !important;
+  background:linear-gradient(180deg, rgba(255,255,255,.99) 0%, rgba(250,248,252,.98) 100%) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.96),
+    inset 0 -1px 0 rgba(228,219,236,.55),
+    0 .55rem 1.2rem rgba(29,18,36,.06),
+    0 .16rem .28rem rgba(29,18,36,.04) !important;
+  overflow:hidden;
+}
+
+.product-card::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  border-radius:inherit;
+  background:linear-gradient(180deg, rgba(255,255,255,.18), rgba(255,255,255,0) 28%);
+}
+
+.product-image{
+  background:linear-gradient(180deg,#ffffff 0%, #f7f3fb 100%) !important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.95);
+}
+
+@media(hover:hover) and (pointer:fine){
+  .product-card:hover{
+    transform:translateY(-3px) !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.98),
+      inset 0 -1px 0 rgba(228,219,236,.58),
+      0 .85rem 1.5rem rgba(29,18,36,.08),
+      0 .2rem .34rem rgba(29,18,36,.05) !important;
+  }
+}
+
+@media(max-width:768px){
+  .category-grid{
+    margin-bottom:.35rem !important;
+  }
+
+  .shop-heading{
+    margin-bottom:.8rem !important;
+  }
+
+  .shop-heading .eyebrow{
+    font-size:.74rem !important;
+    margin-bottom:.2rem !important;
+  }
+
+  .shop-heading h1{
+    font-size:clamp(1.75rem, 8vw, 2.2rem) !important;
+    margin-bottom:.35rem !important;
+  }
+
+  .shop-heading p{
+    font-size:.92rem !important;
+    line-height:1.38;
+  }
+
+  .category-button,
+  .category-button:nth-child(1),
+  .category-button:nth-child(2),
+  .category-button:nth-child(3),
+  .category-button:nth-child(4){
+    min-height:4.45rem !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.95),
+      inset 0 -1px 0 rgba(214,201,226,.36),
+      0 .3rem .8rem rgba(35,22,45,.06),
+      0 .08rem .18rem rgba(35,22,45,.045) !important;
+  }
+
+  .product-card{
+    border-radius:1.15rem !important;
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.96),
+      inset 0 -1px 0 rgba(228,219,236,.5),
+      0 .42rem .95rem rgba(29,18,36,.055),
+      0 .12rem .22rem rgba(29,18,36,.04) !important;
+  }
+}

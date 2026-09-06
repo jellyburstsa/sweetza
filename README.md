@@ -14,3 +14,10 @@ Unchanged:
 - R500 free delivery
 - delivery forms
 - WhatsApp ordering
+
+
+## v6.25
+- added subtle 3D depth to category cards
+- added subtle 3D depth to product cards
+- reduced empty space between category section and product section
+- made the range heading (e.g. Snack Size Range) more compact
