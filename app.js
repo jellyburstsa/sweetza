@@ -806,34 +806,126 @@ function deliveryLines() {
 
 function sendWhatsAppOrder() {
   if (!cart.length) {
-    showToast("Add something to your cart first");
+    showToast("Your cart is empty");
     return;
   }
 
-  if (!validateDelivery()) return;
+  const delivery = selectedDelivery();
+  if (!delivery) {
+    showToast("Please choose a delivery option");
+    return;
+  }
 
-  const choice = selectedDelivery();
-  const deliveryFee = deliveryFeeFor(choice);
-  const finalTotal = cartSubtotal() + deliveryFee;
+  const validation = validateDeliveryDetails(delivery);
+  if (!validation.ok) {
+    showToast(validation.message);
+    validation.field?.focus();
+    return;
+  }
 
-  const message = [
-    "🍬 *SWEETZA ORDER*",
-    `📅 Date: ${orderDate()}`,
+  const subtotal = cartSubtotal();
+  const deliveryFee = getDeliveryFee(delivery);
+  const finalTotal = subtotal + deliveryFee;
+
+  const date = new Intl.DateTimeFormat("en-ZA", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric"
+  }).format(new Date());
+
+  const categoryMeta = {
+    "70g": { label: "70g Bags", emoji: "✨" },
+    "Milk Bottles": { label: "Milk Bottles", emoji: "🥛" },
+    "300g": { label: "Classic Pack", emoji: "🍬" },
+    "900g": { label: "Bulk Pack", emoji: "🍭" }
+  };
+
+  const productEmoji = product => {
+    if (product.category === "Milk Bottles") return "🥛";
+    const name = product.name.toLowerCase();
+    if (name.includes("teddy")) return "🧸";
+    if (name.includes("shark")) return "🦈";
+    if (name.includes("banana")) return "🍌";
+    if (name.includes("pineapple")) return "🍍";
+    if (name.includes("cola")) return "🥤";
+    if (name.includes("heart")) return "💜";
+    if (name.includes("donut")) return "🍩";
+    return "🍬";
+  };
+
+  const lines = [
+    "🍬 *SWEETZA — NEW ORDER* 🍭",
+    "━━━━━━━━━━━━━━━━━━",
+    `📅 *Date:* ${date}`,
     "",
-    "🛒 *Products*",
-    ...groupedOrderLines(),
-    `💰 *Products Total:* ${money(cartSubtotal())}`,
+    "🛒 *ITEMS ORDERED*",
+    ""
+  ];
+
+  const categoryOrder = ["70g", "Milk Bottles", "300g", "900g"];
+
+  categoryOrder.forEach(category => {
+    const items = cart.filter(item => {
+      const product = products.find(p => p.id === item.id);
+      return product?.category === category;
+    });
+
+    if (!items.length) return;
+
+    const meta = categoryMeta[category];
+    lines.push(`${meta.emoji} *${meta.label}*`);
+
+    items.forEach(item => {
+      const product = products.find(p => p.id === item.id);
+      if (!product) return;
+      lines.push(
+        `• ${productEmoji(product)} ${product.name} ${product.packSize} × ${item.qty} — ${money(item.price)} ea`
+      );
+    });
+
+    lines.push("");
+  });
+
+  lines.push(
+    "──────────────────",
+    `🧾 *Products Subtotal:* ${money(subtotal)}`,
+    deliveryFee === 0
+      ? `🚚 *Delivery Fee (${delivery === "pudo" ? "Locker" : "Door"}):* FREE`
+      : `🚚 *Delivery Fee (${delivery === "pudo" ? "Locker" : "Door"}):* ${money(deliveryFee)}`,
+    "━━━━━━━━━━━━━━━━━━",
+    `🎉 *FINAL TOTAL: ${money(finalTotal)}*`,
+    "━━━━━━━━━━━━━━━━━━",
     "",
-    "📦 *Delivery*",
-    ...deliveryLines(),
-    "",
-    `✨ *FINAL TOTAL:* ${money(finalTotal)}`
-  ].join("\n");
+    "📦 *DELIVERY DETAILS*"
+  );
+
+  if (delivery === "pudo") {
+    lines.push(
+      "• *Method:* Collect from a locker 📍",
+      `• *Recipient:* ${document.getElementById("pudoName").value.trim()}`,
+      `• *Phone:* ${document.getElementById("pudoPhone").value.trim()}`,
+      `• *Province:* ${document.getElementById("pudoProvince").value}`,
+      `• *Nearest Locker:* ${document.getElementById("pudoLocker").value.trim()}`
+    );
+  } else {
+    lines.push(
+      "• *Method:* Deliver to your door 🚚",
+      `• *Recipient:* ${document.getElementById("courierName").value.trim()}`,
+      `• *Phone:* ${document.getElementById("courierPhone").value.trim()}`,
+      `• *Street:* ${document.getElementById("courierStreet").value.trim()}`,
+      `• *Suburb:* ${document.getElementById("courierSuburb").value.trim()}`,
+      `• *City / Town:* ${document.getElementById("courierCity").value.trim()}`,
+      `• *Province:* ${document.getElementById("courierProvince").value}`,
+      `• *Postcode:* ${document.getElementById("courierPostcode").value.trim()}`
+    );
+  }
+
+  const message = lines.join("\n");
 
   window.open(
     `https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(message)}`,
     "_blank",
-    "noopener"
+    "noopener,noreferrer"
   );
 }
 

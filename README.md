@@ -1,12 +1,12 @@
-# Sweetza Pro UI v6.30 — Free Delivery Confetti
+# Sweetza Pro UI v6.31 — WhatsApp Message Polish
 
-Added a small celebratory confetti burst when the cart subtotal crosses the R500 free-delivery threshold.
+Updated WhatsApp order message styling:
+- branded SWEETZA — NEW ORDER header
+- grouped items by category
+- cleaner product lines with pack size, quantity and unit price
+- 🥛 used for Milk Bottles
+- subtotal, delivery fee and final total clearly separated
+- delivery details placed at the end
+- current delivery wording retained: Collect from a locker / Deliver to your door
 
-Behavior:
-- fires only when the customer goes from below R500 to R500 or more
-- does not repeatedly trigger on ordinary cart re-renders
-- can trigger again if the cart drops below R500 and later reaches R500 again
-- disabled for customers who prefer reduced motion
-- no external animation library used
-
-Cart, stock, delivery fees, and WhatsApp ordering remain unchanged.
+All cart, stock, delivery, free-delivery, and confetti logic remains unchanged.
