@@ -1,25 +1,22 @@
-Sweetza Pro UI v6.32 QA
+Sweetza Pro UI v6.33 QA
 ==============================
 
 [PASS] app.js syntax
 [PASS] default-products.js syntax
 [PASS] manager.js syntax
-[PASS] bad validate helper removed
-[PASS] bad delivery fee helper removed
-[PASS] real validation reused
-[PASS] real delivery fee helper reused
-[PASS] real product lookup reused
-[PASS] real category field reused
-[PASS] new order heading retained
-[PASS] milk emoji retained
-[PASS] subtotal retained
-[PASS] final total retained
-[PASS] locker details retained
-[PASS] door details retained
-[PASS] pack size line retained
+[PASS] message function ASCII emoji-safe
+[PASS] Unicode candy escape present
+[PASS] Unicode milk escape present
+[PASS] Unicode party escape present
+[PASS] encodeURIComponent retained
+[PASS] Unicode runtime conversion
+[PASS] real delivery validation
+[PASS] real delivery fee
+[PASS] real product lookup
+[PASS] milk category retained
+[PASS] pack size retained
 [PASS] WhatsApp number retained
-[PASS] 10-digit validation retained
-[PASS] R500 free delivery retained
+[PASS] R500 threshold retained
 [PASS] stock hard block retained
 [PASS] confetti retained
 [PASS] send button listener retained
@@ -27,4 +24,4 @@ Sweetza Pro UI v6.32 QA
 [PASS] ZIP integrity
 [PASS] ZIP populated
 
-Passed: 25/25
+Passed: 22/22
