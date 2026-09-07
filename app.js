@@ -1,3 +1,4 @@
+const SWEETZA_BUILD = "6.34";
 
 function debounce(callback, delay = 250) {
   let timeoutId;

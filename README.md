@@ -1,14 +1,13 @@
-# Sweetza Pro UI v6.33 — WhatsApp Emoji Encoding Fix
+# Sweetza Pro UI v6.34 — WhatsApp Cache Fix
 
-Fixed WhatsApp emoji appearing as the replacement character (�).
-
-Cause:
-- literal emoji characters in app.js can be corrupted by a hosting/text-encoding layer before the WhatsApp URL is created.
+Why the emoji issue could persist after v6.33:
+- GitHub Pages / mobile browsers can keep an older cached app.js file.
+- v6.33 changed only JavaScript, so the phone may continue executing the old version.
 
 Fix:
-- WhatsApp-message emoji are now represented as JavaScript Unicode escape sequences.
-- At runtime they become the normal emoji characters before `encodeURIComponent()` builds the WhatsApp URL.
-- Message appearance stays the same.
-- Milk Bottles continues to use 🥛.
+- index.html now loads `app.js?v=6.34`
+- default-products.js and styles.css are also versioned
+- Unicode-escape emoji handling from v6.33 remains intact
+- added a `SWEETZA_BUILD = "6.34"` marker for verification
 
-All cart, stock, delivery, R500 free-delivery, confetti, validation, and WhatsApp logic remains unchanged.
+After uploading v6.34, refresh/reopen the site so the versioned files are loaded.
