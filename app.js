@@ -1,4 +1,4 @@
-const SWEETZA_BUILD = "6.34";
+const SWEETZA_BUILD = "6.35";
 
 function debounce(callback, delay = 250) {
   let timeoutId;
@@ -818,59 +818,19 @@ function sendWhatsAppOrder() {
   const deliveryFee = deliveryFeeFor(choice);
   const finalTotal = subtotal + deliveryFee;
 
-  /*
-   * WhatsApp emoji are written as Unicode escape sequences instead of
-   * literal emoji characters. This prevents hosting/text-encoding layers
-   * from converting emoji into the replacement character (�).
-   */
-  const EMOJI = {
-    candy: "\uD83C\uDF6C",
-    lollipop: "\uD83C\uDF6D",
-    calendar: "\uD83D\uDCC5",
-    cart: "\uD83D\uDED2",
-    sparkle: "\u2728",
-    milk: "\uD83E\uDD5B",
-    teddy: "\uD83E\uDDF8",
-    shark: "\uD83E\uDD88",
-    banana: "\uD83C\uDF4C",
-    pineapple: "\uD83C\uDF4D",
-    drink: "\uD83E\uDD64",
-    heart: "\uD83D\uDC9C",
-    donut: "\uD83C\uDF69",
-    receipt: "\uD83E\uDDFE",
-    truck: "\uD83D\uDE9A",
-    party: "\uD83C\uDF89",
-    parcel: "\uD83D\uDCE6",
-    pin: "\uD83D\uDCCD"
-  };
-
   const categoryMeta = {
-    "70g": { label: "70g Bags", emoji: EMOJI.sparkle },
-    "Milk Bottles": { label: "Milk Bottles", emoji: EMOJI.milk },
-    "300g": { label: "Classic Pack", emoji: EMOJI.candy },
-    "900g": { label: "Bulk Pack", emoji: EMOJI.lollipop }
-  };
-
-  const productEmoji = product => {
-    if (product.section === "Milk Bottles") return EMOJI.milk;
-
-    const name = product.name.toLowerCase();
-    if (name.includes("teddy")) return EMOJI.teddy;
-    if (name.includes("shark")) return EMOJI.shark;
-    if (name.includes("banana")) return EMOJI.banana;
-    if (name.includes("pineapple")) return EMOJI.pineapple;
-    if (name.includes("cola")) return EMOJI.drink;
-    if (name.includes("heart")) return EMOJI.heart;
-    if (name.includes("donut")) return EMOJI.donut;
-    return EMOJI.candy;
+    "70g": "70g Bags",
+    "Milk Bottles": "Milk Bottles",
+    "300g": "Classic Pack",
+    "900g": "Bulk Pack"
   };
 
   const lines = [
-    `${EMOJI.candy} *SWEETZA — NEW ORDER* ${EMOJI.lollipop}`,
+    "*SWEETZA — NEW ORDER*",
     "━━━━━━━━━━━━━━━━━━",
-    `${EMOJI.calendar} *Date:* ${orderDate()}`,
+    `*Date:* ${orderDate()}`,
     "",
-    `${EMOJI.cart} *ITEMS ORDERED*`,
+    "*ITEMS ORDERED*",
     ""
   ];
 
@@ -881,12 +841,11 @@ function sendWhatsAppOrder() {
 
     if (!categoryItems.length) return;
 
-    const meta = categoryMeta[category] || { label: category, emoji: EMOJI.candy };
-    lines.push(`${meta.emoji} *${meta.label}*`);
+    lines.push(`*${categoryMeta[category] || category}*`);
 
     categoryItems.forEach(({ item, product }) => {
       lines.push(
-        `• ${productEmoji(product)} ${product.name} ${product.packSize} × ${item.qty} — ${money(item.price)} ea`
+        `• ${product.name} ${product.packSize} × ${item.qty} — ${money(item.price)} ea`
       );
     });
 
@@ -898,18 +857,18 @@ function sendWhatsAppOrder() {
 
   lines.push(
     "──────────────────",
-    `${EMOJI.receipt} *Products Subtotal:* ${money(subtotal)}`,
-    `${EMOJI.truck} *Delivery Fee (${feeLabel}):* ${feeText}`,
+    `*Products Subtotal:* ${money(subtotal)}`,
+    `*Delivery Fee (${feeLabel}):* ${feeText}`,
     "━━━━━━━━━━━━━━━━━━",
-    `${EMOJI.party} *FINAL TOTAL: ${money(finalTotal)}*`,
+    `*FINAL TOTAL: ${money(finalTotal)}*`,
     "━━━━━━━━━━━━━━━━━━",
     "",
-    `${EMOJI.parcel} *DELIVERY DETAILS*`
+    "*DELIVERY DETAILS*"
   );
 
   if (choice === "pudo") {
     lines.push(
-      `• *Method:* Collect from a locker ${EMOJI.pin}`,
+      "• *Method:* Collect from a locker",
       `• *Recipient:* ${fieldValue("pudoName")}`,
       `• *Phone:* ${fieldValue("pudoPhone")}`,
       `• *Province:* ${fieldValue("pudoProvince")}`,
@@ -917,7 +876,7 @@ function sendWhatsAppOrder() {
     );
   } else {
     lines.push(
-      `• *Method:* Deliver to your door ${EMOJI.truck}`,
+      "• *Method:* Deliver to your door",
       `• *Recipient:* ${fieldValue("courierName")}`,
       `• *Phone:* ${fieldValue("courierPhone")}`,
       `• *Street:* ${fieldValue("courierStreet")}`,

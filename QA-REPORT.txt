@@ -1,23 +1,31 @@
-Sweetza Pro UI v6.34 QA
+Sweetza Pro UI v6.35 QA
 ==============================
 
 [PASS] app.js syntax
 [PASS] default-products.js syntax
 [PASS] manager.js syntax
-[PASS] app cache bust
-[PASS] products cache bust
-[PASS] css cache bust
-[PASS] build marker
-[PASS] emoji escapes retained
-[PASS] encodeURIComponent retained
-[PASS] send button listener retained
-[PASS] whatsapp number retained
-[PASS] validation retained
+[PASS] no literal emoji in WhatsApp message
+[PASS] no emoji unicode escapes in WhatsApp message
+[PASS] clean heading retained
+[PASS] grouped categories retained
+[PASS] product format retained
+[PASS] subtotal retained
+[PASS] final total retained
+[PASS] delivery details retained
+[PASS] locker wording retained
+[PASS] door wording retained
+[PASS] real validation retained
+[PASS] real delivery fee retained
+[PASS] WhatsApp URL encoding retained
+[PASS] WhatsApp number retained
+[PASS] R500 threshold retained
 [PASS] stock block retained
-[PASS] free delivery retained
 [PASS] confetti retained
+[PASS] send button listener retained
+[PASS] cache bust updated
+[PASS] build marker updated
 [PASS] MHA absent
 [PASS] ZIP integrity
 [PASS] ZIP populated
 
-Passed: 18/18
+Passed: 26/26

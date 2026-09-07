@@ -1,13 +1,16 @@
-# Sweetza Pro UI v6.34 — WhatsApp Cache Fix
+# Sweetza Pro UI v6.35 — WhatsApp No Emoji
 
-Why the emoji issue could persist after v6.33:
-- GitHub Pages / mobile browsers can keep an older cached app.js file.
-- v6.33 changed only JavaScript, so the phone may continue executing the old version.
+Removed all emoji from the WhatsApp order message.
 
-Fix:
-- index.html now loads `app.js?v=6.34`
-- default-products.js and styles.css are also versioned
-- Unicode-escape emoji handling from v6.33 remains intact
-- added a `SWEETZA_BUILD = "6.34"` marker for verification
+Kept:
+- branded SWEETZA — NEW ORDER heading
+- date
+- grouped product categories
+- product name, pack size, quantity and unit price
+- product subtotal
+- delivery fee
+- final total
+- delivery details
+- current delivery wording
 
-After uploading v6.34, refresh/reopen the site so the versioned files are loaded.
+The rest of the storefront remains unchanged.
