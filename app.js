@@ -806,32 +806,17 @@ function deliveryLines() {
 
 function sendWhatsAppOrder() {
   if (!cart.length) {
-    showToast("Your cart is empty");
+    showToast("Add something to your cart first");
     return;
   }
 
-  const delivery = selectedDelivery();
-  if (!delivery) {
-    showToast("Please choose a delivery option");
-    return;
-  }
+  /* Reuse Sweetza's proven delivery validation, including 10-digit phone checks. */
+  if (!validateDelivery()) return;
 
-  const validation = validateDeliveryDetails(delivery);
-  if (!validation.ok) {
-    showToast(validation.message);
-    validation.field?.focus();
-    return;
-  }
-
+  const choice = selectedDelivery();
   const subtotal = cartSubtotal();
-  const deliveryFee = getDeliveryFee(delivery);
+  const deliveryFee = deliveryFeeFor(choice);
   const finalTotal = subtotal + deliveryFee;
-
-  const date = new Intl.DateTimeFormat("en-ZA", {
-    day: "2-digit",
-    month: "long",
-    year: "numeric"
-  }).format(new Date());
 
   const categoryMeta = {
     "70g": { label: "70g Bags", emoji: "✨" },
@@ -841,7 +826,8 @@ function sendWhatsAppOrder() {
   };
 
   const productEmoji = product => {
-    if (product.category === "Milk Bottles") return "🥛";
+    if (product.section === "Milk Bottles") return "🥛";
+
     const name = product.name.toLowerCase();
     if (name.includes("teddy")) return "🧸";
     if (name.includes("shark")) return "🦈";
@@ -856,28 +842,23 @@ function sendWhatsAppOrder() {
   const lines = [
     "🍬 *SWEETZA — NEW ORDER* 🍭",
     "━━━━━━━━━━━━━━━━━━",
-    `📅 *Date:* ${date}`,
+    `📅 *Date:* ${orderDate()}`,
     "",
     "🛒 *ITEMS ORDERED*",
     ""
   ];
 
-  const categoryOrder = ["70g", "Milk Bottles", "300g", "900g"];
+  CATEGORY_ORDER.forEach(category => {
+    const categoryItems = cart
+      .map(item => ({ item, product: productById(item.productId) }))
+      .filter(entry => entry.product?.section === category);
 
-  categoryOrder.forEach(category => {
-    const items = cart.filter(item => {
-      const product = products.find(p => p.id === item.id);
-      return product?.category === category;
-    });
+    if (!categoryItems.length) return;
 
-    if (!items.length) return;
-
-    const meta = categoryMeta[category];
+    const meta = categoryMeta[category] || { label: category, emoji: "🍬" };
     lines.push(`${meta.emoji} *${meta.label}*`);
 
-    items.forEach(item => {
-      const product = products.find(p => p.id === item.id);
-      if (!product) return;
+    categoryItems.forEach(({ item, product }) => {
       lines.push(
         `• ${productEmoji(product)} ${product.name} ${product.packSize} × ${item.qty} — ${money(item.price)} ea`
       );
@@ -886,12 +867,13 @@ function sendWhatsAppOrder() {
     lines.push("");
   });
 
+  const feeLabel = choice === "pudo" ? "Locker" : "Door";
+  const feeText = deliveryFee === 0 ? "FREE" : money(deliveryFee);
+
   lines.push(
     "──────────────────",
     `🧾 *Products Subtotal:* ${money(subtotal)}`,
-    deliveryFee === 0
-      ? `🚚 *Delivery Fee (${delivery === "pudo" ? "Locker" : "Door"}):* FREE`
-      : `🚚 *Delivery Fee (${delivery === "pudo" ? "Locker" : "Door"}):* ${money(deliveryFee)}`,
+    `🚚 *Delivery Fee (${feeLabel}):* ${feeText}`,
     "━━━━━━━━━━━━━━━━━━",
     `🎉 *FINAL TOTAL: ${money(finalTotal)}*`,
     "━━━━━━━━━━━━━━━━━━",
@@ -899,24 +881,24 @@ function sendWhatsAppOrder() {
     "📦 *DELIVERY DETAILS*"
   );
 
-  if (delivery === "pudo") {
+  if (choice === "pudo") {
     lines.push(
       "• *Method:* Collect from a locker 📍",
-      `• *Recipient:* ${document.getElementById("pudoName").value.trim()}`,
-      `• *Phone:* ${document.getElementById("pudoPhone").value.trim()}`,
-      `• *Province:* ${document.getElementById("pudoProvince").value}`,
-      `• *Nearest Locker:* ${document.getElementById("pudoLocker").value.trim()}`
+      `• *Recipient:* ${fieldValue("pudoName")}`,
+      `• *Phone:* ${fieldValue("pudoPhone")}`,
+      `• *Province:* ${fieldValue("pudoProvince")}`,
+      `• *Nearest Locker:* ${fieldValue("pudoLocker")}`
     );
   } else {
     lines.push(
       "• *Method:* Deliver to your door 🚚",
-      `• *Recipient:* ${document.getElementById("courierName").value.trim()}`,
-      `• *Phone:* ${document.getElementById("courierPhone").value.trim()}`,
-      `• *Street:* ${document.getElementById("courierStreet").value.trim()}`,
-      `• *Suburb:* ${document.getElementById("courierSuburb").value.trim()}`,
-      `• *City / Town:* ${document.getElementById("courierCity").value.trim()}`,
-      `• *Province:* ${document.getElementById("courierProvince").value}`,
-      `• *Postcode:* ${document.getElementById("courierPostcode").value.trim()}`
+      `• *Recipient:* ${fieldValue("courierName")}`,
+      `• *Phone:* ${fieldValue("courierPhone")}`,
+      `• *Street:* ${fieldValue("courierStreet")}`,
+      `• *Suburb:* ${fieldValue("courierSuburb")}`,
+      `• *City / Town:* ${fieldValue("courierCity")}`,
+      `• *Province:* ${fieldValue("courierProvince")}`,
+      `• *Postcode:* ${fieldValue("courierPostcode")}`
     );
   }
 
@@ -925,7 +907,7 @@ function sendWhatsAppOrder() {
   window.open(
     `https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(message)}`,
     "_blank",
-    "noopener,noreferrer"
+    "noopener"
   );
 }
 

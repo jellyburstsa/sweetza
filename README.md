@@ -1,12 +1,15 @@
-# Sweetza Pro UI v6.31 — WhatsApp Message Polish
+# Sweetza Pro UI v6.32 — WhatsApp Button Fix
 
-Updated WhatsApp order message styling:
-- branded SWEETZA — NEW ORDER header
-- grouped items by category
-- cleaner product lines with pack size, quantity and unit price
-- 🥛 used for Milk Bottles
-- subtotal, delivery fee and final total clearly separated
-- delivery details placed at the end
-- current delivery wording retained: Collect from a locker / Deliver to your door
+Fixed the Send Order on WhatsApp button regression introduced in v6.31.
 
-All cart, stock, delivery, free-delivery, and confetti logic remains unchanged.
+Cause:
+- v6.31 referenced helper functions that do not exist in Sweetza
+- it also used cart/product field names that do not match the real store data model
+
+Fix:
+- restored the proven `validateDelivery()` flow
+- restored `deliveryFeeFor(choice)`
+- restored `productById(item.productId)` and `product.section`
+- kept the new branded WhatsApp message style and Milk Bottles 🥛 emoji
+
+Cart, stock, delivery, free-delivery confetti, and WhatsApp number remain unchanged.
