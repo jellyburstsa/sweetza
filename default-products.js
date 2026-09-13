@@ -4,7 +4,7 @@ window.SWEETZA_DEFAULT_PRODUCTS = [
   { id: "70g-sour-ice-pops", section: "70g", name: "Sour Ice Pops", flavour: "Sour Ice Pops", packSize: "70g", price: 11.99, status: "available", active: true, image: "assets/products/70g/sour-ice-pops.png" },
   { id: "70g-juicy-sharks", section: "70g", name: "Juicy Sharks", flavour: "Juicy Sharks", packSize: "70g", price: 11.99, status: "available", active: true, image: "assets/products/70g/juicy-sharks.png" },
   { id: "70g-teddy-bears", section: "70g", name: "Teddy Bears", flavour: "Teddy Bears", packSize: "70g", price: 11.99, status: "available", active: true, image: "assets/products/70g/teddy-bears.png" },
-  { id: "70g-gummy-drops", section: "70g", name: "Gummy Drops", flavour: "Gummy Drops", packSize: "70g", price: 11.99, status: "out_of_stock", active: true, image: "assets/products/70g/gummy-drops.png" },
+  { id: "70g-gummy-drops", section: "70g", name: "Gummy Drops", flavour: "Gummy Drops", packSize: "70g", price: 11.99, status: "available", active: true, image: "assets/products/70g/gummy-drops.png" },
   { id: "70g-banana", section: "70g", name: "Banana", flavour: "Banana", packSize: "70g", price: 11.99, status: "available", active: true, image: "assets/products/70g/banana.png" },
   { id: "70g-juicy-pineapple", section: "70g", name: "Juicy Pineapple", flavour: "Juicy Pineapple", packSize: "70g", price: 11.99, status: "available", active: true, image: "assets/products/70g/juicy-pineapple.png" },
   { id: "70g-sour-bottles", section: "70g", name: "Sour Bottles", flavour: "Sour Bottles", packSize: "70g", price: 11.99, status: "available", active: true, image: "assets/products/70g/sour-bottles.png" },
