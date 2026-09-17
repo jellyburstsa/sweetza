@@ -15,7 +15,7 @@ const STORE = {
 
 const PRODUCT_CONFIG_KEY = "sweetzaProductConfigV1";
 const CART_KEY = "sweetzaCartV1";
-const FREE_DELIVERY_THRESHOLD = 750;
+const FREE_DELIVERY_THRESHOLD = 1500;
 const DELIVERY_FEES = {
   courier: 99,
   pudo: 75
