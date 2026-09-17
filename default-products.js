@@ -30,7 +30,7 @@ window.SWEETZA_DEFAULT_PRODUCTS = [
   { id: "900g-teddy-bears", section: "900g", name: "Teddy Bears", flavour: "Teddy Bears", packSize: "900g", price: 69.99, status: "available", active: true, image: "assets/products/900g/teddy-bears.png" },
   { id: "900g-gummy-drops", section: "900g", name: "Gummy Drops", flavour: "Gummy Drops", packSize: "900g", price: 69.99, status: "out_of_stock", active: true, image: "assets/products/900g/gummy-drops.png" },
   { id: "900g-banana", section: "900g", name: "Banana", flavour: "Banana", packSize: "900g", price: 69.99, status: "available", active: true, image: "assets/products/900g/banana.png" },
-  { id: "900g-juicy-pineapple", section: "900g", name: "Juicy Pineapple", flavour: "Juicy Pineapple", packSize: "900g", price: 69.99, status: "available", active: true, image: "assets/products/900g/juicy-pineapple.png" },
+  { id: "900g-juicy-pineapple", section: "900g", name: "Juicy Pineapple", flavour: "Juicy Pineapple", packSize: "900g", price: 69.99, status: "out_of_stock", active: true, image: "assets/products/900g/juicy-pineapple.png" },
   { id: "900g-fruit-bunny-jelly", section: "900g", name: "Fruit Bunny Jelly", flavour: "Fruit Bunny Jelly", packSize: "900g", price: 69.99, status: "available", active: true, image: "assets/products/900g/fruit-bunny-jelly.png" },
   { id: "900g-sour-ice-pops", section: "900g", name: "Sour Ice Pops", flavour: "Sour Ice Pops", packSize: "900g", price: 69.99, status: "available", active: true, image: "assets/products/900g/sour-ice-pops.png" },
 ];
