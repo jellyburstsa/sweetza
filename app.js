@@ -25,11 +25,11 @@ const CATEGORY_ORDER = ["70g", "Milk Bottles", "300g", "900g"];
 
 
 const AUTHORITATIVE_PRICES = {
-  gummies70g: 12,
-  gummies300g: 30,
-  gummies900g: 70,
-  milk125g: 22,
-  milk600g: 79
+  gummies70g: 12.00,
+  gummies300g: 30.00,
+  gummies900g: 70.00,
+  milk125g: 22.00,
+  milk600g: 79.00
 };
 
 function authoritativePrice(product) {
