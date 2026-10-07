@@ -4,10 +4,10 @@ const DEFAULT_PRODUCTS = null; // Loaded from store config if available.
 
 
 const AUTHORITATIVE_PRICES = {
-  gummies70g: 11.99,
-  gummies300g: 29.99,
-  gummies900g: 69.99,
-  milk125g: 21.99,
+  gummies70g: 12.00,
+  gummies300g: 30.00,
+  gummies900g: 70.00,
+  milk125g: 22.00,
   milk600g: 79.99
 };
 

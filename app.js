@@ -1,4 +1,4 @@
-const SWEETZA_BUILD = "6.35";
+const SWEETZA_BUILD = "10.5";
 
 function debounce(callback, delay = 250) {
   let timeoutId;
@@ -10,6 +10,10 @@ function debounce(callback, delay = 250) {
 
 const STORE = {
   whatsapp: "27849072130",
+  whatsappDisplay: "+27 84 907 2130",
+  email: "hello.sweetza@gmail.com",
+  flavourCount: 13,
+  wholesaleMessage: "Hi Sweetza, I would like wholesale pricing.",
   currency: "R"
 };
 
@@ -21,7 +25,38 @@ const DELIVERY_FEES = {
   pudo: 75
 };
 
-const CATEGORY_ORDER = ["70g", "Milk Bottles", "300g", "900g"];
+const CATEGORY_ORDER = ["300g", "Milk Bottles", "900g", "70g"];
+
+const CATEGORY_SECTION_IDS = {
+  "300g": "classic-pack",
+  "Milk Bottles": "milk-bottles",
+  "900g": "bulk-pack",
+  "70g": "snack-size"
+};
+
+const BEST_SELLER_NAMES = {
+  "300g": ["Rainbow Mix"],
+  "Milk Bottles": ["Milk Bottles"],
+  "900g": ["Jelly Donut", "Sour Hearts", "Sour Ice Pops", "Banana"],
+  "70g": []
+};
+
+function bestSellerRank(product) {
+  const names = BEST_SELLER_NAMES[product.section] || [];
+  const index = names.indexOf(product.name);
+  if (index < 0) return Number.POSITIVE_INFINITY;
+
+  // Keep the two Milk Bottles pack sizes in their natural 125g -> 600g order.
+  if (product.section === "Milk Bottles") {
+    return product.packSize === "125g" ? 0 : product.packSize === "600g" ? 1 : 2;
+  }
+
+  return index;
+}
+
+function isBestSeller(product) {
+  return Number.isFinite(bestSellerRank(product));
+}
 
 
 const AUTHORITATIVE_PRICES = {
@@ -93,6 +128,37 @@ function clone(value) {
   return JSON.parse(JSON.stringify(value));
 }
 
+function productIdentityKey(product) {
+  return [
+    String(product?.section || "").trim().toLowerCase(),
+    String(product?.packSize || "").trim().toLowerCase(),
+    String(product?.name || "").trim().toLowerCase().replace(/\s+/g, " ")
+  ].join("|");
+}
+
+function dedupeProducts(list, defaults = []) {
+  const defaultIds = new Set(defaults.map(product => product.id));
+  const byKey = new Map();
+
+  list.forEach(product => {
+    const key = productIdentityKey(product);
+    const existing = byKey.get(key);
+
+    if (!existing) {
+      byKey.set(key, product);
+      return;
+    }
+
+    // Prefer the official/default product ID when an older browser cache contains
+    // the same product under a second legacy ID.
+    if (defaultIds.has(product.id) && !defaultIds.has(existing.id)) {
+      byKey.set(key, product);
+    }
+  });
+
+  return [...byKey.values()];
+}
+
 function loadProducts() {
   const defaults = Array.isArray(window.SWEETZA_DEFAULT_PRODUCTS)
     ? clone(window.SWEETZA_DEFAULT_PRODUCTS)
@@ -104,22 +170,17 @@ function loadProducts() {
     const saved = JSON.parse(localStorage.getItem(PRODUCT_CONFIG_KEY) || "null");
     if (!Array.isArray(saved) || !saved.length) return normalizedDefaults;
 
-    // Preserve manager edits/deletions, restore Rainbow Mix if an older saved list missed it,
-    // and always enforce the current official prices.
     const rainbowMix = normalizedDefaults.find(product => product.id === "300g-rainbow-mix");
-    if (rainbowMix && !saved.some(product => product.id === rainbowMix.id)) {
+    if (rainbowMix && !saved.some(product => productIdentityKey(product) === productIdentityKey(rainbowMix))) {
       saved.push(clone(rainbowMix));
     }
 
-    const { normalized, changed } = normalizeProductPrices(saved);
-    if (changed || (rainbowMix && !saved.some(product => product.id === rainbowMix.id))) {
-      localStorage.setItem(PRODUCT_CONFIG_KEY, JSON.stringify(normalized));
-    } else {
-      // Save as well so older caches are guaranteed to be rewritten with current schema/prices.
-      localStorage.setItem(PRODUCT_CONFIG_KEY, JSON.stringify(normalized));
-    }
+    const normalized = normalizeProductPrices(saved).normalized;
+    const cleaned = dedupeProducts(normalized, normalizedDefaults);
 
-    return normalized;
+    // Rewrite the browser cache so legacy duplicate products are removed permanently.
+    localStorage.setItem(PRODUCT_CONFIG_KEY, JSON.stringify(cleaned));
+    return cleaned;
   } catch {
     return normalizedDefaults;
   }
@@ -157,7 +218,7 @@ function safeWriteCartStorage(value) {
 
 let cart = loadCart();
 let freeDeliveryWasUnlocked = null;
-let activeCategory = "70g";
+let activeCategory = "300g";
 
 const grids = {
   "70g": document.getElementById("productGrid70g"),
@@ -204,6 +265,33 @@ function trapCartFocus(event) {
 }
 
 
+
+function syncStoreDetails() {
+  document.querySelectorAll("[data-store-whatsapp-link]").forEach(link => {
+    link.href = `https://wa.me/${STORE.whatsapp}`;
+  });
+
+  document.querySelectorAll("[data-store-whatsapp-text]").forEach(node => {
+    node.textContent = STORE.whatsappDisplay;
+  });
+
+  document.querySelectorAll("[data-store-email-link]").forEach(link => {
+    link.href = `mailto:${STORE.email}`;
+  });
+
+  document.querySelectorAll("[data-store-email-text]").forEach(node => {
+    node.textContent = STORE.email;
+  });
+
+  const flavourCount = document.getElementById("statFlavours");
+  if (flavourCount) flavourCount.textContent = STORE.flavourCount;
+}
+
+function openWholesaleWhatsApp() {
+  const url = `https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(STORE.wholesaleMessage)}`;
+  window.open(url, "_blank", "noopener");
+}
+
 function money(value) {
   const number = Number(value || 0);
   return `${STORE.currency}${Number.isInteger(number) ? number.toFixed(0) : number.toFixed(2)}`;
@@ -225,8 +313,47 @@ function productById(id) {
   return products.find(product => product.id === id);
 }
 
+
+function defaultProductById(id) {
+  return Array.isArray(window.SWEETZA_DEFAULT_PRODUCTS)
+    ? window.SWEETZA_DEFAULT_PRODUCTS.find(product => product.id === id)
+    : null;
+}
+
+function handleProductImageError(image) {
+  const fallback = image.dataset.fallback || "";
+  const current = image.getAttribute("src") || "";
+
+  if (fallback && current !== fallback) {
+    image.setAttribute("src", fallback);
+    return;
+  }
+
+  image.hidden = true;
+  const placeholder = image.nextElementSibling;
+  if (placeholder) placeholder.hidden = false;
+}
+
 function productsByCategory(category) {
-  return products.filter(product => product.section === category && isVisible(product));
+  const items = dedupeProducts(
+    products.filter(product => product.section === category && isVisible(product)),
+    Array.isArray(window.SWEETZA_DEFAULT_PRODUCTS) ? window.SWEETZA_DEFAULT_PRODUCTS : []
+  );
+
+  return [...items].sort((a, b) => {
+    const rankDifference = bestSellerRank(a) - bestSellerRank(b);
+    if (Number.isFinite(rankDifference) && rankDifference !== 0) return rankDifference;
+    if (Number.isFinite(bestSellerRank(a)) && !Number.isFinite(bestSellerRank(b))) return -1;
+    if (!Number.isFinite(bestSellerRank(a)) && Number.isFinite(bestSellerRank(b))) return 1;
+    return 0;
+  });
+}
+
+function storefrontAssetPath(path) {
+  const value = String(path || "").trim();
+  if (!value) return "";
+  if (/^(?:https?:|data:|blob:|\/)/i.test(value)) return value;
+  return value.startsWith("./") ? value : `./${value}`;
 }
 
 function productCard(product) {
@@ -236,24 +363,25 @@ function productCard(product) {
     <article class="product-card ${available ? "is-available" : "is-out-of-stock"}" data-product-id="${product.id}">
       <button class="product-image" type="button" onclick="openProductLightbox('${product.id}')" aria-label="View ${product.name} image">
         <img
-          src="${product.image || ""}"
+          src="${storefrontAssetPath(product.image || defaultProductById(product.id)?.image || "")}"
+          data-fallback="${storefrontAssetPath(defaultProductById(product.id)?.image || "")}"
           alt="${product.name} ${product.packSize}"
           loading="lazy"
-          onerror="this.hidden=true; this.nextElementSibling.hidden=false;">
+          onerror="handleProductImageError(this)">
         <div class="image-fallback" hidden>
-          <img src="assets/brand/sweetza-logo.png" alt="">
-          <span>${product.name}</span>
+          <span class="image-placeholder-mark" aria-hidden="true">SZ</span>
+          <span>Product image unavailable</span>
         </div>
         <span class="pack-badge">${product.packSize}</span>
-        <span class="stock-badge ${available ? "available" : "out"}">${available ? "✓ Available" : "Out of Stock"}</span>
+        ${isBestSeller(product) ? '<span class="best-seller-badge"><span aria-hidden="true">★</span> Best Seller</span>' : ""}
+        ${available ? "" : '<span class="stock-badge out">SOLD OUT</span>'}
       </button>
 
       <div class="product-info">
         <div>
           <h3>${product.name}</h3>
-          <span>${product.packSize}</span>
         </div>
-        <strong class="price">${available ? money(product.price) : "Unavailable"}</strong>
+        <strong class="price">${money(product.price)}</strong>
       </div>
 
       <div class="product-actions">
@@ -264,7 +392,7 @@ function productCard(product) {
         </div>
 
         <button class="add-button flowbite-button flowbite-add-button" type="button" onclick="addToCart('${product.id}')" ${available ? "" : "disabled"}>
-          ${available ? "Add to Cart" : "Out of Stock"}
+          Add to Cart
         </button>
       </div>
     </article>
@@ -276,6 +404,7 @@ function renderProducts() {
     const grid = grids[category];
     if (!grid) return;
 
+    grid.classList.remove("hidden");
     const items = productsByCategory(category);
     grid.innerHTML = items.length
       ? items.map(productCard).join("")
@@ -283,24 +412,52 @@ function renderProducts() {
   });
 }
 
+function setActiveShopTab(category) {
+  document.querySelectorAll("[data-shop-tab]").forEach(tab => {
+    const active = tab.dataset.shopTab === category;
+    tab.classList.toggle("active", active);
+    if (active) tab.setAttribute("aria-current", "true");
+    else tab.removeAttribute("aria-current");
+  });
+}
+
 function switchCategory(category) {
   if (!CATEGORY_ORDER.includes(category)) return;
   activeCategory = category;
+  setActiveShopTab(category);
+  document.getElementById(CATEGORY_SECTION_IDS[category])?.scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
-  CATEGORY_ORDER.forEach(name => {
-    grids[name]?.classList.toggle("hidden", name !== category);
+function setupShopCategoryTabs() {
+  const tabs = [...document.querySelectorAll("[data-shop-tab]")];
+  if (!tabs.length) return;
+
+  tabs.forEach(tab => {
+    tab.addEventListener("click", event => {
+      event.preventDefault();
+      switchCategory(tab.dataset.shopTab);
+    });
   });
 
-  document.querySelectorAll("[data-category]").forEach(button => {
-    const active = button.dataset.category === category;
-    button.classList.toggle("active", active);
-    button.setAttribute("aria-pressed", String(active));
+  const sections = CATEGORY_ORDER
+    .map(category => document.getElementById(CATEGORY_SECTION_IDS[category]))
+    .filter(Boolean);
+
+  if (!("IntersectionObserver" in window)) return;
+
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries
+      .filter(entry => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+    const category = visible?.target?.dataset?.categorySection;
+    if (category) setActiveShopTab(category);
+  }, {
+    rootMargin: "-18% 0px -58% 0px",
+    threshold: [0.05, 0.2, 0.45]
   });
 
-  const meta = CATEGORY_META[category];
-  document.getElementById("rangeEyebrow").textContent = meta.eyebrow;
-  document.getElementById("rangeTitle").textContent = meta.title;
-  document.getElementById("rangeCopy").textContent = meta.copy;
+  sections.forEach(section => observer.observe(section));
 }
 
 function changeProductQty(id, delta) {
@@ -492,7 +649,7 @@ function updateDeliveryProgress() {
   const freeDeliveryUnlocked = subtotal >= FREE_DELIVERY_THRESHOLD;
 
   if (freeDeliveryUnlocked) {
-    if (message) message.textContent = "🎉 You've unlocked FREE delivery!";
+    if (message) message.textContent = "You've unlocked FREE delivery!";
     card?.classList.add("complete");
   } else {
     if (message) message.textContent = `Add ${money(remaining)} more for FREE delivery!`;
@@ -586,7 +743,7 @@ function renderCart() {
 
         ${grouped[category].map(({ item, product }) => `
           <div class="cart-item">
-            <img class="cart-item-thumb" src="${product.image}" alt="" loading="lazy" onerror="this.src='assets/brand/sweetza-logo.png'">
+            <img class="cart-item-thumb" src="${product.image}" alt="" loading="lazy" onerror="this.hidden=true">
           <div class="cart-item-copy">
               <strong>${product.name}</strong>
               <span>${product.packSize} · ${money(item.price)} each</span>
@@ -758,7 +915,7 @@ function groupedOrderLines() {
 
   CATEGORY_ORDER.forEach(category => {
     if (!grouped[category]?.length) return;
-    lines.push(`🍬 *${category}*`);
+    lines.push(`*${category}*`);
     lines.push(...grouped[category]);
     lines.push("");
   });
@@ -766,7 +923,7 @@ function groupedOrderLines() {
   Object.keys(grouped)
     .filter(category => !CATEGORY_ORDER.includes(category))
     .forEach(category => {
-      lines.push(`🍬 *${category}*`);
+      lines.push(`*${category}*`);
       lines.push(...grouped[category]);
       lines.push("");
     });
@@ -781,8 +938,8 @@ function deliveryLines() {
 
   if (choice === "courier") {
     return [
-      "🚚 Deliver to your door",
-      `💳 Delivery fee: ${feeText}`,
+      "Deliver to your door",
+      `Delivery fee: ${feeText}`,
       `Name: ${fieldValue("courierName")}`,
       `Phone: ${fieldValue("courierPhone")}`,
       `Address: ${[
@@ -796,8 +953,8 @@ function deliveryLines() {
   }
 
   return [
-    "📦 Collect from a locker",
-    `💳 Delivery fee: ${feeText}`,
+    "Collect from a locker",
+    `Delivery fee: ${feeText}`,
     `Name: ${fieldValue("pudoName")}`,
     `Phone: ${fieldValue("pudoPhone")}`,
     `Province: ${fieldValue("pudoProvince")}`,
@@ -905,11 +1062,17 @@ function openProductLightbox(id) {
   const image = document.getElementById("productLightboxImage");
   const title = document.getElementById("productLightboxTitle");
 
-  image.src = product.image || "assets/brand/sweetza-logo.png";
+  const defaultImage = defaultProductById(product.id)?.image || "";
+  image.hidden = false;
+  image.src = product.image || defaultImage;
   image.alt = `${product.name} ${product.packSize}`;
   image.onerror = () => {
+    if (defaultImage && image.getAttribute("src") !== defaultImage) {
+      image.src = defaultImage;
+      return;
+    }
     image.onerror = null;
-    image.src = "assets/brand/sweetza-logo.png";
+    image.hidden = true;
   };
   title.textContent = `${product.name} · ${product.packSize}`;
 
@@ -936,9 +1099,9 @@ function showToast(message) {
   toastTimer = setTimeout(() => toast.classList.remove("show"), 1800);
 }
 
-document.querySelectorAll("[data-category]").forEach(button => {
-  button.addEventListener("click", () => switchCategory(button.dataset.category));
-});
+document.getElementById("wholesaleButton")?.addEventListener("click", openWholesaleWhatsApp);
+
+syncStoreDetails();
 
 document.getElementById("floatingCartButton").addEventListener("click", openCart);
 document.getElementById("closeCart").addEventListener("click", closeCart);
@@ -1018,7 +1181,8 @@ window.addEventListener("focus", () => {
 
 renderProducts();
 renderCart();
-switchCategory(activeCategory);
+setupShopCategoryTabs();
+setActiveShopTab("300g");
 
 
 document.getElementById("productLightboxClose").addEventListener("click", closeProductLightbox);
@@ -1028,3 +1192,134 @@ document.getElementById("productLightboxBackdrop").addEventListener("click", clo
 window.addEventListener("resize", updateFloatingCartVisibility, { passive: true });
 
 updateFloatingCartVisibility();
+
+// Sweetza v13.5 — stable smart header for touch scrolling.
+// Tiny mobile scroll/bounce movements are ignored so the header
+// does not rapidly hide/show and make the page feel shaky.
+(function setupSmartHeader() {
+  const header = document.getElementById("siteHeader");
+  if (!header) return;
+
+  let lastY = Math.max(0, window.scrollY);
+  let direction = "none";
+  let directionStartY = lastY;
+  let ticking = false;
+
+  const topRevealZone = 64;
+  const ignoreDelta = 2;
+  const hideTravel = 44;
+  const revealTravel = 12;
+
+  function menuIsOpen() {
+    return Boolean(header.querySelector(".header-menu[open]"));
+  }
+
+  function cartIsOpen() {
+    return document.body.classList.contains("cart-open");
+  }
+
+  function showHeader() {
+    header.classList.remove("is-hidden");
+  }
+
+  function hideHeader() {
+    if (menuIsOpen() || cartIsOpen()) return;
+    header.classList.add("is-hidden");
+  }
+
+  function resetDirection(y = Math.max(0, window.scrollY)) {
+    direction = "none";
+    directionStartY = y;
+    lastY = y;
+  }
+
+  function updateHeader() {
+    const currentY = Math.max(0, window.scrollY);
+    const delta = currentY - lastY;
+
+    if (currentY <= topRevealZone || menuIsOpen() || cartIsOpen()) {
+      showHeader();
+      resetDirection(currentY);
+      ticking = false;
+      return;
+    }
+
+    // Ignore tiny movements caused by touch inertia / browser chrome.
+    if (Math.abs(delta) <= ignoreDelta) {
+      lastY = currentY;
+      ticking = false;
+      return;
+    }
+
+    const newDirection = delta > 0 ? "down" : "up";
+
+    if (newDirection !== direction) {
+      direction = newDirection;
+      directionStartY = currentY;
+    }
+
+    const travelled = Math.abs(currentY - directionStartY);
+
+    if (direction === "down" && travelled >= hideTravel) {
+      hideHeader();
+      directionStartY = currentY;
+    } else if (direction === "up" && travelled >= revealTravel) {
+      showHeader();
+      directionStartY = currentY;
+    }
+
+    lastY = currentY;
+    ticking = false;
+  }
+
+  window.addEventListener("scroll", () => {
+    if (ticking) return;
+    ticking = true;
+    window.requestAnimationFrame(updateHeader);
+  }, { passive: true });
+
+  header.querySelector(".header-menu")?.addEventListener("toggle", event => {
+    if (event.target.open) {
+      showHeader();
+      resetDirection();
+    }
+  });
+
+  window.addEventListener("resize", () => {
+    resetDirection();
+  }, { passive: true });
+
+  window.addEventListener("hashchange", () => {
+    showHeader();
+    resetDirection();
+  });
+
+  window.addEventListener("pageshow", () => {
+    showHeader();
+    resetDirection();
+  });
+
+  showHeader();
+})();
+
+
+
+// Sweetza v13.0 — header logo always returns to the true page top.
+// This intentionally bypasses #home anchor offsets so the promo ticker is fully visible.
+function goHomeTop(event) {
+  event?.preventDefault?.();
+
+  const header = document.getElementById("siteHeader");
+  header?.classList.remove("is-hidden");
+  header?.querySelector(".header-menu[open]")?.removeAttribute("open");
+
+  if (history.replaceState) {
+    history.replaceState(null, "", window.location.pathname + window.location.search);
+  }
+
+  window.scrollTo({
+    top: 0,
+    left: 0,
+    behavior: "smooth"
+  });
+}

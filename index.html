@@ -4,60 +4,289 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
   <meta name="theme-color" content="#ffffff">
-  <meta name="description" content="Browse Sweetza sweets and send your order directly on WhatsApp.">
-  <title>Sweetza</title>
+  <meta name="description" content="Shop Sweetza sweets, learn how ordering works, choose delivery and place your order on one easy page.">
+  <title>Sweetza | Cravings, Sorted.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=6.35">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Inter:wght@400;500;600&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=15.5-wholesalecardcenter">
+
+  <style id="sweetza-add-cart-gradient-fix">
+    #shop .product-card button.add-button:not(:disabled){
+      background-color:#7a5cff !important;
+      background-image:linear-gradient(135deg,#ff4fa3 0%,#7a5cff 100%) !important;
+      border-color:transparent !important;
+      color:#fff !important;
+    }
+  </style>
 </head>
 <body>
-  <a class="skip-link" href="#shop">Skip to products</a>
+  <a class="skip-link" href="#shop-start">Skip to products</a>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container header-inner smart-header-grid">
+      <details class="mobile-menu header-menu">
+        <summary aria-label="Open navigation menu">
+          <span class="premium-hamburger" aria-hidden="true">
+            <span class="premium-hamburger-line line-pink"></span>
+            <span class="premium-hamburger-line line-purple"></span>
+            <span class="premium-hamburger-line line-blue"></span>
+          </span>
+        </summary>
+        <nav class="mobile-menu-panel" aria-label="Main navigation">
+          <a href="#home" onclick="this.closest('details').removeAttribute('open')">Home</a>
+          <a href="#shop-start" onclick="this.closest('details').removeAttribute('open')">Shop</a>
+          <a href="#how-to-order" onclick="this.closest('details').removeAttribute('open')">How to order</a>
+          <a href="#about" onclick="this.closest('details').removeAttribute('open')">About</a>
+          <a href="#contact" onclick="this.closest('details').removeAttribute('open')">Contact</a>
+          <a href="#wholesale" onclick="this.closest('details').removeAttribute('open')">Reseller / Wholesale</a>
+        </nav>
+      </details>
+
+      <a class="header-brand centered-header-brand" href="#home" aria-label="Sweetza home" onclick="goHomeTop(event)">
+        <img src="assets/brand/sweetza-logo.png" alt="Sweetza" onerror="this.hidden=true;this.nextElementSibling.hidden=false;">
+        <span class="brand-wordmark" hidden>SWEETZA<span class="brand-dot">•</span></span>
+      </a>
+
+      <nav class="desktop-main-nav" aria-label="Desktop navigation">
+        <a href="#home">Home</a>
+        <a href="#shop-start">Shop</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button class="header-cart-button icon-cart-button" type="button" onclick="openCart()" aria-label="Open shopping cart">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path d="M3 4h2l1.7 9.1a2 2 0 0 0 2 1.6h7.9a2 2 0 0 0 1.9-1.4L20 8H7.1"></path>
+          <circle cx="9" cy="19" r="1.4"></circle>
+          <circle cx="17" cy="19" r="1.4"></circle>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="promo-ticker" aria-label="Free delivery promotion">
+    <div class="promo-ticker-track">
+      <span>Free Delivery On ALL orders Over R1,500</span><i aria-hidden="true">•</i>
+      <span>Free Delivery On ALL orders Over R1,500</span><i aria-hidden="true">•</i>
+      <span>Free Delivery On ALL orders Over R1,500</span><i aria-hidden="true">•</i>
+      <span>Free Delivery On ALL orders Over R1,500</span><i aria-hidden="true">•</i>
+    </div>
+  </div>
+
   <main>
-    <section class="brand-section">
-      <div class="container brand-wrap">
-        <img class="brand-logo" src="assets/brand/sweetza-logo.png" alt="Sweetza">
-        
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">SWEETZA · CRAVINGS, SORTED.</span>
+          <h1>Stock your sweet favourites.</h1>
+          <p>Add your favourites, check out, done. Clear pricing and easy delivery.</p>
+          <div class="hero-actions">
+            <a class="primary-link hero-shop-link" href="#shop-start">Shop the full range <span aria-hidden="true">→</span></a>
+          </div>
+          <div class="hero-trust-row" aria-label="Delivery options">
+          </div>
+        </div>
+        <div class="hero-visual" aria-label="Sweetza product selection">
+          <div class="hero-main-product"><span class="showcase-label">Classic favourite</span><img src="assets/products/300g/rainbow-mix.png" alt="Rainbow Mix 300g"></div>
+          <div class="hero-mini-product hero-mini-left"><span class="showcase-label">Milk Bottles</span><img src="assets/products/milk-bottles/milk-bottles-125g.png" alt="Milk Bottles 125g"></div>
+          <div class="hero-mini-product hero-mini-right"><span class="showcase-label">Bulk pick</span><img src="assets/products/900g/sour-hearts.png" alt="Sour Hearts 900g"></div>
+        </div>
       </div>
     </section>
 
-<nav class="container category-grid" id="categoryGrid" aria-label="Product ranges">
-      <button class="category-button active" data-category="70g" aria-pressed="true">
-        <strong>Snack Size</strong>
-        <span>Quick treats</span>
-      </button>
-      <button class="category-button" data-category="Milk Bottles" aria-pressed="false">
-        <strong>Milk Bottles</strong>
-        <span>125g + 600g</span>
-      </button>
-      <button class="category-button" data-category="300g" aria-pressed="false">
-        <strong>Classic Pack</strong>
-        <span>Main range</span>
-      </button>
-      <button class="category-button" data-category="900g" aria-pressed="false">
-        <strong>Bulk Pack</strong>
-        <span>Sharing packs</span>
-      </button>
-    </nav>
-
-<section class="shop-section" id="shop">
+    <section class="order-guide" id="how-to-order">
       <div class="container">
-        <div class="shop-heading">
-          <div>
-            <span class="eyebrow" id="rangeEyebrow">Sweetza Snack Size</span>
-            <h1 id="rangeTitle">Snack Size Range</h1>
-            <p id="rangeCopy">Pick your favourites and choose the quantity you want.</p>
+        <div class="section-heading centered compact-heading">
+          <span class="eyebrow">How to order</span>
+          <h2>Pick. WhatsApp. Enjoy.</h2>
+        </div>
+        <div class="order-flow" aria-label="How to place a Sweetza order">
+          <div class="order-flow-step order-step-pick">
+            <span class="step-number-badge" aria-hidden="true">01</span>
+            <div class="order-step-copy">
+              <strong>Pick Your Sweets</strong>
+              <small>Add favourites to your cart.</small>
+            </div>
+          </div>
+          <span class="order-flow-arrow" aria-hidden="true">↓</span>
+          <div class="order-flow-step order-step-delivery">
+            <span class="step-number-badge" aria-hidden="true">02</span>
+            <div class="order-step-copy">
+              <strong>Select Delivery</strong>
+              <small>Door-to-door or PUDO locker<span class="delivery-note">(pick up at a locker near you)</span></small>
+            </div>
+          </div>
+          <span class="order-flow-arrow" aria-hidden="true">↓</span>
+          <div class="order-flow-step order-step-whatsapp">
+            <span class="step-number-badge" aria-hidden="true">03</span>
+            <div class="order-step-copy">
+              <strong>Send on WhatsApp</strong>
+              <small>1-click sends your order to us.</small>
+            </div>
           </div>
         </div>
+      </div>
+    </section>
 
-        <div class="product-grid" id="productGrid70g"></div>
-        <div class="product-grid hidden" id="productGridMilkBottles"></div>
-        <div class="product-grid hidden" id="productGrid300g"></div>
-        <div class="product-grid hidden" id="productGrid900g"></div>
+    <section class="shop-section" id="shop">
+      <div class="container">
+        <div class="section-heading shop-heading" id="shop-start">
+          <span class="eyebrow">The Sweetza Shop</span>
+          <h2>Build your box</h2>
+          <p>Pick a range, add your favourites.</p>
+        </div>
+
+        <nav class="shop-category-tabs" id="shopCategoryTabs" aria-label="Sweetza product ranges">
+          <a class="shop-category-tab active" href="#classic-pack" data-shop-tab="300g" aria-current="true"><strong>Classic Packs</strong><span>300g favourites</span></a>
+          <a class="shop-category-tab" href="#milk-bottles" data-shop-tab="Milk Bottles"><strong>Milk Bottles</strong><span>125g + 600g</span></a>
+          <a class="shop-category-tab" href="#bulk-pack" data-shop-tab="900g"><strong>Bulk Packs</strong><span>900g sharing packs</span></a>
+          <a class="shop-category-tab" href="#snack-size" data-shop-tab="70g"><strong>Snack Packs</strong><span>70g quick treats</span></a>
+        </nav>
+
+        <section class="product-range-block featured-range" id="classic-pack" data-category-section="300g">
+          <div class="range-heading range-heading-row">
+            <div><span class="eyebrow">Sweetza Classic Pack</span><h3>Classic Pack</h3></div>
+            <p>Our main 300g range — easy to share, easy to stock up.</p>
+          </div>
+          <div class="product-grid" id="productGrid300g"></div>
+        </section>
+
+        <section class="product-range-block" id="milk-bottles" data-category-section="Milk Bottles">
+          <div class="range-heading range-heading-row">
+            <div><span class="eyebrow">Sweetza Milk Bottles</span><h3>Milk Bottles</h3></div>
+            <p>Choose the 125g pack or the larger 600g pack.</p>
+          </div>
+          <div class="product-grid" id="productGridMilkBottles"></div>
+        </section>
+
+        <section class="product-range-block" id="bulk-pack" data-category-section="900g">
+          <div class="range-heading range-heading-row">
+            <div><span class="eyebrow">Sweetza Bulk Pack</span><h3>Bulk Pack</h3></div>
+            <p>900g packs for bigger cravings, sharing and stocking up.</p>
+          </div>
+          <div class="product-grid" id="productGrid900g"></div>
+        </section>
+
+        <section class="product-range-block" id="snack-size" data-category-section="70g">
+          <div class="range-heading range-heading-row">
+            <div><span class="eyebrow">Sweetza Snack Size</span><h3>Snack Size</h3></div>
+            <p>70g packs for quick treats and easy favourites.</p>
+          </div>
+          <div class="product-grid" id="productGrid70g"></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="container about-grid">
+        <div class="about-visual">
+          <div class="about-product-main"><span class="showcase-label">Big favourite</span><img src="assets/products/milk-bottles/milk-bottles-600g.png" alt="Sweetza Milk Bottles 600g"></div>
+          <div class="about-mini-card"><span class="showcase-label">Snack pick</span><img src="assets/products/70g/juicy-sharks.png" alt="Sweetza Juicy Sharks 70g"></div>
+          <div class="about-mini-card"><span class="showcase-label">Classic pick</span><img src="assets/products/300g/jelly-donut.png" alt="Sweetza Jelly Donut 300g"></div>
+        </div>
+        <div class="about-copy">
+          <div class="about-mobile-content">
+            <span class="eyebrow">About Sweetza</span>
+            <h2>A Pretoria sweet brand with more on the way.</h2>
+            <p class="about-lead">Sweetza is based in Pretoria and focuses on gummy sweets, including the Jelly Tang range, with nationwide delivery across South Africa.</p>
+            <p>We want Sweetza to be the kind of place customers come back to when they are craving something fun, familiar and easy to order. We are also growing the range, with lots of new products planned — so hang tight, there is plenty more sweetness on the way.</p>
+            <!-- PERSONAL STORY: Add your own founder / family / brand story here when you are ready. -->
+            <div class="about-stats" aria-label="Sweetza highlights">
+              <div><strong id="statFlavours">13</strong><span>Flavours</span></div>
+              <div><strong>Nationwide</strong><span>Delivery</span></div>
+              <div><strong>WhatsApp</strong><span>Easy ordering</span></div>
+            </div>
+          </div>
+
+          <div class="about-desktop-content">
+            <span class="eyebrow">About Sweetza</span>
+            <h2>Born in Pretoria.<br>Made for sweet moments everywhere.</h2>
+            <p class="about-lead">Sweetza is a Pretoria-based sweets brand bringing fun, colourful gummies to customers across South Africa. From Jelly Tang favourites to exciting new treats, our goal is simple: make sweets easy to enjoy, easy to order, and hard to forget.</p>
+            <p>We're building Sweetza into a place people come back to whenever they want something fun, familiar and full of flavour. Our range is growing, with plenty more sweetness still to come.</p>
+            <div class="about-stats about-stats-desktop" aria-label="Sweetza highlights">
+              <div><strong>13+</strong><span>Flavours</span><small>Across our growing range</small></div>
+              <div><strong>Nationwide Delivery</strong><span>Across South Africa</span></div>
+              <div><strong>Easy Ordering</strong><span>Shop online or WhatsApp</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-copy">
+          <span class="eyebrow">Customer support</span>
+          <h2>Questions? We’re here to help.</h2>
+          <p>Need help with a product, delivery or an order? Reach Sweetza directly and we’ll point you in the right direction.</p>
+        </div>
+        <div class="contact-stack">
+          <div class="contact-card">
+            <div class="contact-card-head">
+              <span class="eyebrow">Contact Sweetza</span>
+              <strong>Get in touch</strong>
+              <p>Choose the contact option that works best for you.</p>
+            </div>
+            <a class="contact-method contact-method-whatsapp" data-store-whatsapp-link href="https://wa.me/27849072130" target="_blank" rel="noopener">
+              <span class="contact-method-icon whatsapp-icon" aria-hidden="true">
+                <img src="assets/contact/whatsapp-logo.png" alt="">
+              </span>
+              <span class="contact-method-copy"><strong>WhatsApp</strong><span data-store-whatsapp-text>+27 84 907 2130</span></span>
+            </a>
+            <a class="contact-method contact-method-email" data-store-email-link href="mailto:hello.sweetza@gmail.com">
+              <span class="contact-method-icon email-icon" aria-hidden="true">
+                <img src="assets/contact/gmail-logo.png" alt="">
+              </span>
+              <span class="contact-method-copy"><strong>Email</strong><span data-store-email-text>hello.sweetza@gmail.com</span></span>
+            </a>
+          </div>
+          <div class="wholesale-card" id="wholesale">
+            <div><span class="eyebrow">Reseller / Wholesale</span><strong>Buying for resale?</strong><p>Contact Sweetza directly for reseller and wholesale pricing.</p></div>
+            <button class="wholesale-button" id="wholesaleButton" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7A8.38 8.38 0 0 1 4 11.5a8.5 8.5 0 0 1 4.7-7.6A8.38 8.38 0 0 1 12.5 3h.5a8.48 8.48 0 0 1 8 8v.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Reseller / Wholesale Enquiries</span>
+            </button>
+          </div>
+        </div>
       </div>
     </section>
   </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div class="footer-brand"><img src="assets/brand/sweetza-logo.png" alt="Sweetza" onerror="this.hidden=true;this.nextElementSibling.hidden=false;"><span class="footer-wordmark" hidden>SWEETZA</span><p>Cravings, Sorted.</p></div>
+      <div class="footer-quick-links"><strong>Quick Links</strong><div class="footer-link-row"><a href="#home">Home</a><a href="#shop-start">Shop</a><a href="#about">About</a><a href="#contact">Contact</a></div></div>
+    </div>
+
+    <div class="container desktop-footer-grid" aria-label="Sweetza footer links">
+      <div class="desktop-footer-brand">
+        <img src="assets/brand/sweetza-logo.png" alt="Sweetza">
+        <p>Cravings, Sorted.</p>
+      </div>
+      <div>
+        <strong>Shop</strong>
+        <a href="#classic-pack">Classic Packs</a>
+        <a href="#milk-bottles">Milk Bottles</a>
+        <a href="#bulk-pack">Bulk Packs</a>
+        <a href="#snack-size">Snack Packs</a>
+      </div>
+      <div>
+        <strong>Help</strong>
+        <a href="#contact">Contact</a>
+        <a href="#how-to-order">Delivery</a>
+        <a data-store-whatsapp-link href="https://wa.me/27849072130" target="_blank" rel="noopener">WhatsApp</a>
+      </div>
+      <div>
+        <strong>Sweetza</strong>
+        <a href="#about">About Sweetza</a>
+        <a href="#wholesale">Reseller / Wholesale</a>
+      </div>
+      <div class="desktop-footer-bottom">© Sweetza 2026. All rights reserved.</div>
+    </div>
+  </footer>
+
+  <a class="floating-whatsapp-help" data-store-whatsapp-link href="https://wa.me/27849072130" target="_blank" rel="noopener" aria-label="WhatsApp Sweetza for a quick question"><img src="assets/contact/whatsapp-help-3d.png" alt="" aria-hidden="true"></a>
 
   <button class="floating-cart floating-cart-icon-button" id="floatingCartButton" type="button" aria-label="View cart" aria-controls="cartDrawer">
     <span class="cart-button-icon" aria-hidden="true">🛒</span>
@@ -65,188 +294,64 @@
     <span class="sr-only" id="floatingCartTotal">R0.00</span>
   </button>
 
-  <aside class="cart-drawer flowbite-modal" id="cartDrawer" aria-hidden="true" tabindex="-1">
+  <aside class="cart-drawer" id="cartDrawer" aria-hidden="true" tabindex="-1">
     <button class="cart-backdrop" id="cartBackdrop" type="button" aria-label="Close cart"></button>
-
-    <div class="cart-panel flowbite-modal-panel" role="dialog" aria-modal="true" aria-labelledby="cartStepTitle" aria-describedby="cartStepEyebrow">
-      <div class="cart-header flowbite-modal-header">
-        <div>
-          <span class="eyebrow" id="cartStepEyebrow">Step 1 of 2</span>
-          <h2 id="cartStepTitle">Order Review</h2>
-        </div>
-        <div class="cart-header-actions">
-          <button class="text-button" id="clearCart" type="button">Clear</button>
-          <button class="icon-button flowbite-modal-close" id="closeCart" type="button" aria-label="Close cart">×</button>
-        </div>
+    <div class="cart-panel" role="dialog" aria-modal="true" aria-labelledby="cartStepTitle" aria-describedby="cartStepEyebrow">
+      <div class="cart-header">
+        <div><span class="eyebrow" id="cartStepEyebrow">Step 1 of 2</span><h2 id="cartStepTitle">Order Review</h2></div>
+        <div class="cart-header-actions"><button class="text-button" id="clearCart" type="button">Clear</button><button class="icon-button" id="closeCart" type="button" aria-label="Close cart">×</button></div>
       </div>
 
       <section class="order-step active" id="orderReviewStep">
         <div class="cart-items" id="cartItems"></div>
-
         <div class="review-footer order-summary-card">
-          <div class="order-summary-heading">
-            <div>
-              <span class="eyebrow">Order Summary</span>
-              <strong>Almost done</strong>
-            </div>
-            <span id="cartItemSummary">0 items</span>
-          </div>
-
-          <div class="total-row order-total-row">
-            <span>Products total</span>
-            <strong id="cartTotal">R0</strong>
-          </div>
-
+          <div class="order-summary-heading"><div><span class="eyebrow">Order Summary</span><strong>Almost done</strong></div><span id="cartItemSummary">0 items</span></div>
+          <div class="total-row order-total-row"><span>Products total</span><strong id="cartTotal">R0</strong></div>
           <div class="delivery-progress-card" id="deliveryProgressCard">
-            <div class="delivery-progress-copy">
-              <strong id="deliveryProgressMessage">Add more for FREE delivery!</strong>
-              <span id="deliveryProgressAmount">R0 / R500</span>
-            </div>
-            <div class="delivery-progress-track" aria-hidden="true">
-              <div class="delivery-progress-fill" id="deliveryProgressFill"></div>
-            </div>
+            <div class="delivery-progress-copy"><strong id="deliveryProgressMessage">Add more for FREE delivery!</strong><span id="deliveryProgressAmount">R0 / R1,500</span></div>
+            <div class="delivery-progress-track" aria-hidden="true"><div class="delivery-progress-fill" id="deliveryProgressFill"></div></div>
           </div>
-
-          <p class="muted">Orders of R1500 or more qualify for FREE delivery.</p>
-          <button class="primary-button full flowbite-button sweet-continue-button" id="looksGoodButton" type="button">Sweet, Let&#39;s Continue <span class="continue-arrow" aria-hidden="true">→</span></button>
+          <button class="primary-button full" id="looksGoodButton" type="button">Sweet, Let&#39;s Continue <span aria-hidden="true">→</span></button>
         </div>
       </section>
 
       <section class="order-step" id="deliveryOptionsStep">
-        <div class="delivery-intro">
-          <p>Choose how you would like us to send your parcel.</p>
-        </div>
-
+        <div class="delivery-intro"><p>Choose how you would like us to send your parcel.</p></div>
         <div class="delivery-options">
-          <label class="delivery-option">
-            <input id="deliveryCourier" type="radio" name="deliveryChoice" value="courier">
-            <span>
-              <strong>Deliver to your door</strong>
-              <small id="courierDeliveryPrice">R99 delivery</small>
-            </span>
-          </label>
-
-          <label class="delivery-option">
-            <input id="deliveryPudo" type="radio" name="deliveryChoice" value="pudo">
-            <span>
-              <strong>Collect from a locker</strong>
-              <small id="pudoDeliveryPrice">R75 delivery</small>
-            </span>
-          </label>
+          <label class="delivery-option"><input id="deliveryCourier" type="radio" name="deliveryChoice" value="courier"><span><strong>Deliver to your door</strong><small id="courierDeliveryPrice">R99 delivery</small></span></label>
+          <label class="delivery-option"><input id="deliveryPudo" type="radio" name="deliveryChoice" value="pudo"><span><strong>Collect from a locker</strong><small id="pudoDeliveryPrice">R75 delivery</small></span></label>
         </div>
 
         <div class="delivery-form" id="courierFields" hidden>
           <h4>Courier details</h4>
-
-          <label class="field">
-            <span>Full name</span>
-            <input id="courierName" type="text" autocomplete="name">
-          </label>
-
-          <label class="field">
-            <span>Phone number</span>
-            <input id="courierPhone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="10" pattern="[0-9]{10}" placeholder="10-digit number">
-          </label>
-
-          <label class="field">
-            <span>Street address</span>
-            <input id="courierStreet" type="text" autocomplete="street-address">
-          </label>
-
-          <div class="field-grid">
-            <label class="field">
-              <span>Suburb</span>
-              <input id="courierSuburb" type="text" autocomplete="address-level3">
-            </label>
-
-            <label class="field">
-              <span>City / Town</span>
-              <input id="courierCity" type="text" autocomplete="address-level2">
-            </label>
-          </div>
-
-          <div class="field-grid">
-            <label class="field">
-              <span>Province</span>
-              <select id="courierProvince" autocomplete="address-level1">
-                <option value="">Select province</option>
-                <option>Eastern Cape</option>
-                <option>Free State</option>
-                <option>Gauteng</option>
-                <option>KwaZulu-Natal</option>
-                <option>Limpopo</option>
-                <option>Mpumalanga</option>
-                <option>Northern Cape</option>
-                <option>North West</option>
-                <option>Western Cape</option>
-              </select>
-            </label>
-
-            <label class="field">
-              <span>Postcode</span>
-              <input id="courierPostcode" type="text" inputmode="numeric" autocomplete="postal-code">
-            </label>
-          </div>
+          <label class="field"><span>Full name</span><input id="courierName" type="text" autocomplete="name"></label>
+          <label class="field"><span>Phone number</span><input id="courierPhone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="10" pattern="[0-9]{10}" placeholder="10-digit number"></label>
+          <label class="field"><span>Street address</span><input id="courierStreet" type="text" autocomplete="street-address"></label>
+          <div class="field-grid"><label class="field"><span>Suburb</span><input id="courierSuburb" type="text" autocomplete="address-level3"></label><label class="field"><span>City / Town</span><input id="courierCity" type="text" autocomplete="address-level2"></label></div>
+          <div class="field-grid"><label class="field"><span>Province</span><select id="courierProvince" autocomplete="address-level1"><option value="">Select province</option><option>Eastern Cape</option><option>Free State</option><option>Gauteng</option><option>KwaZulu-Natal</option><option>Limpopo</option><option>Mpumalanga</option><option>Northern Cape</option><option>North West</option><option>Western Cape</option></select></label><label class="field"><span>Postcode</span><input id="courierPostcode" type="text" inputmode="numeric" autocomplete="postal-code"></label></div>
         </div>
 
         <div class="delivery-form" id="pudoFields" hidden>
-          <h4>Pudo locker details</h4>
-
-          <label class="field">
-            <span>Name</span>
-            <input id="pudoName" type="text" autocomplete="name">
-          </label>
-
-          <label class="field">
-            <span>Phone number</span>
-            <input id="pudoPhone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="10" pattern="[0-9]{10}" placeholder="10-digit number">
-          </label>
-
-
-          <label class="field">
-            <span>Province</span>
-            <select id="pudoProvince" autocomplete="address-level1">
-              <option value="">Select province</option>
-              <option>Eastern Cape</option>
-              <option>Free State</option>
-              <option>Gauteng</option>
-              <option>KwaZulu-Natal</option>
-              <option>Limpopo</option>
-              <option>Mpumalanga</option>
-              <option>Northern Cape</option>
-              <option>North West</option>
-              <option>Western Cape</option>
-            </select>
-          </label>
-
-          <label class="field">
-            <span>Nearest Pudo locker</span>
-            <input id="pudoLocker" type="text" placeholder="e.g. Pudo Locker - Sandton">
-          </label>
+          <h4>PUDO locker details</h4>
+          <label class="field"><span>Name</span><input id="pudoName" type="text" autocomplete="name"></label>
+          <label class="field"><span>Phone number</span><input id="pudoPhone" type="tel" inputmode="numeric" autocomplete="tel" maxlength="10" pattern="[0-9]{10}" placeholder="10-digit number"></label>
+          <label class="field"><span>Province</span><select id="pudoProvince" autocomplete="address-level1"><option value="">Select province</option><option>Eastern Cape</option><option>Free State</option><option>Gauteng</option><option>KwaZulu-Natal</option><option>Limpopo</option><option>Mpumalanga</option><option>Northern Cape</option><option>North West</option><option>Western Cape</option></select></label>
+          <label class="field"><span>Nearest PUDO locker</span><input id="pudoLocker" type="text" placeholder="e.g. PUDO Locker - Sandton"></label>
         </div>
 
-        <div class="delivery-actions">
-          <button class="secondary-button full flowbite-button flowbite-secondary" id="backToReviewButton" type="button">Back to Order Review</button>
-          <button class="whatsapp-button full flowbite-button flowbite-whatsapp" id="whatsappOrderButton" type="button">Send Order on WhatsApp</button>
-        </div>
+        <div class="delivery-actions"><button class="secondary-button full" id="backToReviewButton" type="button">Back to Order Review</button><button class="whatsapp-button full" id="whatsappOrderButton" type="button">Send Order on WhatsApp</button></div>
       </section>
     </div>
   </aside>
 
-
   <div class="product-lightbox" id="productLightbox" aria-hidden="true">
     <button class="product-lightbox-backdrop" id="productLightboxBackdrop" type="button" aria-label="Close image"></button>
-    <div class="product-lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="productLightboxTitle">
-      <button class="product-lightbox-close" id="productLightboxClose" type="button" aria-label="Close image">×</button>
-      <img id="productLightboxImage" src="" alt="">
-      <strong id="productLightboxTitle"></strong>
-    </div>
+    <div class="product-lightbox-dialog" role="dialog" aria-modal="true" aria-labelledby="productLightboxTitle"><button class="product-lightbox-close" id="productLightboxClose" type="button" aria-label="Close image">×</button><img id="productLightboxImage" src="" alt=""><strong id="productLightboxTitle"></strong></div>
   </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
-  <script src="default-products.js?v=6.35"></script>
-  <script src="app.js?v=6.35"></script>
+  <script src="default-products.js?v=7.8"></script>
+  <script src="app.js?v=13.5-scrollfix"></script>
 </body>
 </html>
