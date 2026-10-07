@@ -356,8 +356,11 @@ function storefrontAssetPath(path) {
   return value.startsWith("./") ? value : `./${value}`;
 }
 
-function productCard(product) {
+function productCard(product, index = 0) {
   const available = isAvailable(product);
+  const isPriorityProduct = product.section === "300g" && index < 4;
+  const imageLoading = isPriorityProduct ? "eager" : "lazy";
+  const imagePriority = isPriorityProduct ? ' fetchpriority="high"' : "";
 
   return `
     <article class="product-card ${available ? "is-available" : "is-out-of-stock"}" data-product-id="${product.id}">
@@ -366,7 +369,8 @@ function productCard(product) {
           src="${storefrontAssetPath(product.image || defaultProductById(product.id)?.image || "")}"
           data-fallback="${storefrontAssetPath(defaultProductById(product.id)?.image || "")}"
           alt="${product.name} ${product.packSize}"
-          loading="lazy"
+          loading="${imageLoading}"${imagePriority}
+          decoding="async"
           onerror="handleProductImageError(this)">
         <div class="image-fallback" hidden>
           <span class="image-placeholder-mark" aria-hidden="true">SZ</span>
@@ -407,7 +411,7 @@ function renderProducts() {
     grid.classList.remove("hidden");
     const items = productsByCategory(category);
     grid.innerHTML = items.length
-      ? items.map(productCard).join("")
+      ? items.map((product, index) => productCard(product, index)).join("")
       : `<div class="empty-state">No products in this range yet.</div>`;
   });
 }

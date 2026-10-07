@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600&family=Inter:wght@400;500;600&family=Poppins:wght@500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=15.5-wholesalecardcenter">
+  <link rel="stylesheet" href="styles.css?v=15.6-performance">
 
   <style id="sweetza-add-cart-gradient-fix">
     #shop .product-card button.add-button:not(:disabled){
@@ -44,7 +44,7 @@
       </details>
 
       <a class="header-brand centered-header-brand" href="#home" aria-label="Sweetza home" onclick="goHomeTop(event)">
-        <img src="assets/brand/sweetza-logo.png" alt="Sweetza" onerror="this.hidden=true;this.nextElementSibling.hidden=false;">
+        <img src="assets/brand/sweetza-logo.png" alt="Sweetza" loading="eager" fetchpriority="high" decoding="async" onerror="this.hidden=true;this.nextElementSibling.hidden=false;">
         <span class="brand-wordmark" hidden>SWEETZA<span class="brand-dot">•</span></span>
       </a>
 
@@ -88,9 +88,9 @@
           </div>
         </div>
         <div class="hero-visual" aria-label="Sweetza product selection">
-          <div class="hero-main-product"><span class="showcase-label">Classic favourite</span><img src="assets/products/300g/rainbow-mix.png" alt="Rainbow Mix 300g"></div>
-          <div class="hero-mini-product hero-mini-left"><span class="showcase-label">Milk Bottles</span><img src="assets/products/milk-bottles/milk-bottles-125g.png" alt="Milk Bottles 125g"></div>
-          <div class="hero-mini-product hero-mini-right"><span class="showcase-label">Bulk pick</span><img src="assets/products/900g/sour-hearts.png" alt="Sour Hearts 900g"></div>
+          <div class="hero-main-product"><span class="showcase-label">Classic favourite</span><img src="assets/products/300g/rainbow-mix.png" alt="Rainbow Mix 300g" loading="eager" fetchpriority="high" decoding="async"></div>
+          <div class="hero-mini-product hero-mini-left"><span class="showcase-label">Milk Bottles</span><img src="assets/products/milk-bottles/milk-bottles-125g.png" alt="Milk Bottles 125g" loading="eager" fetchpriority="high" decoding="async"></div>
+          <div class="hero-mini-product hero-mini-right"><span class="showcase-label">Bulk pick</span><img src="assets/products/900g/sour-hearts.png" alt="Sour Hearts 900g" loading="eager" fetchpriority="high" decoding="async"></div>
         </div>
       </div>
     </section>
@@ -181,16 +181,16 @@
     <section class="about-section" id="about">
       <div class="container about-grid">
         <div class="about-visual">
-          <div class="about-product-main"><span class="showcase-label">Big favourite</span><img src="assets/products/milk-bottles/milk-bottles-600g.png" alt="Sweetza Milk Bottles 600g"></div>
-          <div class="about-mini-card"><span class="showcase-label">Snack pick</span><img src="assets/products/70g/juicy-sharks.png" alt="Sweetza Juicy Sharks 70g"></div>
-          <div class="about-mini-card"><span class="showcase-label">Classic pick</span><img src="assets/products/300g/jelly-donut.png" alt="Sweetza Jelly Donut 300g"></div>
+          <div class="about-product-main"><span class="showcase-label">Big favourite</span><img src="assets/products/milk-bottles/milk-bottles-600g.png" alt="Sweetza Milk Bottles 600g" loading="lazy" decoding="async"></div>
+          <div class="about-mini-card"><span class="showcase-label">Snack pick</span><img src="assets/products/70g/juicy-sharks.png" alt="Sweetza Juicy Sharks 70g" loading="lazy" decoding="async"></div>
+          <div class="about-mini-card"><span class="showcase-label">Classic pick</span><img src="assets/products/300g/jelly-donut.png" alt="Sweetza Jelly Donut 300g" loading="lazy" decoding="async"></div>
         </div>
         <div class="about-copy">
           <div class="about-mobile-content">
             <span class="eyebrow">About Sweetza</span>
             <h2>A Pretoria sweet brand with more on the way.</h2>
-            <p class="about-lead">Sweetza is based in Pretoria and focuses on gummy sweets, including the Jelly Tang range, with nationwide delivery across South Africa.</p>
-            <p>We want Sweetza to be the kind of place customers come back to when they are craving something fun, familiar and easy to order. We are also growing the range, with lots of new products planned — so hang tight, there is plenty more sweetness on the way.</p>
+            <p class="about-lead">Sweetza is a Pretoria-based sweets brand bringing fun, colourful gummies to customers across South Africa. From Jelly Tang favourites to exciting new treats, our goal is simple: make sweets easy to enjoy, easy to order, and hard to forget.</p>
+            <p>We're building Sweetza into a place people come back to whenever they want something fun, familiar and full of flavour. Our range is growing, with plenty more sweetness still to come.</p>
             <!-- PERSONAL STORY: Add your own founder / family / brand story here when you are ready. -->
             <div class="about-stats" aria-label="Sweetza highlights">
               <div><strong id="statFlavours">13</strong><span>Flavours</span></div>
@@ -230,13 +230,13 @@
             </div>
             <a class="contact-method contact-method-whatsapp" data-store-whatsapp-link href="https://wa.me/27849072130" target="_blank" rel="noopener">
               <span class="contact-method-icon whatsapp-icon" aria-hidden="true">
-                <img src="assets/contact/whatsapp-logo.png" alt="">
+                <img src="assets/contact/whatsapp-logo.png" loading="lazy" decoding="async" alt="">
               </span>
               <span class="contact-method-copy"><strong>WhatsApp</strong><span data-store-whatsapp-text>+27 84 907 2130</span></span>
             </a>
             <a class="contact-method contact-method-email" data-store-email-link href="mailto:hello.sweetza@gmail.com">
               <span class="contact-method-icon email-icon" aria-hidden="true">
-                <img src="assets/contact/gmail-logo.png" alt="">
+                <img src="assets/contact/gmail-logo.png" loading="lazy" decoding="async" alt="">
               </span>
               <span class="contact-method-copy"><strong>Email</strong><span data-store-email-text>hello.sweetza@gmail.com</span></span>
             </a>
@@ -286,7 +286,7 @@
     </div>
   </footer>
 
-  <a class="floating-whatsapp-help" data-store-whatsapp-link href="https://wa.me/27849072130" target="_blank" rel="noopener" aria-label="WhatsApp Sweetza for a quick question"><img src="assets/contact/whatsapp-help-3d.png" alt="" aria-hidden="true"></a>
+  <a class="floating-whatsapp-help" data-store-whatsapp-link href="https://wa.me/27849072130" target="_blank" rel="noopener" aria-label="WhatsApp Sweetza for a quick question"><img src="assets/contact/whatsapp-help-3d.png" loading="eager" fetchpriority="high" decoding="async" alt="" aria-hidden="true"></a>
 
   <button class="floating-cart floating-cart-icon-button" id="floatingCartButton" type="button" aria-label="View cart" aria-controls="cartDrawer">
     <span class="cart-button-icon" aria-hidden="true">🛒</span>
@@ -352,6 +352,6 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="default-products.js?v=7.8"></script>
-  <script src="app.js?v=13.5-scrollfix"></script>
+  <script src="app.js?v=15.6-performance"></script>
 </body>
 </html>
