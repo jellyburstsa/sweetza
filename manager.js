@@ -80,7 +80,7 @@ function slugify(text) {
 
 function defaultPath(section, packSize, name) {
   const folder = section === "Milk Bottles" ? "milk-bottles" : section;
-  return `assets/products/${folder}/${slugify(name)}${section === "Milk Bottles" ? "-" + slugify(packSize) : ""}.png`;
+  return `assets/products/${folder}/${slugify(name)}${section === "Milk Bottles" ? "-" + slugify(packSize) : ""}.webp`;
 }
 
 function statusOf(p) {

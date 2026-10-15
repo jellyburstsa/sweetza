@@ -1,11 +1,15 @@
-Use these exact 1254 x 1254 PNG filenames:
+Use .PNG only.
 
-cola-bottles.png
-sour-hearts.png
-jelly-donut.png
-teddy-bears.png
-gummy-drops.png
-banana.png
-juicy-pineapple.png
-fruit-bunny-jelly.png
-sour-ice-pops.png
+fruit-bunny-jelly.webp
+sour-worms.webp
+sour-ice-pops.webp
+juicy-sharks.webp
+teddy-bears.webp
+gummy-drops.webp
+banana.webp
+juicy-pineapple.webp
+sour-bottles.webp
+mixed-berry.webp
+cola-bottles.webp
+sour-hearts.webp
+jelly-donut.webp
