@@ -1,0 +1,5 @@
+Use .PNG only.
+
+fruit-bunny-jelly.webp
+sour-worms.webp
+juicy-sharks.webp
