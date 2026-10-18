@@ -13,6 +13,7 @@ window.SWEETZA_DEFAULT_PRODUCTS = [
   { id: "70g-sour-hearts", section: "70g", name: "Sour Hearts", flavour: "Sour Hearts", packSize: "70g", price: 12.00, status: "available", active: true, image: "assets/products/70g/sour-hearts.webp" },
   { id: "70g-jelly-donut", section: "70g", name: "Jelly Donut", flavour: "Jelly Donut", packSize: "70g", price: 12.00, status: "available", active: true, image: "assets/products/70g/jelly-donut.webp" },
   { id: "milk-bottles-125g", section: "Milk Bottles", name: "Milk Bottles", flavour: "Milk Bottles", packSize: "125g", price: 22.00, status: "available", active: true, image: "assets/products/milk-bottles/milk-bottles-125g.webp" },
+  { id: "milk-bottles-200g", section: "Milk Bottles", name: "Milk Bottles", flavour: "Milk Bottles", packSize: "200g", price: 30.00, status: "available", active: true, image: "assets/products/milk-bottles/milk-bottles-200g.webp" },
   { id: "milk-bottles-600g", section: "Milk Bottles", name: "Milk Bottles", flavour: "Milk Bottles", packSize: "600g", price: 79.99, status: "available", active: true, image: "assets/products/milk-bottles/milk-bottles-600g.webp" },
   { id: "300g-rainbow-mix", section: "300g", name: "Rainbow Mix", flavour: "Rainbow Mix", packSize: "300g", price: 30.00, status: "available", active: true, image: "assets/products/300g/rainbow-mix.webp" },
   { id: "300g-cola-bottles", section: "300g", name: "Cola Bottles", flavour: "Cola Bottles", packSize: "300g", price: 30.00, status: "available", active: true, image: "assets/products/300g/cola-bottles.webp" },
