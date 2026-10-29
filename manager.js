@@ -83,6 +83,12 @@ function defaultPath(section, packSize, name) {
   return `assets/products/${folder}/${slugify(name)}${section === "Milk Bottles" ? "-" + slugify(packSize) : ""}.webp`;
 }
 
+function normalizeImagePath(path) {
+  const value = String(path || "").trim();
+  if (!value) return value;
+  return value.replace(/\.png(?=($|[?#]))/i, ".webp");
+}
+
 function statusOf(p) {
   return p.status || (p.active === false ? "hidden" : "available");
 }
@@ -159,7 +165,7 @@ function closeModal() {
 function updatePreview() {
   const img = document.getElementById("imagePreview");
   const fallback = document.getElementById("previewFallback");
-  const path = document.getElementById("productImage").value.trim();
+  const path = normalizeImagePath(document.getElementById("productImage").value);
   img.style.display = "none";
   fallback.style.display = "grid";
   if (!path) return;
@@ -197,7 +203,7 @@ form.addEventListener("submit", e => {
   const packSize = document.getElementById("productPackSize").value.trim();
   const price = Number(document.getElementById("productPrice").value);
   const status = document.getElementById("productStatus").value;
-  let image = document.getElementById("productImage").value.trim();
+  let image = normalizeImagePath(document.getElementById("productImage").value);
 
   if (!image) image = defaultPath(section, packSize, name);
 

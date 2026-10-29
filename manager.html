@@ -25,7 +25,7 @@
       <div>
         <span class="eyebrow">Range control centre</span>
         <h1>Manage your Sweetza range and availability without editing code.</h1>
-        <p>Add or remove flavours, change prices, move products between sections, update PNG filenames, and manually mark products Available, Out of Stock, or Hidden.</p>
+        <p>Add or remove flavours, change prices, move products between sections, update WebP filenames, and manually mark products Available, Out of Stock, or Hidden.</p>
       </div>
       <div class="hero-stat-grid">
         <div class="hero-stat"><strong id="totalProducts">0</strong><span>Total products</span></div>
@@ -53,8 +53,8 @@
     </section>
 
     <section class="info-banner">
-      <strong>PNG image size:</strong>
-      <span>Your 1254 × 1254 PNG files are perfect. Put them inside the correct <code>assets/products/...</code> folder and enter the image path in the product.</span>
+      <strong>WebP product images:</strong>
+      <span>Use your optimised WebP product images inside the correct <code>assets/products/...</code> folder and enter the matching <code>.webp</code> image path in the product.</span>
     </section>
 
     <section class="product-manager-grid" id="productManagerGrid"></section>
@@ -110,16 +110,16 @@
         </label>
 
         <label class="field">
-          <span>PNG image path</span>
+          <span>WebP image path</span>
           <input id="productImage" required placeholder="assets/products/70g/banana.webp">
-          <small>Use a 1254 × 1254 PNG. The filename/path is case-sensitive on Netlify.</small>
+          <small>Use the matching <code>.webp</code> file path. Filenames and paths are case-sensitive on GitHub Pages.</small>
         </label>
 
         <div class="image-preview-card">
           <span>Image preview</span>
           <div class="preview-frame">
             <img id="imagePreview" alt="Product preview">
-            <div id="previewFallback">PNG preview</div>
+            <div id="previewFallback">WebP preview</div>
           </div>
         </div>
 
